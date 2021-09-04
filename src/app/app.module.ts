@@ -5,11 +5,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { IgxGridModule } from 'igniteui-angular';
+import { AngularMaterialModule } from "./angular-material.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule,HttpClientModule ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule, 
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularMaterialModule ],
   providers: [],
   bootstrap: [AppComponent],
 })

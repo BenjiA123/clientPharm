@@ -12,3 +12,6 @@
 
 @include igx-core();
 @include igx-theme($default-palette);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
