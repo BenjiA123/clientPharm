@@ -1,0 +1,54 @@
+<!-- <button mat-raised-button color="primary" (click)="create()">
+    CREATE ACCESS POINT
+  </button>
+  <igx-grid
+    #grid
+    [data]="accessPoints"
+    [primaryKey]="'AccessPointID'"
+    [paging]="true"
+    [perPage]="10"
+    [allowFiltering]="true"
+    [showToolbar]="true"
+    toolbarTitle="ACCESS POINTS"
+  >
+    <igx-column
+      header="ApComID"
+      headerClasses="myClass"
+      field="_ApComID"
+      sortable="true"
+      [filterable]="true"
+    ></igx-column>
+    <igx-column field="_ApIPAddr" header="ApIPAddr"></igx-column>
+  
+    <igx-column
+      field="_ApName"
+      sortable="true"
+      header="ApName"
+      [filterable]="true"
+    >
+    </igx-column>
+  
+    <igx-column field="AccessPointID"[filterable]="false">
+      <ng-template igxCell let-cell="cell">
+        <span tabindex="0"
+          ><button mat-stroked-button (click)="editRow(cell.value)">
+            EDIT
+          </button></span
+        >
+      </ng-template>
+    </igx-column>
+  
+    <igx-column field="AccessPointID"[filterable]="false">
+      <ng-template igxCell let-cell="cell">
+        <span tabindex="0"
+          ><button mat-stroked-button (click)="deleteAccessPoints(cell.value)">
+            DELETE
+          </button></span
+        >
+      </ng-template>
+    </igx-column>
+  </igx-grid>
+  
+  
+   -->
+<h1>DRUG COMPONENT</h1>
