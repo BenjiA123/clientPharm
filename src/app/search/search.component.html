@@ -1,0 +1,9 @@
+<form (submit)=submitSearch(search) #search="ngForm">
+    <mat-form-field appearance="outline">
+        <input matInput name="search" email placeholder="Search Drugs:" #searchInput="ngModel" ngModel type="email">
+    </mat-form-field>
+    <button mat-stroked-button class="btn_search" color="primary" type="submit">
+        <div>Search</div>
+    </button>
+
+</form>

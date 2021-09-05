@@ -1,5 +1,7 @@
+<app-search-comp></app-search-comp>
+
+
 <h5>DRUGS</h5>
-<!-- Place a search bar here -->
 <igx-grid 
 
 [primaryKey]="'_id'"
@@ -19,7 +21,7 @@ class="drugsGrid"
 id="drugsGrid | async" 
 [data]="drugs" 
 [autoGenerate]="false" 
-
+[rowEditable]="false"
 [exportExcel]="true"
 exportText="Export"
 exportExcelText="Export to Excel"
@@ -32,7 +34,7 @@ exportExcelText="Export to Excel"
 
 <igx-column  width="10%" field="amount" [sortable]="false" header="Amount "  [filterable]="false"></igx-column>
 
-<igx-column  width="10%" field="sellingPrice" [sortable]="true" header="Type "  [filterable]="false"></igx-column>
+<igx-column  width="10%" field="sellingPrice" [sortable]="true" header="Selling Price "  [filterable]="false"></igx-column>
 
 <igx-column  width="10%" field="type" [sortable]="true" header="Type "  [filterable]="false"></igx-column>
 
@@ -44,5 +46,5 @@ exportExcelText="Export to Excel"
 
 
 </igx-grid>
-
+<br>
 

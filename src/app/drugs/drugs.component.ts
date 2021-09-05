@@ -13,13 +13,12 @@ export class DrugsComponent implements OnInit {
 public grid: IgxGridComponent;
 
   constructor(private drugService:DrugsService) {}
-  drugs :Drug[];
+  public drugs :Drug[];
   ngOnInit() {
   this.drugService.getAllDrugs()
   .subscribe(
-    (res:any)=>{
-      this.drugs = res.data.document
-      console.log("Drugs",this.drugs)
+    (response:any)=>{
+      this.drugs = response.data.document
     }
   )
   }
