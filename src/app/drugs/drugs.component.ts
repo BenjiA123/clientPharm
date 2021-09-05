@@ -1,17 +1,26 @@
-import { HttpClient, } from "@angular/common/http";
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IgxGridComponent } from 'igniteui-angular';
+import { Drug } from './drugs.interface';
+import { DrugsService } from './drugs.service';
 @Component({
   selector: 'app-drugs',
   templateUrl: './drugs.component.html',
   styleUrls: ['./drugs.component.scss'],
 })
-export class DrugsComponent     implements OnInit {
-  constructor(private httpClient:HttpClient) {}
+export class DrugsComponent implements OnInit {
 
+  @ViewChild('drugsGrid', { read: IgxGridComponent })
+public grid: IgxGridComponent;
+
+  constructor(private drugService:DrugsService) {}
+  drugs :Drug[];
   ngOnInit() {
-    this.httpClient.get("http//:localhost/5000/api/v1/drugs")
-    .subscribe(res =>console.log(res))
-    console.log('GRUGS');
+  this.drugService.getAllDrugs()
+  .subscribe(
+    (res:any)=>{
+      this.drugs = res.data.document
+      console.log("Drugs",this.drugs)
+    }
+  )
   }
 }

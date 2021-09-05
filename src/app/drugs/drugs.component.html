@@ -1,2 +1,48 @@
+<h5>DRUGS</h5>
+<!-- Place a search bar here -->
+<igx-grid 
 
-<h1>DRUG COMPONENT</h1>
+[primaryKey]="'_id'"
+[paging]="true"
+[perPage]="10"
+[allowFiltering]="true"
+[showToolbar]="true"
+
+[columnPinning]="true"
+[columnHiding]="true"
+
+toolbarTitle="DRUGS"
+width="'80%'"
+class="drugsGrid"
+#drugsGrid 
+
+id="drugsGrid | async" 
+[data]="drugs" 
+[autoGenerate]="false" 
+
+[exportExcel]="true"
+exportText="Export"
+exportExcelText="Export to Excel"
+
+[allowFiltering]="true">
+
+<igx-column  width="25%" field="genericName" [sortable]="true" header="Generic Name "></igx-column>
+
+<igx-column  width="25%" field="brandName" [sortable]="true" header="Brand Name "></igx-column>
+
+<igx-column  width="10%" field="amount" [sortable]="false" header="Amount "  [filterable]="false"></igx-column>
+
+<igx-column  width="10%" field="sellingPrice" [sortable]="true" header="Type "  [filterable]="false"></igx-column>
+
+<igx-column  width="10%" field="type" [sortable]="true" header="Type "  [filterable]="false"></igx-column>
+
+<igx-column  width="10%" dataType="boolean" field="expired" [sortable]="false" header="Expired "  [filterable]="false"></igx-column>
+
+<igx-column  width="10%" dataType="boolean" field="available" [sortable]="false" header="Available "  [filterable]="false"></igx-column>
+
+
+
+
+</igx-grid>
+
+

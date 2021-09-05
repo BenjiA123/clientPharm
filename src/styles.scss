@@ -1,5 +1,5 @@
 // CSS Reset, comment out if not required or using a different module
-@import '~minireset.css/minireset';
+@import "~minireset.css/minireset";
 /* You can add global styles to this file, and also import other style files */
 
 @import "~igniteui-angular/lib/core/styles/themes/index";
@@ -13,5 +13,11 @@
 @include igx-core();
 @include igx-theme($default-palette);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
