@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IgxGridComponent } from 'igniteui-angular';
+import { Subscription } from 'rxjs';
+import { SearchService } from '../search/search.service';
 import { Drug } from './drugs.interface';
 import { DrugsService } from './drugs.service';
 @Component({
@@ -7,19 +9,37 @@ import { DrugsService } from './drugs.service';
   templateUrl: './drugs.component.html',
   styleUrls: ['./drugs.component.scss'],
 })
-export class DrugsComponent implements OnInit {
+export class DrugsComponent implements OnInit,OnDestroy {
 
   @ViewChild('drugsGrid', { read: IgxGridComponent })
 public grid: IgxGridComponent;
-
-  constructor(private drugService:DrugsService) {}
+private drugsSub: Subscription;
+  constructor(private drugService:DrugsService, private searchService:SearchService) {}
   public drugs :Drug[];
+
   ngOnInit() {
+
+    this.drugsSub = this.searchService.searchedDrugsListener()
+    .subscribe((drugs:any)=>{
+      this.drugs = drugs.drugs
+    })
+
+
   this.drugService.getAllDrugs()
   .subscribe(
     (response:any)=>{
       this.drugs = response.data.document
     }
   )
+  }
+
+
+
+
+  ngOnDestroy(): void {
+    this.drugsSub.unsubscribe()
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    
   }
 }

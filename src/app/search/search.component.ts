@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-search-comp',
@@ -8,10 +9,12 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchComponent {
 
-  constructor() { }
+  constructor(private searchService:SearchService) { }
 
   submitSearch(search:NgForm){
-    console.log(search)
+  this.searchService.searchDrugs(search.value.search)
+
+
   }
 
 }
