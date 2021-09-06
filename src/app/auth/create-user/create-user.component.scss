@@ -1,0 +1,42 @@
+.createuser__page {
+  background-image: linear-gradient(
+      98deg,
+      rgba(white, 0.95) 0%,
+      rgba(white, 5) 50%,
+      rgba(crimson, 0.9) 50%,
+      transparent
+    ),
+    url(./createUser_back.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  position: fixed;
+}
+.createuser_form {
+  width: 50%;
+  height: 100%;
+}
+.form_container {
+  margin: 5rem 5%;
+}
+mat-form-field {
+  width: 100%;
+  height: 2rem;
+  padding: 1rem 0;
+  margin: 0;
+}
+input {
+  height: 1rem;
+  padding-top: -10rem;
+  padding-bottom: 0;
+}
+
+.lottie_animation {
+  margin: 5rem 5%;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: -2rem;
+  top: 0;
+}

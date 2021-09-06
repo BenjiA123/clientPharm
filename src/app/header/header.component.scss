@@ -18,3 +18,19 @@
   left: 1rem;
   color: white;
 }
+
+.navigation__link {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.navigation__item {
+  // Removes the dots
+  // list-style: none;
+  margin: 1rem;
+  color: white;
+  float: right;
+}

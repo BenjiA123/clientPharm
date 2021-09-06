@@ -8,7 +8,11 @@ form {
   margin-top: 3rem;
   margin-bottom: 0%;
 }
-.btn_search {
-  height: 2rem;
-  //   padding: 0.5rem 2rem;
+.btn {
+  width: 20%;
+  margin: auto;
+}
+.btn:hover {
+  transform: translateY(0);
+  box-shadow: 0;
 }
