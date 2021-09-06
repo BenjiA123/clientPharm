@@ -1,0 +1,55 @@
+.login {
+  margin: 0;
+  height: 100vh;
+  background-image: linear-gradient(to left top, white, crimson);
+  //   padding: 15rem 20%;
+}
+.login_form_card {
+  background-image: linear-gradient(
+      105deg,
+      rgba(white, 0.9) 0%,
+      rgba(white, 0.9) 50%,
+      rgba(crimson, 0.9) 50%,
+      transparent
+    ),
+    url(./pharmacy_background.jpg);
+  background-size: cover;
+  right: 15%;
+  top: 25%;
+  border-radius: 0.3rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  height: 25rem;
+  width: 70%;
+  position: absolute;
+}
+.login_form_head {
+  font-family: "Courier New", Courier, monospace;
+  color: black;
+  position: relative;
+  padding-top: 2rem;
+  margin-left: 3rem;
+  //   margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+.login_form {
+  width: 50%;
+  color: black;
+  border-radius: 0.3rem 0 0 0.3rem;
+
+  margin-top: -2rem;
+  height: 100%;
+}
+.form {
+  padding: 0 3rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+button {
+  width: 60%;
+  text-align: center;
+  margin: 0 15%;
+}

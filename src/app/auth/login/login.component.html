@@ -1,0 +1,21 @@
+<section class="login">
+    <section class="login_form_card">
+       <div class="login_form">
+        <h5 class="login_form_head">LOGIN</h5>
+        <form class="form" >
+            <mat-form-field  appearance="outline">
+                <input matInput name="email" email placeholder="Email:" #emailInput="ngModel" ngModel type="email">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <input matInput name="password" password placeholder="Password:" #passwordInput="ngModel" ngModel type="password">
+            </mat-form-field>
+            <button mat-stroked-button class="btn_login" color="primary" type="submit">
+                LOGIN
+            </button>
+        </form>
+       </div>
+
+    </section>
+</section>

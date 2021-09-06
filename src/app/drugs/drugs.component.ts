@@ -21,14 +21,18 @@ private drugsSub: Subscription;
 
     this.drugsSub = this.searchService.searchedDrugsListener()
     .subscribe((drugs:any)=>{
+      this.grid.isLoading = true
       this.drugs = drugs.drugs
+      this.grid.isLoading = false
     })
 
 
   this.drugService.getAllDrugs()
   .subscribe(
     (response:any)=>{
+      this.grid.isLoading = true
       this.drugs = response.data.document
+      this.grid.isLoading = false
     }
   )
   }
