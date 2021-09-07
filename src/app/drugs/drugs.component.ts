@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IgxGridComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../search/search.service';
+import { AppTransactionService } from '../transaction/transaction.service';
 import { Drug } from './drugs.interface';
 import { DrugsService } from './drugs.service';
 @Component({
@@ -14,7 +15,7 @@ export class DrugsComponent implements OnInit,OnDestroy {
   @ViewChild('drugsGrid', { read: IgxGridComponent })
 public grid: IgxGridComponent;
 private drugsSub: Subscription;
-  constructor(private drugService:DrugsService, private searchService:SearchService) {}
+  constructor(private drugService:DrugsService,private appTransactionService: AppTransactionService, private searchService:SearchService) {}
   public drugs :Drug[];
 
   public transactionDrugs :any[] =[]
@@ -70,7 +71,7 @@ private drugsSub: Subscription;
 
 
 
-    this.drugService.createPendingTransaction(transaction)
+    this.appTransactionService.createPendingTransaction(transaction)
     .subscribe(res =>console.log(res))
 
   }

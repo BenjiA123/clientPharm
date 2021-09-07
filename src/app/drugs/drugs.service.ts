@@ -9,18 +9,16 @@ export class DrugsService {
 
   constructor(private http:HttpClient) {}
 
-  getAllDrugs(limit?:number,sort?:string,page?:number){
-    return this.http.get(`${BACKEND_URL}`)
-      
-    }
+getAllDrugs(limit?:number,sort?:string,page?:number){
+return this.http.get(`${BACKEND_URL}`)
 
-    getOneDrug(drugId:string){
-      return this.http.get(`${BACKEND_URL}/${drugId}`)
-        
-      }
+}
 
-      createPendingTransaction(pendingTrans:any){
-        return this.http.post(`${environment.apiUrl}/transaction}`,pendingTrans)
-      }
+getOneDrug(drugId:string){
+return this.http.get(`${BACKEND_URL}/${drugId}`)
+  
+}
+
+   
 
 }
