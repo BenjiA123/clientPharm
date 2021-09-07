@@ -17,6 +17,8 @@ private drugsSub: Subscription;
   constructor(private drugService:DrugsService, private searchService:SearchService) {}
   public drugs :Drug[];
 
+  public transactionDrugs :any[] =[]
+
   ngOnInit() {
 
     this.drugsSub = this.searchService.searchedDrugsListener()
@@ -36,6 +38,43 @@ private drugsSub: Subscription;
     }
   )
   }
+
+  cellContent(cellValue:string){
+
+    this.drugService.getOneDrug(cellValue)
+    .subscribe(
+      (res:any)=>{
+        const drug = res.data.document
+        this.transactionDrugs.push(drug)
+      }
+    )
+  }
+
+
+  deleteDrugInTrans(drugId:string){
+    this.transactionDrugs = this.transactionDrugs.filter(drug =>drug.id != drugId)
+  }
+
+  createPendingTransaction(){
+    const transaction = {
+      customerName: "Benjamin",
+      quantity:[
+          3,5
+      ],
+      drugs:[
+          "60a3615e1a56ca1accf24c57",
+          "603d773cab3dd222f0ebcd33"
+      ],
+      creator:"5f518bfa17ab81425883fde4"
+  }
+
+
+
+    this.drugService.createPendingTransaction(transaction)
+    .subscribe(res =>console.log(res))
+
+  }
+
 
 
 

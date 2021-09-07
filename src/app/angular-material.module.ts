@@ -12,8 +12,8 @@ import { MatSelectModule } from "@angular/material/select";
         MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
-    // MatNativeControl
+    MatSelectModule,
+    MatInputModule
     ]
 })
 export class AngularMaterialModule {

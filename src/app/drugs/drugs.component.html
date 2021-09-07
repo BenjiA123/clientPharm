@@ -1,5 +1,19 @@
 <app-search-comp></app-search-comp>
+<br>
+<div *ngFor="let item of transactionDrugs" class="transaction_drug">
+    <div class="drug_name">
+        {{item.genericName}}
+    </div>
 
+        <input  type="number" min="1">
+
+    <button mat-button (click)="deleteDrugInTrans(item._id)" class="cancle" color="warn"
+    ><mat-icon>delete</mat-icon></button>
+</div>
+<div (click)="createPendingTransaction()" class="btn btn--crimson send_trans" *ngIf="transactionDrugs.length > 0">
+    SEND TRANS
+</div>
+<br>
 
 <h5>DRUGS</h5>
 <igx-grid 
@@ -25,7 +39,6 @@ id="drugsGrid | async"
 [exportExcel]="true"
 exportText="Export"
 exportExcelText="Export to Excel"
-
 [allowFiltering]="true">
 
 <igx-column  width="25%" field="genericName" [sortable]="true" header="Generic Name "></igx-column>
@@ -42,7 +55,15 @@ exportExcelText="Export to Excel"
 
 <igx-column  width="10%" dataType="boolean" field="available" [sortable]="false" header="Available "  [filterable]="false"></igx-column>
 
-
+<igx-column field="_id" header=" " [filterable]="false">
+    <ng-template igxCell let-cell="cell">
+      <span tabindex="0"
+        ><button mat-stroked-button (click)="cellContent(cell.value)">
+          ADD
+        </button></span
+      >
+    </ng-template>
+  </igx-column>
 
 
 </igx-grid>

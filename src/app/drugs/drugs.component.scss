@@ -1,8 +1,6 @@
 igx-grid {
   margin: 1rem 3rem 5rem 3rem !important;
-  // background-color: blue;
   border-radius: 0.5%;
-  // color: white !important;
   font-size: 0.8rem !important;
   text-align: center;
 }
@@ -10,4 +8,44 @@ igx-grid {
 h5 {
   text-align: center;
   margin-top: 3rem;
+}
+
+.transaction_drug {
+  text-align: center;
+  margin: 0.7rem 2rem;
+  border: 1rem;
+  padding: 0.6rem 0;
+  border-radius: 2px;
+  color: white;
+  background-color: grey;
+}
+.cancle {
+  float: right;
+  margin: auto;
+}
+
+.drug_name {
+  float: left;
+  margin: auto 1rem;
+}
+
+input {
+  height: 1.7rem;
+  width: 5rem;
+  margin: -2rem;
+  border-style: none;
+  padding: 0;
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+}
+.design {
+  height: 1rem;
+}
+.send_trans {
+  width: 15%;
+  // float: right;
+  position: absolute;
+  padding: 1rem 0;
+  text-align: center;
 }
