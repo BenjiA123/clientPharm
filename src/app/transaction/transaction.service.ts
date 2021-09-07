@@ -11,7 +11,7 @@ export class AppTransactionService {
   constructor(private http:HttpClient) {}
 
   createPendingTransaction(pendingTrans:any){
-    return this.http.post(`${BACKEND_URL}/transaction}`,pendingTrans)
+    return this.http.post(`${BACKEND_URL}/`,pendingTrans)
   }
 
 }

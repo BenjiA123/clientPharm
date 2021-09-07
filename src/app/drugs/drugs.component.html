@@ -1,11 +1,11 @@
 <app-search-comp></app-search-comp>
 <br>
-<div *ngFor="let item of transactionDrugs" class="transaction_drug">
+<div *ngFor="let item of transactionDrugs;let i = index" class="transaction_drug">
     <div class="drug_name">
-        {{item.genericName}}
+      {{i +1}}  {{item.genericName}} 
     </div>
 
-        <input  type="number" min="1">
+        <input [(ngModel)]="quantityX" required #quantity type="number" min="1">
 
     <button mat-button (click)="deleteDrugInTrans(item._id)" class="cancle" color="warn"
     ><mat-icon>delete</mat-icon></button>
@@ -58,7 +58,7 @@ exportExcelText="Export to Excel"
 <igx-column field="_id" header=" " [filterable]="false">
     <ng-template igxCell let-cell="cell">
       <span tabindex="0"
-        ><button mat-stroked-button (click)="cellContent(cell.value)">
+        ><button mat-stroked-button (click)="getDrug(cell.value)">
           ADD
         </button></span
       >

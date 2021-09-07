@@ -12,35 +12,38 @@ import { DrugsService } from './drugs.service';
 })
 export class DrugsComponent implements OnInit,OnDestroy {
 
-  @ViewChild('drugsGrid', { read: IgxGridComponent })
-public grid: IgxGridComponent;
-private drugsSub: Subscription;
-  constructor(private drugService:DrugsService,private appTransactionService: AppTransactionService, private searchService:SearchService) {}
-  public drugs :Drug[];
+constructor(private drugService:DrugsService,private appTransactionService: AppTransactionService,private searchService:SearchService) {}
 
-  public transactionDrugs :any[] =[]
+@ViewChild('quantity',{static:false}) quantity:Number;
+@ViewChild('drugsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
+
+private drugsSub: Subscription;
+public drugs :Drug[];
+public transactionDrugs :any[] =[]
+
+public transactionDataWithQuantity:any =[]
 
   ngOnInit() {
 
     this.drugsSub = this.searchService.searchedDrugsListener()
     .subscribe((drugs:any)=>{
-      this.grid.isLoading = true
+      // this.grid.isLoading = true
       this.drugs = drugs.drugs
-      this.grid.isLoading = false
+      // this.grid.isLoading = false
     })
 
 
   this.drugService.getAllDrugs()
   .subscribe(
     (response:any)=>{
-      this.grid.isLoading = true
+      // this.grid.isLoading = true
       this.drugs = response.data.document
-      this.grid.isLoading = false
+      // this.grid.isLoading = false
     }
   )
   }
 
-  cellContent(cellValue:string){
+  getDrug(cellValue:string){
 
     this.drugService.getOneDrug(cellValue)
     .subscribe(
@@ -55,24 +58,27 @@ private drugsSub: Subscription;
   deleteDrugInTrans(drugId:string){
     this.transactionDrugs = this.transactionDrugs.filter(drug =>drug.id != drugId)
   }
-
+  quantityX
   createPendingTransaction(){
+
+    this.transactionDataWithQuantity= [
+
+    ]
     const transaction = {
       customerName: "Benjamin",
       quantity:[
-          3,5
+        3,5
       ],
-      drugs:[
-          "60a3615e1a56ca1accf24c57",
-          "603d773cab3dd222f0ebcd33"
-      ],
+      drugs:this.transactionDrugs,
+      // To get the creator, we retrieve it from the auth
       creator:"5f518bfa17ab81425883fde4"
-  }
+    }
+    
+    console.log(this.quantityX,transaction)
 
 
-
-    this.appTransactionService.createPendingTransaction(transaction)
-    .subscribe(res =>console.log(res))
+    // this.appTransactionService.createPendingTransaction(transaction)
+    // .subscribe(res =>console.log(res))
 
   }
 
