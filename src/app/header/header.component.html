@@ -3,22 +3,25 @@
         PHARM
     </div>
     <div class="nav_items">
-        <li class="navigation__item">
+        <li *ngIf="!isAuthenticated" class="navigation__item">
             <a mat-button routerLink="/auth/login" class="navigation__link">Login</a>
           </li>
   
-          <li class="navigation__item">
+          <li *ngIf="isAuthenticated && userRole === 'MD'"  class="navigation__item">
             <a  routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
           </li>
 
-          <li class="navigation__item">
+          <li *ngIf="isAuthenticated && (userRole === 'MD' || 'pharmacist')" class="navigation__item">
             <a  routerLink="/drugs" class="navigation__link">Drugs</a>
           </li>
-          <li class="navigation__item">
+          <li *ngIf="isAuthenticated && (userRole === 'MD' || 'cachier')" class="navigation__item">
             <a  routerLink="/transactions" class="navigation__link">Trans</a>
           </li>
-          <li class="navigation__item">
+          <li *ngIf="isAuthenticated && userRole === 'MD'" class="navigation__item">
             <a  routerLink="/charts" class="navigation__link">Charts</a>
+          </li>
+          <li *ngIf="isAuthenticated" class="navigation__item">
+            <a  (click)="logout()" class="navigation__link">Logout</a>
           </li>
     </div>
 </div>

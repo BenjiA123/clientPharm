@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules } from '@angular/router';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.gaurd';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
   {
     path: 'charts',
     loadChildren: () =>
-      import('./chart/chart.module').then((m) => m.ChartModule),
+      import('./chart/chart.module').then((m) => m.ChartModule)
+      , canActivate: [AuthGuard]
   },
   {
     path: 'transactions',
@@ -36,6 +38,7 @@ const routes: Routes = [
       preloadingStrategy: PreloadAllModules
     }),
   ],
+  providers: [AuthGuard],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

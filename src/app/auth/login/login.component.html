@@ -2,14 +2,14 @@
     <section class="login_form_card">
        <div class="login_form">
         <h5 class="login_form_head">LOGIN</h5>
-        <form class="form" >
+        <form class="form" (submit)=onLogin(loginForm) #loginForm="ngForm" >
             <mat-form-field  appearance="outline">
-                <input matInput name="username" username placeholder="Username:" #usernameInput="ngModel" ngModel type="text">
+                <input matInput required name="username" username placeholder="Username:" #usernameInput="ngModel" ngModel type="text">
             </mat-form-field>
 
 
             <mat-form-field appearance="outline">
-                <input matInput name="password" password placeholder="Password:" #passwordInput="ngModel" ngModel type="password">
+                <input matInput required name="password" password placeholder="Password:" #passwordInput="ngModel" ngModel type="password">
             </mat-form-field>
             <button class="btn btn--crimson" type="submit">
                 LOGIN
