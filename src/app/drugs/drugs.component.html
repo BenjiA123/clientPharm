@@ -1,16 +1,29 @@
 <app-search-comp></app-search-comp>
 <br>
-<div *ngFor="let item of transactionDrugs;let i = index" class="transaction_drug">
-    <div class="drug_name">
-      {{i +1}}  {{item.genericName}} 
-    </div>
+<div *ngFor="let item of transactionQueue;let i = index" class="transaction_drug">
 
-        <input [(ngModel)]="quantityX" required #quantity type="number" min="1">
+  <form (submit)="addToQueue(form)" #form="ngForm">
 
-    <button mat-button (click)="deleteDrugInTrans(item._id)" class="cancle" color="warn"
-    ><mat-icon>delete</mat-icon></button>
+    <input type="hidden"  name="drug"  [ngModel]="item"/>
+
+    <input required class="drug_name"name="genericName"  type="text"  [ngModel]="item.genericName" >
+
+    <input *ngIf="i ===0" required class="drug_name" name="customer" customer placeholder="Customer"  type="text" ngModel>
+
+
+    <input required name="quantity" quantity placeholder=0  type="number" ngModel min="1">
+     
+
+    <a mat-button (click)="deleteDrugInTrans(item._id)" class="cancle" color="warn"
+    ><mat-icon>delete</mat-icon></a>
+
+    <button type="submit" class="btn btn--white send_queue">
+      Queue
+  </button>
+    
+  </form>
 </div>
-<div (click)="createPendingTransaction()" class="btn btn--crimson send_trans" *ngIf="transactionDrugs.length > 0">
+<div (click)="createPendingTransaction()" class="btn btn--crimson send_trans" *ngIf="transactionQueue.length > 0">
     SEND TRANS
 </div>
 <br>

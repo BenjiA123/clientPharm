@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IgxGridComponent } from 'igniteui-angular';
+import { AppTransaction } from './transaction.interface';
+import { AppTransactionService } from './transaction.service';
 
 @Component({
   selector: 'app-transaction',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
-  constructor() { }
+  transactions:AppTransaction[] = []
+
+  constructor(private appTransactionService:AppTransactionService) { }
+
+@ViewChild('transactionsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
+
 
   ngOnInit(): void {
+    this.appTransactionService.getAllTransaction()
+    .subscribe((res:any)=>
+    {
+      this.transactions =res.data.document
+    })
+
+
   }
 
 }

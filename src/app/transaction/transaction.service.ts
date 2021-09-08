@@ -8,10 +8,16 @@ const BACKEND_URL = environment.apiUrl + "/transaction";
 })
 export class AppTransactionService {
 
+  // public 
+
   constructor(private http:HttpClient) {}
 
   createPendingTransaction(pendingTrans:any){
     return this.http.post(`${BACKEND_URL}/`,pendingTrans)
+  }
+
+  getAllTransaction(){
+    return this.http.get(`${BACKEND_URL}/`)
   }
 
 }

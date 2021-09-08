@@ -1,4 +1,5 @@
 export interface Drug {
+  _id:string
     genericName: string,
       brandName:string,
       type: {
@@ -14,7 +15,7 @@ export interface Drug {
       amount: {
         type: Number,
       },
-      sources:string,
+      sources:[string],
 
 
 }

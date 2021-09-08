@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { IgxGridComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../search/search.service';
@@ -14,15 +15,39 @@ export class DrugsComponent implements OnInit,OnDestroy {
 
 constructor(private drugService:DrugsService,private appTransactionService: AppTransactionService,private searchService:SearchService) {}
 
-@ViewChild('quantity',{static:false}) quantity:Number;
+// @ViewChild('quantity',{static:false}) quantity:Number;
 @ViewChild('drugsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
 private drugsSub: Subscription;
 public drugs :Drug[];
-public transactionDrugs :any[] =[]
+public transactionQueue :any[] =[]
+public transactionData :any[] =[]
 
-public transactionDataWithQuantity:any =[]
 
+
+
+addToQueue(form:NgForm){
+  if(form.invalid)
+  {
+    alert("Invalid Transaction")
+    return
+  }
+  // alert("Added To Queue")
+  if(this.transactionData.length>0)
+  {
+    this.transactionData = this.transactionData.filter(transData =>transData.drug.id != form.value.drug._id)
+  }
+
+  const transData = {
+    customer:form.value.customer,
+    drug:form.value.drug,
+    quantity:form.value.quantity
+
+  }
+
+  this.transactionData.push(transData)
+
+}
   ngOnInit() {
 
     this.drugsSub = this.searchService.searchedDrugsListener()
@@ -49,36 +74,52 @@ public transactionDataWithQuantity:any =[]
     .subscribe(
       (res:any)=>{
         const drug = res.data.document
-        this.transactionDrugs.push(drug)
+
+        if(this.transactionQueue.length>0)
+      {
+        this.transactionQueue = this.transactionQueue.filter(drug =>drug.id != cellValue)
+      }
+        this.transactionQueue.push(drug)
       }
     )
   }
 
 
-  deleteDrugInTrans(drugId:string){
-    this.transactionDrugs = this.transactionDrugs.filter(drug =>drug.id != drugId)
+  deleteDrugInTrans(drugId:string, index:number){
+    this.transactionQueue = this.transactionQueue.filter(drug =>drug.id != drugId)
+    this.transactionData = this.transactionData.filter(trans => trans.drug._id != drugId)
+
   }
-  quantityX
   createPendingTransaction(){
 
-    this.transactionDataWithQuantity= [
+    let quantityArray:number[] = [];
+    let drugsArray: any[] = []
+    let customerArray: any[] = [];
+    let customer:string 
 
-    ]
+    for(let i =0; i<this.transactionData.length;i++){
+
+      quantityArray.push(this.transactionData[i].quantity)
+      drugsArray.push(this.transactionData[i].drug._id)
+      customerArray.push(this.transactionData[i].customer)
+
+    customer = customerArray[0]
+
+    }
+
     const transaction = {
-      customerName: "Benjamin",
-      quantity:[
-        3,5
-      ],
-      drugs:this.transactionDrugs,
+      quantity:quantityArray,
+      drugs:drugsArray,
+      
+      customerName: customer,
       // To get the creator, we retrieve it from the auth
       creator:"5f518bfa17ab81425883fde4"
     }
     
-    console.log(this.quantityX,transaction)
-
-
-    // this.appTransactionService.createPendingTransaction(transaction)
-    // .subscribe(res =>console.log(res))
+    this.appTransactionService.createPendingTransaction(transaction)
+    .subscribe((res:any) =>{
+      console.log(res)
+    })
 
   }
 

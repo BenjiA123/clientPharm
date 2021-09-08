@@ -24,11 +24,6 @@ h5 {
   margin: auto;
 }
 
-.drug_name {
-  float: left;
-  margin: auto 1rem;
-}
-
 input {
   height: 1.7rem;
   width: 5rem;
@@ -48,6 +43,18 @@ input {
   position: absolute;
   padding: 1rem 0;
   text-align: center;
+}
+
+.send_queue {
+  float: right;
+  margin: auto 1rem;
+  padding: 0.4rem;
+  width: 10%;
+}
+
+.drug_name {
+  float: left;
+  margin: auto 1rem;
 }
 // .drug_number {
 //   font-size: 2rem;
