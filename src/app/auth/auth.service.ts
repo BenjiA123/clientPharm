@@ -44,15 +44,14 @@ private currentUser:any
 
           this.saveAuthData(this.token,null,this.userId)
 
-          if(this.role === 'MD')
-          {
-          this.router.navigate(["/charts"])
+          if(this.role == 'MD'){this.router.navigate(["/charts"])}
+          else if(this.role == 'cachier'){this.router.navigate(["/transactions"])}
+          else if(this.role == 'pharmacist'){this.router.navigate(["/drugs"])}
 
-          }else if (this.role === 'pharmacist')
-          this.router.navigate(["/drugs"])
-        }else if (this.role === '')
-        {
-          this.router.navigate(["/cachier"])
+          else{
+            this.router.navigate(["/"])
+            console.log("Who be this")
+          }
 
         }
         else{

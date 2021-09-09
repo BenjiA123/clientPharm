@@ -1,11 +1,11 @@
 import { AuthService } from './auth.service';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRoute, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService :AuthService,private router:Router){}
+    constructor(private authService :AuthService,private router:Router,private route:ActivatedRoute){}
 
     canActivate(
         route: import("@angular/router").ActivatedRouteSnapshot,
@@ -15,19 +15,43 @@ export class AuthGuard implements CanActivate {
            import("@angular/router").UrlTree> | Promise<boolean | 
             import("@angular/router").UrlTree> {
                 const isAuth = this.authService.getIsAuth()
-
                 const userRole = this.authService.getRole()
-
-                if(userRole === "MD"){
-                        
-                }
-
+                let authorized:boolean = false
                 if(!isAuth){
 
                     this.router.navigate(["/"])
                 }
 
-                return isAuth
+                else{
+                    // You are Authenticated
+                    let routePath = route.routeConfig.path
+
+                if(userRole == "MD"){
+                    authorized = true
+                }
+
+                else if(userRole == 'pharmacist' && routePath == 'drugs'){
+                    authorized = true
+                    
+                }
+
+                else if(userRole == 'cachier' && routePath == 'transactions'){
+
+                    authorized = true
+                    
+                }
+                else{
+                    authorized = false
+                }
+
+
+                }
+
+                if(authorized == false)this.router.navigate(["/"])
+
+
+                return authorized
+
     }
     
 }

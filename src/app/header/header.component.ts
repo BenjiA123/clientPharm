@@ -13,6 +13,9 @@ export class HeaderComponent implements OnInit,OnDestroy {
   private roleListenerSubs: Subscription
   isAuthenticated = false;
   userRole= '';
+  isMD:boolean =false;
+  isCachier:boolean =false;
+  isPharmacist:boolean =false;
 
   constructor(private authService:AuthService) { }
 
@@ -29,7 +32,10 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
     this.roleListenerSubs = this.authService.getRoleStatusListener().subscribe(
       (userRole)=>{
-        this.userRole = userRole
+        console.log(userRole)
+        if(userRole =='MD')this.isMD =true
+        if(userRole == 'cachier')this.isCachier=true
+        if(userRole == 'pharmacist')this.isPharmacist=true
       }
     )
 

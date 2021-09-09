@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules } from '@angular/router';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.gaurd';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -19,17 +20,26 @@ const routes: Routes = [
     path: 'transactions',
     loadChildren: () =>
       import('./transaction/transaction.module').then((m) => m.TransactionModule),
+       canActivate: [AuthGuard]
   },
   {
     path: 'drugs',
     loadChildren: () =>
       import('./drugs/drugs.module').then((m) => m.DrugsModule),
+       canActivate: [AuthGuard]
   },
   {
     path: 'sources',
     loadChildren: () =>
       import('./sources/sources.module').then((m) => m.SourcesModule),
+       canActivate: [AuthGuard]
   },
+  {
+    path:'',component:WelcomeComponent
+  },
+  {
+    path:'**',redirectTo:''
+  }
 ];
 
 @NgModule({
