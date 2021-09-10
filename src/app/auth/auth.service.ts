@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 
 const BACKEND_URL = environment.apiUrl + "/user";
 
@@ -22,15 +23,16 @@ private currentUser:any
 
 
 
-  constructor(private http:HttpClient, private router :Router) { }
+  constructor(private http:HttpClient, private router :Router,private cookies:CookieService) { }
 
   login(username:string,password:string){
-
-    this.http.post(`${BACKEND_URL}/login`,{username,password})
+    this.http.post(`${BACKEND_URL}/login`,{username,password},{ observe: 'response'})
     .subscribe(
       (res:any)=>
       {
-        this.token = res.token
+       
+        res =res.body
+        this.token = this.cookies.get('jwt')
         this.role = res.user.role
         this.currentUser = res.user
 
@@ -42,7 +44,7 @@ private currentUser:any
           this.authStatusListener.next(true)
           this.roleStatusListener.next(this.role)
 
-          this.saveAuthData(this.token,null,this.userId)
+
 
           if(this.role == 'MD'){this.router.navigate(["/charts"])}
           else if(this.role == 'cachier'){this.router.navigate(["/transactions"])}
@@ -50,7 +52,6 @@ private currentUser:any
 
           else{
             this.router.navigate(["/"])
-            console.log("Who be this")
           }
 
         }
@@ -95,12 +96,6 @@ private currentUser:any
     return this.isAuthenticated
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
-    localStorage.setItem('token', token)
-    // localStorage.setItem('expiration', expirationDate.toISOString())
-    localStorage.setItem('userId', userId)
-
-  }
 
   logout() {
     this.token = null
@@ -110,6 +105,16 @@ private currentUser:any
     this.router.navigate(["/"])
   }
 
+  automaticLogin(){
+    if(this.cookies.get('jwt')){
+      
+
+      this.isAuthenticated = true
+      this.authStatusListener.next(true)
+
+      this.token = this.cookies.get('jwt')
+    }
+  }
 
 
 }
