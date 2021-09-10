@@ -1,0 +1,59 @@
+.welcome_page {
+  background-image: linear-gradient(
+      100deg,
+      rgba(white, 0.95) 0%,
+      rgba(white, 5) 50%,
+      rgba(crimson, 0.9) 50%,
+      rgba(green, 0.8) 75%,
+      transparent
+    ),
+    url(./pexels-mart-production-7230413.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  position: fixed;
+  opacity: 2;
+}
+.landing_info {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  color: white;
+
+  background-image: linear-gradient(
+    100deg,
+    rgba(black, 0.95) 0%,
+    rgba(black, 5) 50%,
+    rgba(crimson, 0.9) 50%,
+    rgba(green, 0.8) 75%,
+    transparent
+  );
+
+  background-color: black;
+  height: 100%;
+  width: 53.5%;
+  opacity: 0.9;
+  clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+}
+.welcome {
+  margin: 4rem 4rem;
+  text-align: center;
+}
+.welcome_header {
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+}
+.p_text {
+  margin: 1rem 0;
+  margin: 1rem 0;
+}
+
+.gilead_text {
+  color: wheat;
+  text-align: left;
+  padding-left: 4rem;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.6rem;
+}
