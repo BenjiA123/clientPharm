@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
     this.roleListenerSubs = this.authService.getRoleStatusListener().subscribe(
       (userRole)=>{
-        console.log(userRole)
         if(userRole =='MD')this.isMD =true
         if(userRole == 'cachier')this.isCachier=true
         if(userRole == 'pharmacist')this.isPharmacist=true

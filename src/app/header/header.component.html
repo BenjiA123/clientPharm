@@ -11,7 +11,7 @@
             <a  routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
           </li>
 
-          <li *ngIf="isAuthenticated && (isMD || isPharmacist) " class="navigation__item">
+          <li *ngIf="isAuthenticated && !isCachier" class="navigation__item">
             <a  routerLink="/drugs" class="navigation__link">Drugs</a>
           </li>
           <li *ngIf="isAuthenticated && (isMD || isCachier)" class="navigation__item">

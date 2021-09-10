@@ -26,7 +26,7 @@ export class ChartComponent implements OnInit,AfterViewInit {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December','January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+        labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8', 'Day9', 'Day10', 'Day11','Day12', 'Day13', 'Day14', 'Day15', 'Day16', 'Day17', 'Day18', 'Day19', 'Day2', 'Day21', 'Day22'],
         datasets: [
           {
             // ? Original color rgba(75,192,192,1)
@@ -48,7 +48,7 @@ export class ChartComponent implements OnInit,AfterViewInit {
             pointHoverBorderWidth: 5,
             pointRadius: 3,
             pointHitRadius: 10,
-            data: [100, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15,65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
+            data: [100, 95, 80, 81, 70, 60, 95, 40, 50, 50, 70, 38,65, 59, 80, 81, 70, 55, 95, 10, 5, 50, 10, 38],
             spanGaps: true,
           }
         ]
