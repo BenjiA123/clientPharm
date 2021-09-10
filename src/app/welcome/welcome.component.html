@@ -1,8 +1,7 @@
 <div class="welcome_page">
     <div class="landing_info">
-        <br>
         <div class="welcome">
-            <h1 class="welcome_header">WELCOME</h1>
+            <h1 class="welcome_header">WELCOME <div class="username">{{currentUserName}}</div></h1>
         <p class="p_text">
             Welcome To 
         </p>
@@ -12,8 +11,8 @@
         </h6>
 
         <br>
-        <button routerLink="/auth/login" class="btn btn--crimson">
-            <a  routerLink="/auth/login" class="navigation__link">LOGIN</a>
+        <button *ngIf="!isAuthenticated" routerLink="/auth/login" class="btn btn--crimson">
+          LOGIN
         </button>
         </div>
 

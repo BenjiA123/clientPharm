@@ -107,12 +107,29 @@ private currentUser:any
 
   automaticLogin(){
     if(this.cookies.get('jwt')){
-      
+      this.http.get(`${BACKEND_URL}/get-logged-in-user`)
+      .subscribe(
+        (res:any)=>{
 
-      this.isAuthenticated = true
-      this.authStatusListener.next(true)
 
-      this.token = this.cookies.get('jwt')
+          this.role = res.user.role
+          this.currentUser = res.user
+
+
+          this.userId = res.user._id
+          this.roleStatusListener.next(this.role)
+
+          
+
+
+          this.isAuthenticated = true
+          this.authStatusListener.next(true)
+          this.token = this.cookies.get('jwt')
+
+        }
+      )
+
+
     }
   }
 
