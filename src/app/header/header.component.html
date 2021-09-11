@@ -3,6 +3,13 @@
         PHARMACY
     </div>
     <div class="nav_items">
+      <li *ngIf="isAuthenticated" class="navigation__item">
+        <a  (click)="logout()" class="navigation__link">Logout</a>
+      </li>
+
+      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+        <a  mat-button routerLink="/sources" class="navigation__link">Sources</a>
+      </li>
         <li *ngIf="!isAuthenticated" class="navigation__item">
             <a mat-button routerLink="/auth/login" class="navigation__link">Login</a>
           </li>
@@ -20,8 +27,9 @@
           <li *ngIf="isAuthenticated && isMD" class="navigation__item">
             <a  routerLink="/charts" class="navigation__link">Charts</a>
           </li>
-          <li *ngIf="isAuthenticated" class="navigation__item">
-            <a  (click)="logout()" class="navigation__link">Logout</a>
+          <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+            <a  routerLink="/users" class="navigation__link">Users</a>
           </li>
+
     </div>
 </div>
