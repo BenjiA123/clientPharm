@@ -29,8 +29,8 @@ export class ChartComponent implements AfterViewInit {
 
 
         // Transforming the date
-        let date = this.datepipe.transform(new Date(el.transactionDate), 'EE, M/d/yy');
-        this.dateTrans.push(date)
+        // let date = this.datepipe.transform(new Date(el.transactionDate), 'EE, M/d/yy');
+        this.dateTrans.push(el.transactionDate)
 
       })
     this.lineChartMethod(this.dateTrans,this.numTrans);
@@ -82,7 +82,6 @@ export class ChartComponent implements AfterViewInit {
     }
 
     });
-    console.log(this.dateTrans,this.numTrans)
   }
 
 }
