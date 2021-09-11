@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ChartRoutingModule } from './chart-routing.module';
 import { ChartComponent } from './chart.component';
@@ -10,6 +10,7 @@ import { ChartComponent } from './chart.component';
   imports: [
     CommonModule,
     ChartRoutingModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class ChartModule { }

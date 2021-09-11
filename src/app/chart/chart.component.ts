@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, ViewChild ,OnInit} from '@angular/core';
-import { Chart,ChartType, registerables } from 'chart.js';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Chart, registerables } from 'chart.js';
+import { DatePipe } from '@angular/common'
+import { ChartService } from './chart.service';
 Chart.register(...registerables);
 
 @Component({
@@ -7,33 +9,49 @@ Chart.register(...registerables);
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent implements OnInit,AfterViewInit {
+export class ChartComponent implements AfterViewInit {
   @ViewChild('lineCanvas') lineCanvas: ElementRef;
   lineChart: any;
 
-  constructor() { }
+  private numTrans:any[]=[]
+  private dateTrans:any[]=[]
+
+  constructor(private chartService:ChartService,public datepipe: DatePipe) { }
 
   ngAfterViewInit(): void {
-    this.lineChartMethod();
+
+    this.chartService.getTransactionGraphForDuration('2021-03-01','2021-12-01')
+    .subscribe((res:any)=>{
+      const graphData =res.transStat.graphData
+
+      graphData.forEach((el:any) =>{
+        this.numTrans.push(el.numTran)
+
+
+        // Transforming the date
+        let date = this.datepipe.transform(new Date(el.transactionDate), 'EE, M/d/yy');
+        this.dateTrans.push(date)
+
+      })
+    this.lineChartMethod(this.dateTrans,this.numTrans);
+
+    })
   }
 
 
-  ngOnInit(): void {
-  }
 
-
-  lineChartMethod() {
+  lineChartMethod(labels:String[],values:String[]) {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8', 'Day9', 'Day10', 'Day11','Day12', 'Day13', 'Day14', 'Day15', 'Day16', 'Day17', 'Day18', 'Day19', 'Day2', 'Day21', 'Day22'],
+        labels: labels,
         datasets: [
           {
             // ? Original color rgba(75,192,192,1)
-            label: 'Sell per week',
+            label: 'Drug sales per day',
             fill: true,
             tension: 0,
-            backgroundColor: 'rgba(219,37,51,.2)',
+            backgroundColor: 'rgba(141,192,50,.2)',
             borderColor: 'rgba(219,37,51,1)',
             borderCapStyle: 'butt',
             borderDash: [],
@@ -48,7 +66,7 @@ export class ChartComponent implements OnInit,AfterViewInit {
             pointHoverBorderWidth: 5,
             pointRadius: 3,
             pointHitRadius: 10,
-            data: [100, 95, 80, 81, 70, 60, 95, 40, 50, 50, 70, 38,65, 59, 80, 81, 70, 55, 95, 10, 5, 50, 10, 38],
+            data: values,
             spanGaps: true,
           }
         ]
@@ -64,6 +82,7 @@ export class ChartComponent implements OnInit,AfterViewInit {
     }
 
     });
+    console.log(this.dateTrans,this.numTrans)
   }
 
 }

@@ -11,7 +11,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
      HeaderComponent, 
      WelcomeComponent
     ],

@@ -98,11 +98,18 @@ private currentUser:any
 
 
   logout() {
-    this.token = null
+    // Send a Logout request
+    this.http.post(`${BACKEND_URL}/logout`,{user:this.currentUser})
+    .subscribe(res=>{
+
+      this.token = null
     this.isAuthenticated = false
     this.userId = null
     this.authStatusListener.next(false)
     this.router.navigate(["/"])
+      
+   
+    })
   }
 
   automaticLogin(){
@@ -131,6 +138,11 @@ private currentUser:any
 
 
     }
+  }
+
+  createUser(signUpData:any){
+    this.http.post(`${BACKEND_URL}`,signUpData)
+    .subscribe(res =>{console.log(res)})
   }
 
 

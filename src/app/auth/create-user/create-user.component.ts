@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-create-user',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreateUserComponent implements OnInit {
   signupForm:FormGroup
   
-  constructor() {}
+  constructor(private authService:AuthService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup(
@@ -26,10 +27,29 @@ export class CreateUserComponent implements OnInit {
   }
 
   submitForm(){
-    console.log(this.signupForm.errors)
+    if(this.signupForm.status != "VALID")
+    {
+      console.log('invalid')
+      return
+    }
     this.signupForm.value.password = 12345678
     this.signupForm.value.confirmPassword = 12345678
-    console.log(this.signupForm)
+
+    const signUpData = {
+      confirmPassword: this.signupForm.value.confirmPassword,
+      dateOfBirth: this.signupForm.value.dateOfBirth,
+      email: this.signupForm.value.email,
+      name:this.signupForm.value.fullName,
+      gender: this.signupForm.value.gender,
+      password: this.signupForm.value.password,
+      phoneNumber: this.signupForm.value.phoneNumber,
+      role: this.signupForm.value.role,
+      username: this.signupForm.value.username,
+
+
+
+    }
+    this.authService.createUser(signUpData)
   }
 
 }

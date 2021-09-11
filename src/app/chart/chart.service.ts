@@ -1,9 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from "./../../environments/environment";
+const BACKEND_URL = environment.apiUrl + "/graph";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartService {
 
-  constructor() { }
+  constructor(private http:HttpClient) {}
+
+  // {{URL}}api/v1/graph/transaction/2021-03-01/2021-12-01
+
+  getTransactionGraphForDuration(startDate:any,endDate:any){
+  return this.http.get(`${BACKEND_URL}/transaction/${startDate}/${endDate}`)
+
+  }
 }

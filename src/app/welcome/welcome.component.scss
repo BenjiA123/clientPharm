@@ -26,7 +26,7 @@
     rgba(black, 0.95) 0%,
     rgba(black, 5) 50%,
     rgba(crimson, 0.9) 50%,
-    rgba(green, 0.8) 75%,
+    rgba(greenyellow, 0.8) 75%,
     transparent
   );
 
@@ -37,7 +37,7 @@
   clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
 }
 .welcome {
-  margin: 4rem 4rem;
+  margin: 2rem 4rem;
   text-align: center;
 }
 .welcome_header {
@@ -45,8 +45,9 @@
   text-transform: uppercase;
 }
 .p_text {
-  margin: 1rem 0;
-  margin: 1rem 0;
+  margin: 0.1rem 0;
+  margin: 0.8rem 0;
+  font-size: 2rem;
 }
 
 .gilead_text {

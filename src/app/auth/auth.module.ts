@@ -10,7 +10,11 @@ import { CookieService } from 'ngx-cookie';
 
 
 @NgModule({
-  declarations: [LoginComponent, CreateUserComponent, CreatePasswordComponent],
+  declarations: [
+    LoginComponent, 
+    CreateUserComponent, 
+    CreatePasswordComponent
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,

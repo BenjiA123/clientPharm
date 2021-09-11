@@ -28,7 +28,6 @@ export class WelcomeComponent implements OnInit {
         this.currentUser = this.authService.getCurrentUser()
         if(this.currentUser){
           this.currentUserName = this.currentUser.name
-          console.log(this.currentUser.name)
         }
 
 
