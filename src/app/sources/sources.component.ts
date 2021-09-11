@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit } from '@angular/core';
+import { IgxGridComponent } from 'igniteui-angular';
+import { SourcesService } from './sources.service';
 
 @Component({
   selector: 'app-sources',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SourcesComponent implements OnInit {
 
-  constructor() { }
+  public sources:any[]
+  constructor(private sourceService:SourcesService) { }
+@ViewChild('sourcesGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
   ngOnInit(): void {
+    this.sourceService.getAllSources()
+    .subscribe(
+      (res:any)=>{
+        const sources = res.data.document
+        console.log(sources)
+        this.sources = sources
+      }
+    )
   }
 
 }

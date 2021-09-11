@@ -1,1 +1,34 @@
-<p>sources works!</p>
+<br><br>
+
+
+<h5>VENDORS</h5>
+<igx-grid 
+
+[primaryKey]="'_id'"
+[paging]="true"
+[perPage]="10"
+[allowFiltering]="true"
+[showToolbar]="true"
+
+[columnPinning]="true"
+[columnHiding]="true"
+
+toolbarTitle="VENDORS"
+width="'80%'"
+class="sourcesGrid"
+#sourcesGrid 
+
+id="sourcesGrid | async" 
+[data]="sources" 
+[autoGenerate]="true" 
+[rowEditable]="false"
+[exportExcel]="true"
+exportText="Export"
+exportExcelText="Export to Excel"
+[allowFiltering]="true">
+
+
+
+</igx-grid>
+<br>
+
