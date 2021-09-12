@@ -1,0 +1,52 @@
+.users__card {
+  position: relative;
+  top: 7rem;
+  height: auto;
+  width: 25%;
+  left: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.5rem 0.7rem 0.1rem blue;
+
+  &__header {
+    font-family: "Courier New", Courier, monospace;
+    color: crimson;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1rem auto;
+    padding-top: 1rem;
+  }
+  &__element {
+    width: 70%;
+    margin: 0.6rem 15%;
+    height: 3rem;
+    border-radius: 0.6rem;
+    background-color: gray;
+    z-index: 3;
+    cursor: pointer;
+
+    // &:last-child {
+    //   margin-bottom: 2rem;
+    // }
+    &__username {
+      text-align: left;
+      color: white;
+      text-transform: uppercase;
+      margin: 0.8rem 1rem;
+      // width: 60%;
+      float: left;
+      //   left: 10rem;
+    }
+    &__role {
+      color: blue;
+      float: right;
+      text-transform: uppercase;
+
+      // margin: 0.8rem 1rem;
+      //   width: 40%;
+    }
+  }
+}
