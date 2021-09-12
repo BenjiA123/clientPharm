@@ -15,4 +15,9 @@ export class UsersService {
     return this.http.get(`${BACKEND_URL}`)
     
     }
+
+    getUserByUsername(username){
+      return this.http.get(`${BACKEND_URL}/${username}`)
+      
+      }
 }
