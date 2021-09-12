@@ -41,6 +41,12 @@ const routes: Routes = [
        canActivate: [AuthGuard]
   },
   {
+    path: 'create',
+    loadChildren: () =>
+      import('./create/create.module').then((m) => m.CreateModule),
+       canActivate: [AuthGuard]
+  },
+  {
     path:'',component:WelcomeComponent
   },
   {
