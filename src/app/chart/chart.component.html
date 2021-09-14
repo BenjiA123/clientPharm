@@ -1,6 +1,15 @@
 <br><br>
 <h5>TRANSACTIONS CHART</h5>
 
+<form (submit)="sendDates(dateForm)" #dateForm="ngForm" >
+    <mat-form-field *ngFor="let field of dateInputFields" class="create_detail_card_left_input_field" appearance="outline">
+        <input matInput ngModel required name="{{field.name}}" placeholder='{{field.placeholder }}' type="{{field.type}}">
+    </mat-form-field>
+    
+    <button type="submit" class="btn btn--crimson">Get</button>
+</form>
+
+
 <div class="graph_container">
     <canvas #lineCanvas style="height:12vh; width:20vw"></canvas>
     <hr color="red">

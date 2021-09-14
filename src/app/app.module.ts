@@ -9,12 +9,13 @@ import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from "./auth/auth.interceptor";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CookieModule } from 'ngx-cookie';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
      HeaderComponent, 
-     WelcomeComponent
+     WelcomeComponent, ErrorComponent
     ],
   imports: [
     BrowserModule,

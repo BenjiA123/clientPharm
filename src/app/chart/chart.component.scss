@@ -4,5 +4,15 @@ h5 {
 }
 .graph_container {
   width: 90%;
-  margin: 5%;
+  margin: 0 5% 5% 5%;
+}
+mat-form-field {
+  position: relative;
+  margin: 1rem 2rem 0 2rem;
+}
+.btn {
+  width: 20%;
+  margin-left: 0;
+  float: right;
+  position: relative;
 }

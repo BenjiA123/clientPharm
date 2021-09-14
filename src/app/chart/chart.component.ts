@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DatePipe } from '@angular/common'
 import { ChartService } from './chart.service';
+import { NgForm } from '@angular/forms';
+import { time } from 'console';
 Chart.register(...registerables);
 
 @Component({
@@ -15,12 +17,45 @@ export class ChartComponent implements AfterViewInit {
 
   private numTrans:any[]=[]
   private dateTrans:any[]=[]
+  private startDate:Date = new Date('2021-03-01')
+  private endDate:Date  = new Date('2021-12-01')
+
+
+
+  public dateInputFields:any[]= [
+
+    {
+      name:"startDate",placeholder:"Start Date",type:"date",label:"Start Date"
+    },
+    {
+      name:"endDate",placeholder:"End Date",type:"date",label:"End Date"
+    }
+  ]
 
   constructor(private chartService:ChartService,public datepipe: DatePipe) { }
 
-  ngAfterViewInit(): void {
+  sendDates(dateForm:NgForm){
+    if(dateForm.invalid) return
+  
+    this.numTrans = []
+    this.dateTrans = []
+    this.startDate = dateForm.value.startDate
+    this.endDate = dateForm.value.endDate
 
-    this.chartService.getTransactionGraphForDuration('2021-03-01','2021-12-01')
+    console.log(dateForm.value.startDate,dateForm.value.endDate)
+
+    this.lineChart.destroy();
+    this.getGraphData()
+
+
+  }
+
+  ngAfterViewInit(): void {
+    this.getGraphData()
+  }
+
+  getGraphData(){
+    this.chartService.getTransactionGraphForDuration(this.startDate,this.endDate)
     .subscribe((res:any)=>{
       const graphData =res.transStat.graphData
 
@@ -39,7 +74,6 @@ export class ChartComponent implements AfterViewInit {
   }
 
 
-
   lineChartMethod(labels:String[],values:String[]) {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
@@ -48,7 +82,7 @@ export class ChartComponent implements AfterViewInit {
         datasets: [
           {
             // ? Original color rgba(75,192,192,1)
-            label: 'Drug sales per day',
+            label: 'Drugs sold over Duration',
             fill: true,
             tension: 0,
             backgroundColor: 'rgba(141,192,50,.2)',
