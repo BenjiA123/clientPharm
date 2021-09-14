@@ -1,0 +1,46 @@
+.create_detail_card {
+  color: green;
+  //   background-color: black;
+  height: auto;
+  width: 65%;
+  position: absolute;
+  right: 2rem;
+  top: 7rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0.1rem 0.2rem 0.6rem black;
+
+  &_verticalline {
+    position: absolute;
+    height: 100%;
+    width: 0.3rem;
+    padding: 0;
+    background-color: brown;
+    margin: 0;
+    top: 0;
+    left: 50%;
+  }
+
+  &_left {
+    left: 0;
+    width: 45%;
+    margin: 1rem;
+
+    &_input_field {
+      width: 100%;
+      //   height: 2rem;
+    }
+  }
+
+  &_right {
+    right: 0;
+    width: 45%;
+    margin: 1rem;
+    margin-top: -34.5rem;
+    position: absolute;
+
+    &_input_field {
+      width: 100%;
+    }
+  }
+}

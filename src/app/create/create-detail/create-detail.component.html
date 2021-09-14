@@ -1,1 +1,28 @@
-<p>create-detail works!</p>
+<div class="create_detail_card">
+    <!-- <h8>DRUG</h8> -->
+    <div class="create_detail_card_left">
+<form (submit)="createDrug(createForm)" #createForm="ngForm" >
+
+  
+  <mat-form-field *ngFor="let field of fields" class="create_detail_card_left_input_field" appearance="outline">
+    <input matInput ngModel required name="{{field.name}}" placeholder='{{field.placeholder }}' type="{{field.type}}">
+    <label></label>
+</mat-form-field>
+<mat-form-field class="create_detail_card_left_input_field" appearance="fill">
+    <mat-label>Type:</mat-label>
+    <mat-select matInput >
+      <mat-option value="injectible">Injectible</mat-option>
+      <mat-option value="tablet">Tablet</mat-option>
+      <mat-option value="suspension">Suspension</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button class="btn btn--crimson">Create Drug</button>
+
+</form>
+    </div>
+    <div class="create_detail_card_verticalline"></div>
+
+
+</div>
+
