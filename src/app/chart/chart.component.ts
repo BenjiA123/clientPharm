@@ -42,8 +42,6 @@ export class ChartComponent implements AfterViewInit {
     this.startDate = dateForm.value.startDate
     this.endDate = dateForm.value.endDate
 
-    console.log(dateForm.value.startDate,dateForm.value.endDate)
-
     this.lineChart.destroy();
     this.getGraphData()
 
@@ -51,6 +49,7 @@ export class ChartComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // Sets initial graph
     this.getGraphData()
   }
 
@@ -61,10 +60,6 @@ export class ChartComponent implements AfterViewInit {
 
       graphData.forEach((el:any) =>{
         this.numTrans.push(el.numTran)
-
-
-        // Transforming the date
-        // let date = this.datepipe.transform(new Date(el.transactionDate), 'EE, M/d/yy');
         this.dateTrans.push(el.transactionDate)
 
       })
@@ -73,8 +68,36 @@ export class ChartComponent implements AfterViewInit {
     })
   }
 
+   lineGraphDataSet = {
+       // ? Original color rgba(75,192,192,1)
+       label: '',
+       fill: true,
+       tension: 0,
+       backgroundColor: 'rgba(0,0,12,.1)',
+       borderColor: 'rgba(119,37,51,1)',
+       borderCapStyle: 'butt',
+       borderDash: [],
+       borderDashOffset: 0.0,
+       borderJoinStyle: 'miter',
+       pointBorderColor: 'rgba(75,192,192,1)',
+       pointBackgroundColor: '#f6f',
+       pointBorderWidth: 2,
+       pointHoverRadius: 5,
+       pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+       pointHoverBorderColor: 'rgba(220,220,220,1)',
+       pointHoverBorderWidth: 5,
+       pointRadius: 3,
+       pointHitRadius: 10,
+       data: ["1" ,"2" ,"3",'6',null,"7","0" ],
+       spanGaps: true,
+
+  }
 
   lineChartMethod(labels:String[],values:String[]) {
+
+    // I will create an array that would append a dataset according to the amont
+    // in that array
+    // It should contain type, and data, randomise the color
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
@@ -102,6 +125,29 @@ export class ChartComponent implements AfterViewInit {
             pointHitRadius: 10,
             data: values,
             spanGaps: true,
+          },
+          {
+            // ? Original color rgba(75,192,192,1)
+            label: 'Test sold over Duration',
+            fill: true,
+            tension: 0,
+            backgroundColor: 'rgba(0,0,12,.1)',
+            borderColor: 'rgba(119,37,51,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 2,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 5,
+            pointRadius: 3,
+            pointHitRadius: 10,
+            data: ["1" ,"2" ,"3",'6',null,"7","0" ],
+            spanGaps: true,
           }
         ]
       },
@@ -109,9 +155,10 @@ export class ChartComponent implements AfterViewInit {
       options: {
         scales: {
             y: {
-              // This enables stacked Charts at Y-axis(What I want to implement)
-                stacked: true
-            }
+              //? This enables the next chart to be stacked on the previous
+              // ? False for now
+                stacked: false
+            },
         }
     }
 
