@@ -7,18 +7,23 @@ const BACKEND_URL = environment.apiUrl + "/drug";
 })
 export class DrugsService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-getAllDrugs(limit?:number,sort?:string,page?:number){
-return this.http.get(`${BACKEND_URL}`)
+  getAllDrugs(limit?: number, sort?: string, page?: number) {
+    return this.http.get(`${BACKEND_URL}`)
 
-}
+  }
 
-getOneDrug(drugId:string){
-return this.http.get(`${BACKEND_URL}/${drugId}`)
-  
-}
+  getOneDrug(drugId: string) {
+    return this.http.get(`${BACKEND_URL}/${drugId}`)
 
-   
+  }
+
+  createOneDrug(drug: any) {
+    return this.http.post(`${BACKEND_URL}`, drug)
+
+  }
+
+
 
 }

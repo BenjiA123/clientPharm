@@ -1,24 +1,19 @@
-
 <div class="create__card">
-    <div class="create__card__header">CREATE</div>
+  <div class="create__card__header">CREATE</div>
 
-    <div routerLink='/create/drugs' class="create__card__element">
-        <div class="create__card__element__name">
-            DRUG
-        </div>
-    </div>
-    <div routerLink = '/create/sources' class="create__card__element">
-        <div class="create__card__element__name">
-            SOURSES
-        </div>
-    </div>
-    <div routerLink = '/create/transactions' class="create__card__element">
+  <div routerLink="/create/drugs" class="create__card__element">
+    <div class="create__card__element__name">DRUG</div>
+  </div>
+  <div routerLink="/create/sources" class="create__card__element">
+    <div class="create__card__element__name">SOURSES</div>
+  </div>
+  <!-- Let me not give him the ability to create Transactions yet -->
+  <!-- <div routerLink = '/create/transactions' class="create__card__element">
         <div class="create__card__element__name">
             TRANSACTIONS
         </div>
-    </div>
-    <br>
-
+    </div> -->
+  <br />
 </div>
 
 <router-outlet></router-outlet>

@@ -1,9 +1,15 @@
-<form (submit)=submitSearch(search) #search="ngForm">
-    <mat-form-field appearance="outline">
-        <input matInput name="search" placeholder="Search Drugs:" #searchInput="ngModel" ngModel type="text">
-    </mat-form-field>
-    <button class="btn btn--crimson"  type="submit">
-        <div>Search</div>
-    </button>
-
+<form (submit)="submitSearch(search)" #search="ngForm">
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      name="search"
+      placeholder="Search Drugs:"
+      #searchInput="ngModel"
+      ngModel
+      type="text"
+    />
+  </mat-form-field>
+  <button class="btn btn--crimson" type="submit">
+    <div>Search</div>
+  </button>
 </form>

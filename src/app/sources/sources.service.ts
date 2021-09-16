@@ -9,10 +9,15 @@ const BACKEND_URL = environment.apiUrl + "/source";
 })
 export class SourcesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllSources(limit?:number,sort?:string,page?:number){
+  getAllSources(limit?: number, sort?: string, page?: number) {
     return this.http.get(`${BACKEND_URL}`)
-    
-    }
+
+  }
+
+  createSource(source: {}) {
+    return this.http.post(`${BACKEND_URL}`, source)
+
+  }
 }

@@ -1,37 +1,67 @@
-
-
-
- <div *ngFor="let item of createDrugData" class="component">
-  <div *ngIf="currentRoute === '{{item.url}}'" class="header">{{item.header}}</div>
+<div *ngIf="currentRoute == 'drugs'" class="component">
+  <div class="header">DRUG</div>
 
   <div class="create_detail_card">
-  
-      <div class="create_detail_card_left">
-  <form (submit)="createDrug(createForm)" #createForm="ngForm" >
-  
-    
-    <mat-form-field *ngFor="let field of item.drugFields" class="create_detail_card_left_input_field" appearance="outline">
-      <input matInput ngModel required name="{{field.name}}" placeholder='{{field.placeholder }}' type="{{field.type}}">
-      <label></label>
-  </mat-form-field>
-  <mat-form-field class="create_detail_card_left_input_field" appearance="fill">
-      <mat-label>Type:</mat-label>
-      <mat-select matInput >
-        <mat-option value="injectible">Injectible</mat-option>
-        <mat-option value="tablet">Tablet</mat-option>
-        <mat-option value="suspension">Suspension</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <button class="btn btn--crimson">Create Drug</button>
-  
-  </form>
-      </div>
-      <div class="create_detail_card_verticalline"></div>
-  
-  
+    <div class="create_detail_card_left">
+      <form (submit)="createDrug(createForm)" #createForm="ngForm">
+        <mat-form-field
+          *ngFor="let field of createDrugFields"
+          class="create_detail_card_left_input_field"
+          appearance="outline"
+        >
+          <input
+            min="1"
+            matInput
+            ngModel
+            required
+            name="{{ field.name }}"
+            placeholder="{{ field.placeholder }}"
+            type="{{ field.type }}"
+          />
+        </mat-form-field>
+        <mat-form-field
+          class="create_detail_card_left_input_field"
+          appearance="fill"
+        >
+          <mat-label>Type:</mat-label>
+          <mat-select ngModel name="type" matInput>
+            <mat-option value="injectible">Injectible</mat-option>
+            <mat-option value="tablet">Tablet</mat-option>
+            <mat-option value="suspension">Suspension</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button class="btn btn--crimson">Create Drug</button>
+      </form>
+    </div>
+    <div class="create_detail_card_verticalline"></div>
   </div>
-  
-  
-  
- </div>
+</div>
+
+<div *ngIf="currentRoute == 'sources'" class="component">
+  <div class="header">SOURCES</div>
+
+  <div class="create_detail_card">
+    <div class="create_detail_card_left">
+      <form (submit)="createSource(createForm)" #createForm="ngForm">
+        <mat-form-field
+          *ngFor="let field of createSourceData"
+          class="create_detail_card_left_input_field"
+          appearance="outline"
+        >
+          <input
+            matInput
+            ngModel
+            required
+            name="{{ field.name }}"
+            placeholder="{{ field.placeholder }}"
+            type="{{ field.type }}"
+          />
+        </mat-form-field>
+
+        <button class="btn btn--crimson">Create Source</button>
+      </form>
+    </div>
+    <div class="create_detail_card_verticalline"></div>
+  </div>
+</div>
