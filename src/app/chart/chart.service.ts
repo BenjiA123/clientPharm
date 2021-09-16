@@ -8,12 +8,10 @@ const BACKEND_URL = environment.apiUrl + "/graph";
 })
 export class ChartService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // {{URL}}api/v1/graph/transaction/2021-03-01/2021-12-01
-
-  getTransactionGraphForDuration(startDate:any,endDate:any){
-  return this.http.get(`${BACKEND_URL}/transaction/${startDate}/${endDate}`)
+  getTransactionGraphForDuration(startDate: any, endDate: any) {
+    return this.http.get(`${BACKEND_URL}/transaction/${startDate}/${endDate}`)
 
   }
 }
