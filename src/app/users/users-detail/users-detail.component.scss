@@ -104,3 +104,57 @@ mat-card-content {
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .users_datail_card {
+    width: 80%;
+    position: absolute;
+    height: auto;
+    top: 60%;
+    left: 10%;
+    position: absolute;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .users_datail_card_verticalline {
+    position: absolute;
+    width: 0.17rem;
+    left: 35%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .users_datail_card {
+    width: 80%;
+    position: absolute;
+    height: auto;
+    top: 60%;
+    left: 10%;
+    position: absolute;
+
+    &_verticalline {
+      visibility: hidden;
+    }
+
+    &_log_details {
+      position: absolute;
+      height: 100%;
+      width: 80%;
+      z-index: 3;
+      margin: 10%;
+      top: 100%;
+    }
+  }
+
+  mat-card-content {
+    width: 80%;
+    margin-right: 0;
+  }
+  .btn {
+    width: 80%;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 10%;
+  }
+}

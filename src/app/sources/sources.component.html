@@ -1,34 +1,37 @@
-<br><br>
-
+<br /><br />
 
 <h5>VENDORS</h5>
-<igx-grid 
+<igx-grid
+  [primaryKey]="'_id'"
+  [paging]="true"
+  [perPage]="10"
+  [allowFiltering]="true"
+  [showToolbar]="true"
+  [columnPinning]="true"
+  [columnHiding]="true"
+  toolbarTitle="VENDORS"
+  width="'80%'"
+  class="sourcesGrid"
+  #sourcesGrid
+  id="sourcesGrid | async"
+  [data]="sources"
+  [autoGenerate]="false"
+  [rowEditable]="false"
+  [exportExcel]="true"
+  exportText="Export"
+  exportExcelText="Export to Excel"
+  [allowFiltering]="true"
+>
+  <!-- [hasSummary]="true" -->
 
-[primaryKey]="'_id'"
-[paging]="true"
-[perPage]="10"
-[allowFiltering]="true"
-[showToolbar]="true"
+  <igx-column field="name" [sortable]="true" header=" Name "></igx-column>
 
-[columnPinning]="true"
-[columnHiding]="true"
+  <igx-column
+    field="address"
+    [sortable]="true"
+    header="Purchase Date "
+  ></igx-column>
 
-toolbarTitle="VENDORS"
-width="'80%'"
-class="sourcesGrid"
-#sourcesGrid 
-
-id="sourcesGrid | async" 
-[data]="sources" 
-[autoGenerate]="true" 
-[rowEditable]="false"
-[exportExcel]="true"
-exportText="Export"
-exportExcelText="Export to Excel"
-[allowFiltering]="true">
-
-
-
+  <igx-column field="address" [sortable]="true" header="Address "></igx-column>
 </igx-grid>
-<br>
-
+<br />

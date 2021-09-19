@@ -1,74 +1,141 @@
 <app-search-comp></app-search-comp>
-<br>
-<div *ngFor="let item of transactionQueue;let i = index" class="transaction_drug">
-
+<br />
+<div
+  *ngFor="let item of transactionQueue; let i = index"
+  class="transaction_drug"
+>
   <form (submit)="addToQueue(form)" #form="ngForm">
+    <input type="hidden" name="drug" [ngModel]="item" />
 
-    <input type="hidden"  name="drug"  [ngModel]="item"/>
+    <input
+      required
+      class="drug_name"
+      name="genericName"
+      type="text"
+      [ngModel]="item.genericName"
+    />
 
-    <input required class="drug_name"name="genericName"  type="text"  [ngModel]="item.genericName" >
+    <input
+      *ngIf="i === 0"
+      required
+      class="drug_name"
+      name="customer"
+      customer
+      placeholder="Customer"
+      type="text"
+      ngModel
+    />
 
-    <input *ngIf="i ===0" required class="drug_name" name="customer" customer placeholder="Customer"  type="text" ngModel>
+    <input
+      required
+      name="quantity"
+      quantity
+      placeholder="0"
+      type="number"
+      ngModel
+      min="1"
+    />
 
+    <a
+      mat-button
+      (click)="deleteDrugInTrans(item._id)"
+      class="cancle"
+      color="warn"
+      ><mat-icon>delete</mat-icon></a
+    >
 
-    <input required name="quantity" quantity placeholder=0  type="number" ngModel min="1">
-     
-
-    <a mat-button (click)="deleteDrugInTrans(item._id)" class="cancle" color="warn"
-    ><mat-icon>delete</mat-icon></a>
-
-    <button type="submit" class="btn btn--white send_queue">
-      Queue
-  </button>
-    
+    <button type="submit" class="btn btn--white send_queue">Queue</button>
   </form>
 </div>
-<div (click)="createPendingTransaction()" class="btn btn--crimson send_trans" *ngIf="transactionQueue.length > 0">
-    SEND TRANS
+<div
+  (click)="createPendingTransaction()"
+  class="btn btn--crimson send_trans"
+  *ngIf="transactionQueue.length > 0"
+>
+  SEND TRANS
 </div>
-<br>
+<br />
 
 <h5>DRUGS</h5>
-<igx-grid 
+<igx-grid
+  [primaryKey]="'_id'"
+  [paging]="true"
+  [perPage]="10"
+  [allowFiltering]="true"
+  [showToolbar]="true"
+  [columnPinning]="true"
+  [columnHiding]="true"
+  toolbarTitle="DRUGS"
+  width="'80%'"
+  class="drugsGrid"
+  #drugsGrid
+  id="drugsGrid | async"
+  [data]="drugs"
+  [autoGenerate]="false"
+  [rowEditable]="false"
+  [exportExcel]="true"
+  exportText="Export"
+  exportExcelText="Export to Excel"
+  [allowFiltering]="true"
+>
+  <igx-column
+    width="25%"
+    field="genericName"
+    [sortable]="true"
+    header="Generic Name "
+  ></igx-column>
 
-[primaryKey]="'_id'"
-[paging]="true"
-[perPage]="10"
-[allowFiltering]="true"
-[showToolbar]="true"
+  <igx-column
+    width="25%"
+    field="brandName"
+    [sortable]="true"
+    header="Brand Name "
+  ></igx-column>
 
-[columnPinning]="true"
-[columnHiding]="true"
+  <igx-column
+    width="10%"
+    field="amount"
+    [sortable]="false"
+    header="Amount "
+    [filterable]="false"
+  ></igx-column>
 
-toolbarTitle="DRUGS"
-width="'80%'"
-class="drugsGrid"
-#drugsGrid 
+  <igx-column
+    width="10%"
+    [hasSummary]="true"
+    field="sellingPrice"
+    [sortable]="true"
+    header="Selling Price "
+    [filterable]="false"
+  ></igx-column>
 
-id="drugsGrid | async" 
-[data]="drugs" 
-[autoGenerate]="false" 
-[rowEditable]="false"
-[exportExcel]="true"
-exportText="Export"
-exportExcelText="Export to Excel"
-[allowFiltering]="true">
+  <igx-column
+    width="10%"
+    field="type"
+    [sortable]="true"
+    header="Type "
+    [filterable]="false"
+  ></igx-column>
 
-<igx-column  width="25%" field="genericName" [sortable]="true" header="Generic Name "></igx-column>
+  <igx-column
+    width="10%"
+    dataType="boolean"
+    field="expired"
+    [sortable]="false"
+    header="Expired "
+    [filterable]="false"
+  ></igx-column>
 
-<igx-column  width="25%" field="brandName" [sortable]="true" header="Brand Name "></igx-column>
+  <igx-column
+    width="10%"
+    dataType="boolean"
+    field="available"
+    [sortable]="false"
+    header="Available "
+    [filterable]="false"
+  ></igx-column>
 
-<igx-column  width="10%" field="amount" [sortable]="false" header="Amount "  [filterable]="false"></igx-column>
-
-<igx-column  width="10%" field="sellingPrice" [sortable]="true" header="Selling Price "  [filterable]="false"></igx-column>
-
-<igx-column  width="10%" field="type" [sortable]="true" header="Type "  [filterable]="false"></igx-column>
-
-<igx-column  width="10%" dataType="boolean" field="expired" [sortable]="false" header="Expired "  [filterable]="false"></igx-column>
-
-<igx-column  width="10%" dataType="boolean" field="available" [sortable]="false" header="Available "  [filterable]="false"></igx-column>
-
-<igx-column field="_id" header=" " [filterable]="false">
+  <igx-column field="_id" header=" " [filterable]="false">
     <ng-template igxCell let-cell="cell">
       <span tabindex="0"
         ><button mat-stroked-button (click)="getDrug(cell.value)">
@@ -77,8 +144,5 @@ exportExcelText="Export to Excel"
       >
     </ng-template>
   </igx-column>
-
-
 </igx-grid>
-<br>
-
+<br />

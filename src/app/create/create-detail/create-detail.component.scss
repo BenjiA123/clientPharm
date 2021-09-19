@@ -54,3 +54,46 @@
   position: relative;
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 1000px) {
+  .create_detail_card {
+    color: green;
+    //   background-color: black;
+    height: auto;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 70%;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0.1rem 0.2rem 0.6rem black;
+
+    &_verticalline {
+      visibility: hidden;
+    }
+
+    &_left {
+      left: 0;
+      width: 90%;
+      margin: 1rem;
+
+      &_input_field {
+        width: 100%;
+        //   height: 2rem;
+      }
+    }
+  }
+
+  .header {
+    text-align: center;
+    top: 60%;
+    text-transform: uppercase;
+    width: 80%;
+    margin-left: 10%;
+    color: crimson;
+    margin-bottom: 2rem;
+    position: absolute;
+
+    font-size: 2rem;
+  }
+}

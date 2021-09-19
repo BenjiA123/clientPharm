@@ -38,3 +38,9 @@
   color: white;
   float: right;
 }
+
+@media only screen and (max-width: 1000px) {
+  .nav_items {
+    visibility: hidden;
+  }
+}

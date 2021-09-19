@@ -1,33 +1,42 @@
+<mat-card class="users_datail_card">
+  <mat-card-header>
+    <mat-card-title>{{ currentUserData?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ currentUserData?.username }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>{{
+    currentUserData?.dateOfBirth | date: "fullDate"
+  }}</mat-card-content>
+  <mat-card-content>{{ currentUserData?.email }}</mat-card-content>
+  <mat-card-content>{{ currentUserData?.gender }}</mat-card-content>
+  <mat-card-content>{{ currentUserData?.phoneNumber }}</mat-card-content>
+  <mat-card-content>{{ currentUserData?.role }}</mat-card-content>
 
+  <div (click)="deleteUser(currentUserData._id)" class="btn btn--crimson">
+    DELETE
+  </div>
 
-     <mat-card class="users_datail_card">
-        <mat-card-header>
-          <mat-card-title>{{currentUserData?.name}}</mat-card-title>
-          <mat-card-subtitle>{{currentUserData?.username}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>{{currentUserData?.dateOfBirth | date:'fullDate'}}</mat-card-content>
-        <mat-card-content>{{currentUserData?.email}}</mat-card-content>
-        <mat-card-content>{{currentUserData?.gender}}</mat-card-content>
-        <mat-card-content>{{currentUserData?.phoneNumber}}</mat-card-content>
-        <mat-card-content>{{currentUserData?.role}}</mat-card-content>
-        
-        <div (click)="deleteUser(currentUserData._id)" class="btn btn--crimson">DELETE </div>
+  <div class="users_datail_card_verticalline"></div>
 
-        <div class="users_datail_card_verticalline"></div>
+  <div class="users_datail_card_log_details">
+    <div class="users_datail_card_log_details_header">LOG HISTORY</div>
+    <div class="users_datail_card_log_details_login">
+      <div class="users_datail_card_log_details_login_header">LOGIN</div>
+      <div
+        class="users_datail_card_log_details_login_element"
+        *ngFor="let loginDate of loginDates"
+      >
+        {{ loginDate | date: "fullDate" }}
+      </div>
+    </div>
 
-        <div class="users_datail_card_log_details">
-            <div class="users_datail_card_log_details_header"> LOG HISTORY</div>
-            <div class="users_datail_card_log_details_login">
-                <div class="users_datail_card_log_details_login_header">LOGIN</div>
-                <div class="users_datail_card_log_details_login_element" *ngFor="let loginDate of loginDates">{{loginDate |date:'fullDate'}}</div>
-            </div>
-
-            <div class="users_datail_card_log_details_logout">
-                <div class="users_datail_card_log_details_logout_header">LOGOUT</div>
-                <div class="users_datail_card_log_details_logout_element" *ngFor="let logoutDate of logoutDates">{{logoutDate |date:'fullDate'}}</div>
-            </div>
-        </div>
-
-      </mat-card>
-      
-      
+    <div class="users_datail_card_log_details_logout">
+      <div class="users_datail_card_log_details_logout_header">LOGOUT</div>
+      <div
+        class="users_datail_card_log_details_logout_element"
+        *ngFor="let logoutDate of logoutDates"
+      >
+        {{ logoutDate | date: "fullDate" }}
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -50,3 +50,15 @@
     }
   }
 }
+@media screen and (max-width: 1000px) {
+  .users__card {
+    position: absolute;
+    top: 7rem;
+    height: auto;
+    width: 80%;
+    left: 10%;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.5rem 0.7rem 0.1rem blue;
+  }
+}

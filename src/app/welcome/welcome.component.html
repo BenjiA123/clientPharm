@@ -1,21 +1,25 @@
 <div class="welcome_page">
-    <div class="landing_info">
-        <div class="welcome">
-            <h1 class="welcome_header">WELCOME <div class="username">{{currentUserName}}</div></h1>
-        <p class="p_text">
-            Welcome To 
-        </p>
-       <br>
-        <h6 class="gilead_text">
-            GILEAD <br> <br> PHARMACEUTICALS
-        </h6>
+  <div class="landing_info">
+    <div class="welcome">
+      <h1 class="welcome_header">
+        WELCOME
+        <div class="username">{{ currentUserName }}</div>
+      </h1>
+      <p class="p_text">Welcome To</p>
+      <br />
+      <h6 class="gilead_text">
+        GILEAD <br />
+        <br />
+        PHARMACEUTICALS
+      </h6>
 
-        <br>
-        <button *ngIf="!isAuthenticated" routerLink="/auth/login" class="btn btn--crimson">
-          LOGIN
-        </button>
-        </div>
-
+      <button
+        *ngIf="!isAuthenticated"
+        routerLink="/auth/login"
+        class="btn btn--crimson"
+      >
+        LOGIN
+      </button>
     </div>
-
+  </div>
 </div>

@@ -49,3 +49,27 @@
 mat-form-field {
   width: 100%;
 }
+
+@media only screen and (max-width: 1000px) {
+  .login_form_card {
+    background-image: linear-gradient(transparent),
+      url(./pharmacy_background.jpg);
+    background-size: cover;
+    right: 10%;
+    top: 20%;
+    border-radius: 0.3rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    height: 25rem;
+    width: 80%;
+    position: absolute;
+  }
+
+  .login_form {
+    width: 100%;
+    color: black;
+    border-radius: 0.3rem 0 0 0.3rem;
+
+    margin-top: -2rem;
+    height: 100%;
+  }
+}
