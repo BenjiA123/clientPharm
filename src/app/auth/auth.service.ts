@@ -55,6 +55,7 @@ export class AuthService {
           }
           else {
             alert("NO TOKEN AVAILABLE" + res)
+            console.log(res)
           }
 
           error => {
