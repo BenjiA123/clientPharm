@@ -28,3 +28,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+@media only screen and (max-width: 1000px) {
+  igx-column {
+    width: 100%;
+  }
+}

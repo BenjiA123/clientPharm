@@ -14,43 +14,43 @@ const routes: Routes = [
     path: 'charts',
     loadChildren: () =>
       import('./chart/chart.module').then((m) => m.ChartModule)
-      , canActivate: [AuthGuard]
+    , canActivate: [AuthGuard]
   },
   {
     path: 'transactions',
     loadChildren: () =>
       import('./transaction/transaction.module').then((m) => m.TransactionModule),
-       canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'drugs',
     loadChildren: () =>
       import('./drugs/drugs.module').then((m) => m.DrugsModule),
-       canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'sources',
     loadChildren: () =>
       import('./sources/sources.module').then((m) => m.SourcesModule),
-       canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
-       canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',
     loadChildren: () =>
       import('./create/create.module').then((m) => m.CreateModule),
-      //  canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
-    path:'',component:WelcomeComponent
+    path: '', component: WelcomeComponent
   },
   {
-    path:'**',redirectTo:''
+    path: '**', redirectTo: ''
   }
 ];
 
@@ -63,4 +63,4 @@ const routes: Routes = [
   providers: [AuthGuard],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -7,23 +7,29 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit,OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   private authListenerSubs: Subscription
   private roleListenerSubs: Subscription
   isAuthenticated = false;
-  userRole= '';
-  isMD:boolean =false;
-  isCachier:boolean =false;
-  isPharmacist:boolean =false;
+  userRole = '';
+  isMD: boolean = false;
+  isCachier: boolean = false;
+  isPharmacist: boolean = false;
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) { }
+
+  changeCheckedState(checkbox: any) {
+    checkbox.checked = !checkbox.checked
+  }
+
+
 
   ngOnInit(): void {
 
     this.isAuthenticated = this.authService.getIsAuth()
     this.authListenerSubs = this.authService.getauthStatusListener().subscribe(
-      (isAuthenticated)=>{
+      (isAuthenticated) => {
         this.isAuthenticated = isAuthenticated
 
       }
@@ -31,16 +37,16 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
 
     this.roleListenerSubs = this.authService.getRoleStatusListener().subscribe(
-      (userRole)=>{
-        if(userRole =='MD')this.isMD =true
-        if(userRole == 'cachier')this.isCachier=true
-        if(userRole == 'pharmacist')this.isPharmacist=true
+      (userRole) => {
+        if (userRole == 'MD') this.isMD = true
+        if (userRole == 'cachier') this.isCachier = true
+        if (userRole == 'pharmacist') this.isPharmacist = true
       }
     )
 
-    
+
   }
-  logout(){
+  logout() {
     this.authService.logout()
   }
 
@@ -48,7 +54,7 @@ export class HeaderComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.authListenerSubs.unsubscribe()
     this.roleListenerSubs.unsubscribe()
-    
+
   }
 
 }
