@@ -46,6 +46,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
   searchField(searchText: string) {
+    console.log(searchText)
     socket.emit("search", searchText);
 
     socket.on("searchResult", (searchResult: Drug[]) => {
@@ -58,11 +59,16 @@ export class ChartComponent implements OnInit, AfterViewInit {
     // This is where i will send the req to get the drug for a particular Id 
 
     // Deletes or updates current graph for duration
-    console.log(drugDataForm.form.value)
     if (drugDataForm.invalid) return
 
+    this.chartService.getTransactionsForOne('2021-03-01', '2021-03-01', drugDataForm.form.value.drugId)
+      .subscribe(
+        (res) => {
+          console.log(res)
+        }
+      )
 
-
+    // Consolas, 'Courier New', monospace
   }
 
 
@@ -80,8 +86,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
     }
   ]
   sendDates(dateForm: NgForm) {
-    this.searchField("zinc")
-
     if (dateForm.invalid) return
 
     this.numTrans = []
@@ -151,53 +155,53 @@ export class ChartComponent implements OnInit, AfterViewInit {
             data: values,
             spanGaps: true,
           },
-          {
-            // ? Original color rgba(75,192,192,1)
-            label: 'Paracetamol sold over Duration',
-            fill: true,
-            tension: 0,
-            backgroundColor: 'rgba(0,0,12,.1)',
-            borderColor: 'rgba(119,37,51,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 2,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 5,
-            pointRadius: 3,
-            pointHitRadius: 10,
-            data: ["1", "2", "3", '6', null, "7", "0"],
-            spanGaps: true,
-          },
+          // {
+          //   // ? Original color rgba(75,192,192,1)
+          //   label: 'Paracetamol sold over Duration',
+          //   fill: true,
+          //   tension: 0,
+          //   backgroundColor: 'rgba(0,0,12,.1)',
+          //   borderColor: 'rgba(119,37,51,1)',
+          //   borderCapStyle: 'butt',
+          //   borderDash: [],
+          //   borderDashOffset: 0.0,
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: 'rgba(75,192,192,1)',
+          //   pointBackgroundColor: '#fff',
+          //   pointBorderWidth: 2,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+          //   pointHoverBorderColor: 'rgba(220,220,220,1)',
+          //   pointHoverBorderWidth: 5,
+          //   pointRadius: 3,
+          //   pointHitRadius: 10,
+          //   data: ["1", "2", "3", '6', null, "7", "0"],
+          //   spanGaps: true,
+          // },
 
-          {
-            // ? Original color rgba(75,192,192,1)
-            label: 'Penicilin sold over Duration',
-            fill: true,
-            tension: 0,
-            backgroundColor: 'rgba(233,0,12,.1)',
-            borderColor: 'rgba(219,37,51,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,12,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 2,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,12,192,1)',
-            pointHoverBorderColor: 'rgba(22,220,20,1)',
-            pointHoverBorderWidth: 5,
-            pointRadius: 3,
-            pointHitRadius: 10,
-            data: ["5", "3", "1", '6', null, "1", "0"],
-            spanGaps: true,
-          }
+          // {
+          //   // ? Original color rgba(75,192,192,1)
+          //   label: 'Penicilin sold over Duration',
+          //   fill: true,
+          //   tension: 0,
+          //   backgroundColor: 'rgba(233,0,12,.1)',
+          //   borderColor: 'rgba(219,37,51,1)',
+          //   borderCapStyle: 'butt',
+          //   borderDash: [],
+          //   borderDashOffset: 0.0,
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: 'rgba(75,12,192,1)',
+          //   pointBackgroundColor: '#fff',
+          //   pointBorderWidth: 2,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: 'rgba(75,12,192,1)',
+          //   pointHoverBorderColor: 'rgba(22,220,20,1)',
+          //   pointHoverBorderWidth: 5,
+          //   pointRadius: 3,
+          //   pointHitRadius: 10,
+          //   data: ["5", "3", "1", '6', null, "1", "0"],
+          //   spanGaps: true,
+          // }
         ],
 
       },

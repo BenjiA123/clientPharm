@@ -28,8 +28,9 @@
       matInput
       required
       ngModel
-      name="drugs"
+      name="drugName"
       [matAutocomplete]="auto"
+      (focus)="searchField('zinc')"
     />
 
     <mat-autocomplete #auto="matAutocomplete">

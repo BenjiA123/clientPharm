@@ -14,4 +14,9 @@ export class ChartService {
     return this.http.get(`${BACKEND_URL}/transaction/${startDate}/${endDate}`)
 
   }
+
+  getTransactionsForOne(startDate: any, endDate: any, drugs: string) {
+    return this.http.post(`${BACKEND_URL}/transaction/drug/${startDate}/${endDate}`, drugs)
+
+  }
 }
