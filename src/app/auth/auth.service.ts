@@ -54,7 +54,7 @@ export class AuthService {
 
           }
           else {
-            alert(res.message)
+            alert("NO TOKEN AVAILABLE" + res)
           }
 
           error => {
