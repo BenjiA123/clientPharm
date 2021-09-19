@@ -107,3 +107,24 @@
     font-size: 2.4rem;
   }
 }
+
+@media only screen and (max-width: 380px) {
+  .gilead_text {
+    color: wheat;
+    text-align: center;
+    padding-left: 1rem;
+    margin-left: -3rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .username {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcome_header {
+    font-size: 2.4rem;
+  }
+}

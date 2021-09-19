@@ -1,17 +1,19 @@
-
 <div class="users__card">
-    <div class="users__card__header">Users</div>
+  <div class="users__card__header">Users</div>
 
-    <div *ngFor="let user of users" [routerLink]="['/users',user.username]" class="users__card__element">
-        <div class="users__card__element__username">
-            {{user.username}}
-        </div>
-        <div class="users__card__element__role">
-            {{user.role}}
-        </div>
+  <div
+    *ngFor="let user of users"
+    [routerLink]="['/users', user.username]"
+    class="users__card__element"
+  >
+    <div class="users__card__element__username">
+      {{ user.username }}
     </div>
-    <br>
-
+    <div class="users__card__element__role">
+      {{ user.role }}
+    </div>
+  </div>
+  <br />
 </div>
-
+<br /><br /><br /><br /><br />
 <router-outlet></router-outlet>

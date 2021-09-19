@@ -53,6 +53,9 @@
   margin-bottom: 2rem;
   position: relative;
   font-size: 2rem;
+
+  right: 35%;
+  // position: absolute;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -93,6 +96,7 @@
     color: crimson;
     margin-bottom: 2rem;
     position: absolute;
+    right: 5%;
 
     font-size: 2rem;
   }

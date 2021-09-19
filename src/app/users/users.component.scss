@@ -1,6 +1,6 @@
 .users__card {
   position: relative;
-  top: 7rem;
+  top: 3rem;
   height: auto;
   width: 25%;
   left: 2rem;
@@ -21,7 +21,7 @@
   }
   &__element {
     width: 70%;
-    margin: 0.6rem 15%;
+    margin: 0.6rem 12%;
     height: 3rem;
     border-radius: 0.6rem;
     background-color: gray;
@@ -39,11 +39,13 @@
       // width: 60%;
       float: left;
       //   left: 10rem;
+      font-size: 1rem;
     }
     &__role {
       color: blue;
       float: right;
       text-transform: uppercase;
+      font-size: 0.7rem;
 
       // margin: 0.8rem 1rem;
       //   width: 40%;
@@ -53,12 +55,25 @@
 @media screen and (max-width: 1000px) {
   .users__card {
     position: absolute;
-    top: 7rem;
+    top: 5rem;
     height: auto;
     width: 80%;
     left: 10%;
     background-color: white;
     border-radius: 1rem;
     box-shadow: 0.1rem 0.5rem 0.7rem 0.1rem blue;
+
+    &__element__role {
+      letter-spacing: 0.06rem;
+      font-size: 0.6rem;
+    }
+    // &__element__username {
+    //   text-align: left;
+    //   color: white;
+    //   text-transform: uppercase;
+    //   margin: 0.8rem 1rem;
+    //   float: left;
+    //   font-size: 1.6rem;
+    // }
   }
 }

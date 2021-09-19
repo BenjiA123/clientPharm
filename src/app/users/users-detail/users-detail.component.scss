@@ -14,9 +14,9 @@ mat-card-content {
 .users_datail_card {
   width: 65%;
   height: auto;
-  top: 7rem;
-  left: 30%;
-  position: fixed;
+  top: -70%;
+  left: 33%;
+  position: relative;
   background-color: rgba(255, 253, 251, 1);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
 
@@ -108,11 +108,10 @@ mat-card-content {
 @media screen and (max-width: 1000px) {
   .users_datail_card {
     width: 80%;
-    position: absolute;
     height: auto;
     top: 60%;
     left: 10%;
-    position: absolute;
+    position: relative;
   }
 }
 
@@ -127,11 +126,10 @@ mat-card-content {
 @media screen and (max-width: 680px) {
   .users_datail_card {
     width: 80%;
-    position: absolute;
     height: auto;
-    top: 60%;
+    margin-top: 4rem;
     left: 10%;
-    position: absolute;
+    position: relative;
 
     &_verticalline {
       visibility: hidden;
