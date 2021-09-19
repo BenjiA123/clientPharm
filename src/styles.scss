@@ -29,6 +29,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.screen_size_error {
+  text-align: center;
+  color: red;
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 1000px) {
   igx-column {
     width: 100%;
@@ -41,5 +47,8 @@ body {
   }
   igx-column {
     visibility: hidden;
+  }
+  .screen_size_error {
+    visibility: visible;
   }
 }

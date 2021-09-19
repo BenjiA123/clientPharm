@@ -4,7 +4,7 @@
   *ngFor="let item of transactionQueue; let i = index"
   class="transaction_drug"
 >
-  <form (submit)="addToQueue(form)" #form="ngForm">
+  <form class="queue__form" (submit)="addToQueue(form)" #form="ngForm">
     <input type="hidden" name="drug" [ngModel]="item" />
 
     <input
@@ -57,6 +57,7 @@
 <br />
 
 <h5>DRUGS</h5>
+<h4 class="screen_size_error">PLEASE USE A LAPTOP TO VIEW THIS PAGE✔✔😁</h4>
 <igx-grid
   [primaryKey]="'_id'"
   [paging]="true"

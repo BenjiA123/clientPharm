@@ -56,3 +56,19 @@ input {
 //   font-weight: bold;
 //   font-family: "Courier New", Courier, monospace;
 // }
+
+@media screen and (max-width: 500px) {
+  .transaction_drug {
+    visibility: hidden;
+  }
+  .queue__form {
+    visibility: hidden;
+  }
+
+  app-search-comp {
+    visibility: hidden;
+  }
+  .send_trans {
+    visibility: hidden;
+  }
+}
