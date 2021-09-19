@@ -6,10 +6,17 @@ import { ChartService } from './chart.service';
 import { environment } from "../../environments/environment"
 import { NgForm } from '@angular/forms';
 
+
+
+import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+
+
+
 const BACKEND_URL = environment.apiUrl + "/socket"
 
 import { io } from "socket.io-client";
 import { HttpClient } from '@angular/common/http';
+import { Drug } from '../drugs/drugs.interface';
 
 const socket = io(environment.baseUrl);
 
@@ -27,40 +34,36 @@ export class ChartComponent implements OnInit, AfterViewInit {
   private dateTrans: any[] = []
   private startDate: Date = new Date('2021-03-01')
   private endDate: Date = new Date('2021-12-01')
+  public drugsAutoComplete: Drug[]
 
   constructor(private chartService: ChartService, public datepipe: DatePipe, private http: HttpClient) { }
-  public drugSearchResult: []
 
 
   ngOnInit() {
-    this.searchField("zinc")
 
 
   }
 
 
-  async searchField(searchText: string) {
-    try {
-      await this.http.get(`${BACKEND_URL}?q=${searchText}`).toPromise()
-    } catch (error) {
-      console.log(error)
-      throw (error)
-    }
+  searchField(searchText: string) {
+    socket.emit("search", searchText);
 
-
-    socket.on("searchResult", function (searchResult: any[]) {
-      searchResult.forEach((element: any) => {
-        // console.log(searchResult)
-        console.log(element.genericName)
-        // this.drugSearchResult = this.drugSearchResult.push(element.brandName)
-      });
+    socket.on("searchResult", (searchResult: Drug[]) => {
+      this.drugsAutoComplete = searchResult
     })
 
-    // console.log(this.drugSearchResult)
+  }
+
+  addDrugGraph(drugDataForm: NgForm) {
+    // This is where i will send the req to get the drug for a particular Id 
+
+    // Deletes or updates current graph for duration
+    console.log(drugDataForm.form.value)
+    if (drugDataForm.invalid) return
+
 
 
   }
-
 
 
 
@@ -76,12 +79,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
       name: "endDate", placeholder: "End Date", type: "date", label: "End Date"
     }
   ]
-
-  public drugsField: any[] = [
-    { drug: "drug" }
-  ]
-
   sendDates(dateForm: NgForm) {
+    this.searchField("zinc")
+
     if (dateForm.invalid) return
 
     this.numTrans = []
@@ -101,6 +101,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   getGraphData() {
+
     this.chartService.getTransactionGraphForDuration(this.startDate, this.endDate)
       .subscribe((res: any) => {
         const graphData = res.transStat.graphData

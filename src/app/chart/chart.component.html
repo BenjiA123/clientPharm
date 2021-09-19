@@ -20,12 +20,35 @@
   <button type="submit" class="btn btn--crimson">Get</button>
 </form>
 
-<mat-form-field *ngIf="drugsField.length > 0">
-  <input placeholder="Add Drug" type="text" matInput required name="drugs" />
-</mat-form-field>
+<form (submit)="addDrugGraph(drugDataForm)" #drugDataForm="ngForm">
+  <mat-form-field>
+    <input
+      placeholder="Add Drug"
+      type="text"
+      matInput
+      required
+      ngModel
+      name="drugs"
+      [matAutocomplete]="auto"
+    />
 
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of drugsAutoComplete"
+        [value]="option.genericName"
+      >
+        <input type="hidden" name="drugId" [ngModel]="option._id" />
+
+        <!-- This should be connected to the API -->
+        {{ option.genericName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button type="submit" class="btn btn--crimson">Add Drug</button>
+</form>
 <div class="graph_container">
   <canvas #lineCanvas style="height: 12vh; width: 20vw"></canvas>
-  <hr color="red" />
-  <br /><br />
+  <hr color="crimson" />
+  <br />
 </div>
