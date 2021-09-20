@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,9 +12,23 @@ import { AuthService } from '../auth.service';
 })
 export class CreatePasswordComponent implements OnInit {
 
-  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) { }
+
+  private loadingSub: Subscription
+  private isLoading: boolean = false
 
   ngOnInit(): void {
+    this.loadingSub = this.authService.getLoadingStatusListener()
+      .subscribe(
+        (loading) => {
+          console.log(this.isLoading)
+          this.isLoading = loading
+          if (this.isLoading) this._snackBar.open("LoAdinG......");
+          if (!this.isLoading) this._snackBar.dismiss()
+
+        }
+      )
+
   }
 
 
@@ -33,6 +49,7 @@ export class CreatePasswordComponent implements OnInit {
         form.form.value.passwordConfirm).subscribe(
           res => {
             this.router.navigate['/']
+            this.isLoading = false
           }
 
         )

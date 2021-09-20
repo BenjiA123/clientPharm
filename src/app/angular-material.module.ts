@@ -8,12 +8,14 @@ import { MatSelectModule } from "@angular/material/select";
 
 import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
     exports: [
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
-
+        MatSnackBarModule,
         MatAutocompleteModule,
 
         FormsModule,

@@ -16,6 +16,7 @@ export class AuthService {
   private isAuthenticated = false
   private roleStatusListener = new BehaviorSubject<string>('')
   private authStatusListener = new BehaviorSubject<boolean>(false)
+  private loadingStatusListener = new BehaviorSubject<boolean>(false)
   private token: string
   private role: string
   private userId: string
@@ -26,9 +27,16 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private cookies: CookieService) { }
 
   login(username: string, password: string) {
+
+    this.loadingStatusListener.next(true)
+
     this.http.post(`${BACKEND_URL}/login`, { username, password }, { observe: 'response' })
       .subscribe(
         (res: any) => {
+
+          this.loadingStatusListener.next(false)
+
+          this.authStatusListener.next(false)
 
           res = res.body
           this.token = this.cookies.get('jwt')
@@ -39,9 +47,10 @@ export class AuthService {
           if (this.token) {
             this.isAuthenticated = true
             this.userId = res.user._id
-            this.authStatusListener.next(true)
+
             this.roleStatusListener.next(this.role)
 
+            this.authStatusListener.next(true)
 
 
             if (this.role == 'MD') { this.router.navigate(["/charts"]) }
@@ -54,15 +63,18 @@ export class AuthService {
 
           }
           else {
-            alert("NO TOKEN AVAILABLE" + res)
-            console.log(res)
+            alert("This connection isn't secure")
           }
 
-          error => {
-            this.authStatusListener.next(false)
-            this.roleStatusListener.next('')
 
-          }
+
+        },
+        error => {
+          this.authStatusListener.next(false)
+          this.roleStatusListener.next('')
+          this.loadingStatusListener.next(false)
+          alert("Authentication failed")
+
 
         }
       )
@@ -77,6 +89,10 @@ export class AuthService {
 
   getauthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  getLoadingStatusListener() {
+    return this.loadingStatusListener.asObservable()
   }
 
   getRoleStatusListener() {
@@ -140,11 +156,23 @@ export class AuthService {
   }
 
   createUser(signUpData: any) {
+    // this.authStatusListener.next(true)
+    this.loadingStatusListener.next(true)
+
+
     this.http.post(`${BACKEND_URL}`, signUpData)
-      .subscribe(res => { console.log(res) })
+
+      .subscribe(res => {
+        // this.authStatusListener.next(false);
+        alert("User Created")
+        this.loadingStatusListener.next(false)
+
+
+      })
   }
 
   createUserPassword(token: string, password: string, passwordConfirm: string) {
+    // i will set the status to true here and change it to false in the component
     return this.http.post(`${BACKEND_URL}/create-password/${token}`, { password, passwordConfirm })
   }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,7 +12,9 @@ import { AuthService } from '../auth.service';
 export class CreateUserComponent implements OnInit {
   signupForm: FormGroup
 
-  constructor(private authService: AuthService) { }
+  private loadingSub: Subscription
+  private isLoading: boolean = false
+  constructor(private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup(
@@ -24,6 +28,41 @@ export class CreateUserComponent implements OnInit {
         'role': new FormControl(null, Validators.required),
       }
     )
+
+
+
+
+
+
+    this.loadingSub = this.authService.getLoadingStatusListener()
+      .subscribe(
+        (loading) => {
+          this.isLoading = loading
+          if (this.isLoading) this._snackBar.open("LoAdinG......");
+          if (!this.isLoading) this._snackBar.dismiss()
+
+        }
+      )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   submitForm() {
