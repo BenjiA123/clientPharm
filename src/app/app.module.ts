@@ -14,22 +14,22 @@ import { ErrorComponent } from './error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
-     HeaderComponent, 
-     WelcomeComponent, ErrorComponent
-    ],
+    HeaderComponent,
+    WelcomeComponent, ErrorComponent
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CookieModule.forRoot()
-   ],
+  ],
   providers: [
     {
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
 
     }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
