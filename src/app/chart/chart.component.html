@@ -21,7 +21,7 @@
 </form>
 
 <!-- COMMING SOON -->
-<!-- <form (submit)="addDrugGraph(drugDataForm)" #drugDataForm="ngForm">
+<form (submit)="addDrugGraph(drugDataForm)" #drugDataForm="ngForm">
   <mat-form-field>
     <input
       placeholder="Add Drug"
@@ -31,7 +31,7 @@
       ngModel
       name="drugName"
       [matAutocomplete]="auto"
-      (focus)="searchField('zinc')"
+      (focus)="searchField('')"
     />
 
     <mat-autocomplete #auto="matAutocomplete">
@@ -41,14 +41,13 @@
       >
         <input type="hidden" name="drugId" [ngModel]="option._id" />
 
-        
         {{ option.genericName }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
   <button type="submit" class="btn btn--crimson">Add Drug</button>
-</form> -->
+</form>
 <div class="graph_container">
   <canvas #lineCanvas style="height: 12vh; width: 20vw"></canvas>
   <hr color="crimson" />

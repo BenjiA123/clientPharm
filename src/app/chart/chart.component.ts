@@ -46,7 +46,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
   searchField(searchText: string) {
-    console.log(searchText)
     socket.emit("search", searchText);
 
     socket.on("searchResult", (searchResult: Drug[]) => {
@@ -56,10 +55,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   addDrugGraph(drugDataForm: NgForm) {
-    // This is where i will send the req to get the drug for a particular Id 
-
-    // Deletes or updates current graph for duration
     if (drugDataForm.invalid) return
+
+    console.log(drugDataForm)
 
     this.chartService.getTransactionsForOne('2021-03-01', '2021-03-01', drugDataForm.form.value.drugId)
       .subscribe(
@@ -67,8 +65,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
           console.log(res)
         }
       )
-
-    // Consolas, 'Courier New', monospace
   }
 
 
