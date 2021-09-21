@@ -9,24 +9,29 @@ import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from "./auth/auth.interceptor";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CookieModule } from 'ngx-cookie';
-import { ErrorComponent } from './error/error.component';
+import { AppInterceptor } from "./app-interceptor";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    WelcomeComponent, ErrorComponent
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, MatSnackBarModule,
     HttpClientModule,
     CookieModule.forRoot()
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true
 
     }
   ],

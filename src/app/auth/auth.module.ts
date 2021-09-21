@@ -12,17 +12,17 @@ import { CreateCustomerComponent } from './create-customer/create-customer.compo
 
 @NgModule({
   declarations: [
-    LoginComponent, 
-    CreateUserComponent, 
+    LoginComponent,
+    CreateUserComponent,
     CreatePasswordComponent, CreateCustomerComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    AngularMaterialModule, 
-   
+    AngularMaterialModule,
+
   ],
-  providers:[
+  providers: [
     CookieService
   ]
 })

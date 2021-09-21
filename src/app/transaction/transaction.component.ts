@@ -10,21 +10,26 @@ import { AppTransactionService } from './transaction.service';
 })
 export class TransactionComponent implements OnInit {
 
-  transactions:AppTransaction[] = []
+  transactions: AppTransaction[] = []
 
-  constructor(private appTransactionService:AppTransactionService) { }
+  constructor(private appTransactionService: AppTransactionService) { }
 
-@ViewChild('transactionsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
+  @ViewChild('transactionsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
 
   ngOnInit(): void {
     this.appTransactionService.getAllTransaction()
-    .subscribe((res:any)=>
-    {
-      this.transactions =res.data.document
-    })
+      .subscribe((res: any) => {
+        this.transactions = res.data.document
+      })
 
 
+  }
+
+  approveTrans(transId: String) {
+
+    this.appTransactionService.approveTrans(transId)
+      .subscribe()
   }
 
 }

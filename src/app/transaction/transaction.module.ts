@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
 import { IgxGridModule } from 'igniteui-angular';
+import { AngularMaterialModule } from '../angular-material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { IgxGridModule } from 'igniteui-angular';
   imports: [
     CommonModule,
     IgxGridModule,
-    TransactionRoutingModule
+    TransactionRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class TransactionModule { }

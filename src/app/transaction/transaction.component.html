@@ -1,4 +1,4 @@
-<br><br><br>
+<br>
 
 <h5>TRANSACTIONS</h5>
 <h4 class="screen_size_error">PLEASE USE A LAPTOP TO VIEW THIS PAGE✔✔😁</h4>
@@ -44,7 +44,15 @@ exportExcelText="Export to Excel"
 <igx-column  width="10%" dataType="boolean" field="approved" [sortable]="false" header="Approved "  [filterable]="false"></igx-column>
 
 
-
+<igx-column field="_id" header=" " [filterable]="false">
+    <ng-template igxCell let-cell="cell">
+      <span tabindex="0"
+        ><button mat-stroked-button (click)="approveTrans(cell.value)">
+          APPROVE
+        </button></span
+      >
+    </ng-template>
+  </igx-column>
 
 
 

@@ -10,14 +10,17 @@ export class AppTransactionService {
 
   // public 
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  createPendingTransaction(pendingTrans:any){
-    return this.http.post(`${BACKEND_URL}/`,pendingTrans)
+  createPendingTransaction(pendingTrans: any) {
+    return this.http.post(`${BACKEND_URL}/`, pendingTrans)
   }
 
-  getAllTransaction(){
+  getAllTransaction() {
     return this.http.get(`${BACKEND_URL}/`)
   }
 
+  approveTrans(transId: String) {
+    return this.http.get(`${BACKEND_URL}/approve/${transId}`)
+  }
 }

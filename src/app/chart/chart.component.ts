@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   private endDate: Date = new Date('2021-12-01')
   public drugsAutoComplete: Drug[]
 
-  constructor(private chartService: ChartService, public datepipe: DatePipe, private http: HttpClient) { }
+  constructor(private chartService: ChartService, public datepipe: DatePipe) { }
 
 
   ngOnInit() {
@@ -57,13 +57,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
   addDrugGraph(drugDataForm: NgForm) {
     if (drugDataForm.invalid) return
 
-    console.log(drugDataForm)
 
-    this.chartService.getTransactionsForOne('2021-03-01', '2021-03-01', drugDataForm.form.value.drugId)
+    this.chartService.getTransactionsForOne(this.startDate, this.endDate, drugDataForm.form.value.drugId)
       .subscribe(
-        (res) => {
-          console.log(res)
+        (res: any) => {
+
+          // This is where the magic should happen
+          console.log(res.transStat.singleDrug[0])
         }
+
       )
   }
 
@@ -130,7 +132,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         datasets: [
           {
             // ? Original color rgba(75,192,192,1)
-            label: 'Drugs sold over Duration',
+            label: 'Transactions over Duration',
             fill: true,
             tension: 0,
             backgroundColor: 'rgba(141,192,50,.2)',
@@ -151,53 +153,53 @@ export class ChartComponent implements OnInit, AfterViewInit {
             data: values,
             spanGaps: true,
           },
-          // {
-          //   // ? Original color rgba(75,192,192,1)
-          //   label: 'Paracetamol sold over Duration',
-          //   fill: true,
-          //   tension: 0,
-          //   backgroundColor: 'rgba(0,0,12,.1)',
-          //   borderColor: 'rgba(119,37,51,1)',
-          //   borderCapStyle: 'butt',
-          //   borderDash: [],
-          //   borderDashOffset: 0.0,
-          //   borderJoinStyle: 'miter',
-          //   pointBorderColor: 'rgba(75,192,192,1)',
-          //   pointBackgroundColor: '#fff',
-          //   pointBorderWidth: 2,
-          //   pointHoverRadius: 5,
-          //   pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-          //   pointHoverBorderColor: 'rgba(220,220,220,1)',
-          //   pointHoverBorderWidth: 5,
-          //   pointRadius: 3,
-          //   pointHitRadius: 10,
-          //   data: ["1", "2", "3", '6', null, "7", "0"],
-          //   spanGaps: true,
-          // },
+          {
+            // ? Original color rgba(75,192,192,1)
+            label: 'Paracetamol sold over Duration',
+            fill: true,
+            tension: 0,
+            backgroundColor: 'rgba(0,0,12,.1)',
+            borderColor: 'rgba(119,37,51,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 2,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 5,
+            pointRadius: 3,
+            pointHitRadius: 10,
+            data: ["1", "2", "3", '6', null, "7", "0"],
+            spanGaps: true,
+          },
 
-          // {
-          //   // ? Original color rgba(75,192,192,1)
-          //   label: 'Penicilin sold over Duration',
-          //   fill: true,
-          //   tension: 0,
-          //   backgroundColor: 'rgba(233,0,12,.1)',
-          //   borderColor: 'rgba(219,37,51,1)',
-          //   borderCapStyle: 'butt',
-          //   borderDash: [],
-          //   borderDashOffset: 0.0,
-          //   borderJoinStyle: 'miter',
-          //   pointBorderColor: 'rgba(75,12,192,1)',
-          //   pointBackgroundColor: '#fff',
-          //   pointBorderWidth: 2,
-          //   pointHoverRadius: 5,
-          //   pointHoverBackgroundColor: 'rgba(75,12,192,1)',
-          //   pointHoverBorderColor: 'rgba(22,220,20,1)',
-          //   pointHoverBorderWidth: 5,
-          //   pointRadius: 3,
-          //   pointHitRadius: 10,
-          //   data: ["5", "3", "1", '6', null, "1", "0"],
-          //   spanGaps: true,
-          // }
+          {
+            // ? Original color rgba(75,192,192,1)
+            label: 'Penicilin sold over Duration',
+            fill: true,
+            tension: 0,
+            backgroundColor: 'rgba(233,0,12,.1)',
+            borderColor: 'rgba(219,37,51,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,12,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 2,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,12,192,1)',
+            pointHoverBorderColor: 'rgba(22,220,20,1)',
+            pointHoverBorderWidth: 5,
+            pointRadius: 3,
+            pointHitRadius: 10,
+            data: ["5", "3", "1", '6', null, "1", "0"],
+            spanGaps: true,
+          }
         ],
 
       },
