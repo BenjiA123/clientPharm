@@ -1,52 +1,79 @@
 <div class="createuser__page">
-    
-<form class="createuser_form" [formGroup]="signupForm" (submit)=submitForm()>
-   <div class="form_container">
-    <mat-form-field  appearance="outline">
-        <input matInput formControlName="fullName" placeholder="Full Name:" type="text">
-    </mat-form-field>
+  <form
+    class="createuser_form"
+    [formGroup]="signupForm"
+    (submit)="submitForm()"
+  >
+    <div class="form_container">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          formControlName="fullName"
+          placeholder="Full Name:"
+          type="text"
+        />
+      </mat-form-field>
 
-    <mat-form-field  appearance="outline">
-        <input matInput formControlName="username" username placeholder="Username:"  type="text">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          formControlName="username"
+          username
+          placeholder="Username:"
+          type="text"
+        />
+      </mat-form-field>
 
-    <mat-form-field  appearance="outline">
-        <input matInput formControlName="email" email placeholder="Email:" type="email">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          formControlName="email"
+          email
+          placeholder="Email:"
+          type="email"
+        />
+      </mat-form-field>
 
-    <mat-form-field  appearance="outline">
-        <input matInput formControlName="phoneNumber" phoneNumber placeholder="Phone Number:" type="number">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          formControlName="phoneNumber"
+          phoneNumber
+          placeholder="Phone Number:"
+          type="number"
+        />
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Gender:</mat-label>
-        <mat-select matInput formControlName="gender" >
+        <mat-select matInput formControlName="gender">
           <mat-option value="male">Male</mat-option>
           <mat-option value="female">Female</mat-option>
         </mat-select>
       </mat-form-field>
 
-     <mat-form-field  appearance="outline">
+      <mat-form-field appearance="outline">
         <mat-label>Date Of Birth:</mat-label>
-        <input matInput formControlName="dateOfBirth" dateOfBirth placeholder="dateOfBirth:" type="date">
-    </mat-form-field>
+        <input
+          matInput
+          formControlName="dateOfBirth"
+          dateOfBirth
+          placeholder="dateOfBirth:"
+          type="date"
+        />
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Role:</mat-label>
-        <mat-select matInput formControlName="role" >
+        <mat-select matInput formControlName="role">
           <mat-option value="cachier">Cachier</mat-option>
           <mat-option value="pharmacist">Pharmacist</mat-option>
           <mat-option value="MD">MD</mat-option>
+          <mat-option value="administrator">Administrator</mat-option>
         </mat-select>
       </mat-form-field>
 
-
-    <button class="btn btn--crimson"type="submit">
-        Create User
-    </button>
-   </div>
-
-
-</form>
+      <button class="btn btn--crimson" type="submit">Create User</button>
+    </div>
+  </form>
 </div>
-

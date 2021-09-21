@@ -7,13 +7,14 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreatePasswordComponent } from './create-password/create-password.component';
 import { CookieService } from 'ngx-cookie';
+import { CreateCustomerComponent } from './create-customer/create-customer.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent, 
     CreateUserComponent, 
-    CreatePasswordComponent
+    CreatePasswordComponent, CreateCustomerComponent
   ],
   imports: [
     CommonModule,

@@ -63,7 +63,7 @@ export class AuthService {
 
           }
           else {
-            alert("This connection isn't secure")
+            alert("Please Allow Cookies ")
           }
 
 

@@ -5,53 +5,78 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService :AuthService,private router:Router,private route:ActivatedRoute){}
+    constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
+    public isAuth: boolean
+    public userRole
     canActivate(
         route: import("@angular/router").ActivatedRouteSnapshot,
-         state: import("@angular/router").RouterStateSnapshot):
-          boolean | import("@angular/router").UrlTree |
-           import("rxjs").Observable<boolean | 
-           import("@angular/router").UrlTree> | Promise<boolean | 
+        state: import("@angular/router").RouterStateSnapshot):
+        boolean | import("@angular/router").UrlTree |
+        import("rxjs").Observable<boolean |
+        import("@angular/router").UrlTree> | Promise<boolean |
             import("@angular/router").UrlTree> {
-                const isAuth = this.authService.getIsAuth()
-                const userRole = this.authService.getRole()
-                let authorized:boolean = false
-                if(!isAuth){
 
-                    this.router.navigate(["/"])
-                }
+        // return this.authService.get.subscribe(
+        //     (res)=>{
+        return true
 
-                else{
-                    // You are Authenticated
-                    let routePath = route.routeConfig.path
+        //     }
+        // )
 
-                if(userRole == "MD"){
-                    authorized = true
-                }
-
-                else if(userRole == 'pharmacist' && routePath == 'drugs'){
-                    authorized = true
-                    
-                }
-
-                else if(userRole == 'cachier' && routePath == 'transactions'){
-
-                    authorized = true
-                    
-                }
-                else{
-                    authorized = false
-                }
-
-
-                }
-
-                if(authorized == false)this.router.navigate(["/"])
-
-
-                return authorized
 
     }
-    
+
 }
+
+
+
+// this.authService.getauthStatusListener().subscribe(
+//     (authStatus: boolean) => {
+//         this.isAuth = authStatus
+
+//     }
+// )
+
+// this.authService.getRoleStatusListener().subscribe(
+//     (roleStatus: string) => {
+//         this.userRole = roleStatus
+
+//     }
+
+// )
+
+// let authorized: boolean = false
+// if (!this.isAuth) {
+//     // console.log(this.isAuth)
+
+//     // console.log("navigating away")
+//     // this.router.navigate(["/"])
+// }
+
+// else {
+//     // You are Authenticated
+//     let routePath = route.routeConfig.path
+
+//     if (this.userRole == "MD" || this.userRole == 'administrator') {
+//         authorized = true
+//     }
+
+//     else if (this.userRole == 'pharmacist' && routePath == 'drugs') {
+//         authorized = true
+
+//     }
+
+//     else if (this.userRole == 'cachier' && routePath == 'transactions') {
+
+//         authorized = true
+
+//     }
+//     else {
+//         authorized = false
+//     }
+
+
+// }
+
+// // if (authorized === false) this.router.navigate(["/"])
