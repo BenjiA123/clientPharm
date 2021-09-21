@@ -1,1 +1,28 @@
-<p>create-customer works!</p>
+<br />
+<h5 class="header">CREATE CUSTOMER ACCOUNT</h5>
+<form
+  class="create__customer__form"
+  (submit)="oncreateCustomer(createCustomer)"
+  #createCustomer="ngForm"
+>
+  <div class="form_container">
+    <mat-form-field
+      class="input__field"
+      *ngFor="let field of createCustomerFields"
+      class="create_detail_card_left_input_field"
+      appearance="outline"
+    >
+      <input
+        min="1"
+        matInput
+        ngModel
+        required
+        name="{{ field.name }}"
+        placeholder="{{ field.placeholder }}"
+        type="{{ field.type }}"
+      />
+    </mat-form-field>
+  </div>
+
+  <button type="submit" class="btn btn--crimson">Create</button>
+</form>

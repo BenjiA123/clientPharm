@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "create-user", component: CreateUserComponent },
-  { path: "create-customer", component: CreateCustomerComponent },
+  { path: "customer/create-customer", component: CreateCustomerComponent },
   { path: "create-password/:token", component: CreatePasswordComponent },
 ];
 

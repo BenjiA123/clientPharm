@@ -10,11 +10,32 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
+  constructor(private authService: AuthService, private _snackBar: MatSnackBar) { }
   signupForm: FormGroup
 
   private loadingSub: Subscription
   private isLoading: boolean = false
-  constructor(private authService: AuthService, private _snackBar: MatSnackBar) { }
+
+  public createUserFields: any[] = [
+    {
+      formControlName: "fullName", placeholder: "Full Name :", type: "string", label: "name"
+    },
+    {
+      formControlName: "username", placeholder: "Username :", type: "username", label: "username"
+    },
+    {
+      formControlName: "email", placeholder: "Email :", type: "email", label: "email"
+    },
+    {
+      formControlName: "phoneNumber", placeholder: "Phone Number :", type: "number", label: "phoneNumber"
+    },
+    {
+      formControlName: "dateOfBirth", placeholder: "Date Of Birth", type: "date", label: "dateOfBirth"
+    },
+
+  ]
+
+
 
   ngOnInit(): void {
     this.signupForm = new FormGroup(

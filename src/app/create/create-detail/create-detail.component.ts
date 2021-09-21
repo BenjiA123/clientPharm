@@ -41,7 +41,7 @@ export class CreateDetailComponent implements OnInit {
 
   public createSourceData: any[] = [
     {
-      name: "Name", placeholder: "Name", type: "string", label: "Name"
+      name: "name", placeholder: "Name", type: "string", label: "Name"
     },
     {
       name: "address", placeholder: "Address", type: "textarea", label: "Brand Name"
