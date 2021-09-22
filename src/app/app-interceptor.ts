@@ -16,8 +16,8 @@ export class AppInterceptor implements HttpInterceptor {
         return next.handle(req)
             .pipe(
                 retry(2),
-                finalize(() => { this._snackBar.dismiss(); console.log("completed") }),
-                catchError((err) => { this._snackBar.dismiss(); console.log("err"); return throwError(err) })
+                finalize(() => { this._snackBar.dismiss(); }),
+                catchError((err) => { this._snackBar.dismiss(); return throwError(err) })
             )
     }
 }

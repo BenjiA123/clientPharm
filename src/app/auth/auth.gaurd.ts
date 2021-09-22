@@ -33,8 +33,6 @@ export class AuthGuard implements CanActivate {
 
         let authorized: boolean = false
         if (!this.isAuth) {
-            console.log(this.isAuth)
-
             this.router.navigate(["/"])
         }
 
