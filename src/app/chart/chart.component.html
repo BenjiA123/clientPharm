@@ -1,4 +1,3 @@
-<br /><br />
 <h5>TRANSACTIONS CHART</h5>
 
 <form (submit)="sendDates(dateForm)" #dateForm="ngForm">
@@ -29,25 +28,38 @@
       matInput
       required
       ngModel
-      name="drugName"
+      name="drugId"
       [matAutocomplete]="auto"
       (focus)="searchField('')"
     />
 
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
-        *ngFor="let option of drugsAutoComplete"
+        *ngFor="let option of drugsAutoComplete; let i = index"
         [value]="option.genericName"
+        (click)="selectedDrugs(option._id, option.genericName)"
       >
-        <input type="hidden" name="drugId" [ngModel]="option._id" />
+        <!-- This has to work like this for now until I add the array stuff -->
+        <!-- Can I use a click event to append -->
+        <!-- <input
+          type="hidden"
+          name="drugId"
+          [ngModel]="drugsAutoComplete[i]._id"
+        /> -->
 
         {{ option.genericName }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <button type="submit" class="btn btn--crimson">Add Drug</button>
+  <button type="submit" class="btn btn--crimson">Add Drugs</button>
 </form>
+<br /><br />
+<div class="selectedDrugs" *ngFor="let drug of selectedDrugsArray">
+  {{ drug.genericName | shorten }}
+  <button class="unSelect" (click)="unSelectDrug(drug.drugId)">X</button>
+</div>
+
 <div class="graph_container">
   <canvas #lineCanvas style="height: 12vh; width: 20vw"></canvas>
   <hr color="crimson" />

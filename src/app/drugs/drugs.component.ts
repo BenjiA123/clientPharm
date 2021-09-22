@@ -112,7 +112,9 @@ export class DrugsComponent implements OnInit, OnDestroy {
 
 
     this.appTransactionService.createPendingTransaction(transaction)
-      .subscribe(res => alert("Transaction Created"))
+      .subscribe(res => {
+        alert("Transaction Created")
+      })
 
   }
 

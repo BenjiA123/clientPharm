@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Drug } from 'src/app/drugs/drugs.interface';
 import { DrugsService } from 'src/app/drugs/drugs.service';
 import { SourcesService } from 'src/app/sources/sources.service';
 
@@ -54,6 +55,18 @@ export class CreateDetailComponent implements OnInit {
     },
 
   ]
+
+  public drugsForSource: Drug[] = [
+
+  ]
+
+
+
+
+
+
+
+
 
   currentRoute: any
   ngOnInit(): void {

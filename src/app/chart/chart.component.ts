@@ -15,7 +15,6 @@ import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'r
 const BACKEND_URL = environment.apiUrl + "/socket"
 
 import { io } from "socket.io-client";
-import { HttpClient } from '@angular/common/http';
 import { Drug } from '../drugs/drugs.interface';
 
 const socket = io(environment.baseUrl);
@@ -35,12 +34,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
   private startDate: Date = new Date('2021-03-01')
   private endDate: Date = new Date('2021-12-01')
   public drugsAutoComplete: Drug[]
+  public selectedDrugsArray: any[] = []
+
 
   constructor(private chartService: ChartService, public datepipe: DatePipe) { }
 
 
   ngOnInit() {
 
+    this.selectedDrugsArray = []
 
   }
 
@@ -54,24 +56,46 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   }
 
+  graphData
+  dataSet(dataValues) {
+
+    this.graphData.push(dataValues)
+
+  }
   addDrugGraph(drugDataForm: NgForm) {
     if (drugDataForm.invalid) return
+    // Mock the api for multiple drygs
 
+    // send an array of IDs
+    // this.chartService.getTransactionsForOne(this.startDate, this.endDate, drugId)
+    // .subscribe(
+    //   (res: any) => {
+    //     let resData = res.transStat.singleDrug
+    //     // This is where the magic should happen
 
-    this.chartService.getTransactionsForOne(this.startDate, this.endDate, drugDataForm.form.value.drugId)
-      .subscribe(
-        (res: any) => {
+    //   }
 
-          // This is where the magic should happen
-          console.log(res.transStat.singleDrug[0])
-        }
+    // )
 
-      )
   }
 
+  selectedDrugs(drugId: any, genericName) {
 
 
+    if (this.selectedDrugsArray.length > 0) {
+      this.selectedDrugsArray = this.selectedDrugsArray.filter(selectedDrugs => selectedDrugs.drugId != drugId)
 
+    }
+
+    this.selectedDrugsArray.push({ drugId, genericName })
+
+
+  }
+
+  unSelectDrug(unselectId: string) {
+    this.selectedDrugsArray = this.selectedDrugsArray.filter(sselectedDrug => sselectedDrug.drugId != unselectId)
+
+  }
 
 
   public dateInputFields: any[] = [

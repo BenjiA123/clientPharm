@@ -1,50 +1,80 @@
-<br>
+<br />
 
 <h5>TRANSACTIONS</h5>
 <h4 class="screen_size_error">PLEASE USE A LAPTOP TO VIEW THIS PAGE✔✔😁</h4>
 
-<igx-grid 
+<igx-grid
+  *ngIf="transactions.length > 0"
+  [primaryKey]="'_id'"
+  [paging]="true"
+  [perPage]="10"
+  [allowFiltering]="true"
+  [showToolbar]="true"
+  [columnPinning]="true"
+  [columnHiding]="true"
+  toolbarTitle="TRANSACTIONS"
+  width="'80%'"
+  class="transactionsGrid"
+  #transactionsGrid
+  id="transactionsGrid | async"
+  [data]="transactions"
+  [autoGenerate]="false"
+  [rowEditable]="false"
+  [exportExcel]="true"
+  exportText="Export"
+  exportExcelText="Export to Excel"
+  [allowFiltering]="true"
+>
+  <igx-column
+    width="20%"
+    field="customerName"
+    [sortable]="true"
+    header="Customer Name "
+  ></igx-column>
 
-*ngIf="transactions.length > 0"
-[primaryKey]="'_id'"
-[paging]="true"
-[perPage]="10"
-[allowFiltering]="true"
-[showToolbar]="true"
+  <igx-column
+    width="15%"
+    field="transactionDate"
+    dataType="date"
+    [sortable]="true"
+    header="Transaction Date"
+  ></igx-column>
 
-[columnPinning]="true"
-[columnHiding]="true"
+  <igx-column
+    width="15%"
+    field="creator.name"
+    [sortable]="false"
+    header="Creator "
+    [filterable]="false"
+  ></igx-column>
 
-toolbarTitle="TRANSACTIONS"
-width="'80%'"
-class="transactionsGrid"
-#transactionsGrid 
+  <igx-column
+    width="15%"
+    dataType="string"
+    field="approver.name"
+    [sortable]="false"
+    header="Approver "
+    [filterable]="false"
+  ></igx-column>
 
-id="transactionsGrid | async" 
-[data]="transactions" 
-[autoGenerate]="false" 
-[rowEditable]="false"
-[exportExcel]="true"
-exportText="Export"
-exportExcelText="Export to Excel"
-[allowFiltering]="true">
+  <igx-column
+    width="15%"
+    field="totalprice"
+    [sortable]="true"
+    header="Total Price "
+    [filterable]="false"
+  ></igx-column>
 
+  <igx-column
+    width="10%"
+    dataType="boolean"
+    field="approved"
+    [sortable]="false"
+    header="Approved "
+    [filterable]="false"
+  ></igx-column>
 
-
-<igx-column  width="20%" field="customerName" [sortable]="true" header="Customer Name "></igx-column>
-
-<igx-column  width="15%" field="transactionDate" dataType="date" [sortable]="true" header="Transaction Date"></igx-column>
-
-<igx-column  width="15%" field="creator.name" [sortable]="false" header="Creator "  [filterable]="false"></igx-column>
-
-<igx-column  width="15%" dataType="string" field="approver.name" [sortable]="false" header="Approver "  [filterable]="false"></igx-column>
-
-<igx-column  width="15%" field="totalprice" [sortable]="true" header="Total Price "  [filterable]="false"></igx-column>
-
-<igx-column  width="10%" dataType="boolean" field="approved" [sortable]="false" header="Approved "  [filterable]="false"></igx-column>
-
-
-<igx-column field="_id" header=" " [filterable]="false">
+  <igx-column field="_id" header=" " [filterable]="false">
     <ng-template igxCell let-cell="cell">
       <span tabindex="0"
         ><button mat-stroked-button (click)="approveTrans(cell.value)">
@@ -53,7 +83,4 @@ exportExcelText="Export to Excel"
       >
     </ng-template>
   </igx-column>
-
-
-
 </igx-grid>

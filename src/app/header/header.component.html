@@ -18,7 +18,10 @@
       <a mat-button routerLink="/auth/login" class="navigation__link">Login</a>
     </li>
     <li *ngIf="!isAuthenticated" class="navigation__item">
-      <a mat-button routerLink="/auth/create-customer" class="navigation__link"
+      <a
+        mat-button
+        routerLink="/auth/customer/create-customer"
+        class="navigation__link"
         >Create Customer</a
       >
     </li>
@@ -67,10 +70,7 @@
         >
       </li>
       <li *ngIf="!isAuthenticated" class="navigation__item">
-        <a
-          mat-button
-          routerLink="/auth/create-customer"
-          class="navigation__link"
+        <a routerLink="/auth/customer/create-customer" class="navigation__link"
           >Create Customer</a
         >
       </li>
