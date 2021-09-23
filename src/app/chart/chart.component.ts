@@ -14,6 +14,7 @@ import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'r
 
 const BACKEND_URL = environment.apiUrl + "/socket"
 
+
 import { io } from "socket.io-client";
 import { Drug } from '../drugs/drugs.interface';
 
@@ -31,11 +32,12 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   private numTrans: any[] = []
   private dateTrans: any[] = []
+  private allTransNumber: any[] = []
+  private allTransDate: any[] = []
   private startDate: Date = new Date('2021-03-01')
   private endDate: Date = new Date('2021-12-01')
   public drugsAutoComplete: Drug[]
   public selectedDrugsArray: any[] = []
-
 
   constructor(private chartService: ChartService, public datepipe: DatePipe) { }
 
@@ -90,7 +92,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
           this.lineChart.destroy();
 
-          this.lineChartMethod(this.dateTrans, this.numTrans)
+          this.lineChartMethod(this.dateTrans, this.allTransNumber)
           this.selectedDrugsArray.push({ drugId, genericName })
 
 
@@ -104,7 +106,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   unSelectDrug(unselectId: string) {
     // perform a http call to remove the graph or delete from UI
-    this.selectedDrugsArray = this.selectedDrugsArray.filter(sselectedDrug => sselectedDrug.drugId != unselectId)
+    this.selectedDrugsArray = this.selectedDrugsArray.filter(selectedDrug => selectedDrug.drugId != unselectId)
+    this.lineChart.destroy();
+
+    this.lineChartMethod(this.allTransDate, this.allTransNumber)
 
   }
 
@@ -148,8 +153,11 @@ export class ChartComponent implements OnInit, AfterViewInit {
           this.dateTrans.push(el.transactionDate)
 
         })
+
         this.lineChartMethod(this.dateTrans, this.numTrans);
 
+        this.allTransDate = this.dateTrans
+        this.allTransNumber = this.numTrans
       })
   }
 

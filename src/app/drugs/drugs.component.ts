@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { IgxGridComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import { SearchService } from '../search/search.service';
 import { AppTransactionService } from '../transaction/transaction.service';
 import { Drug } from './drugs.interface';
@@ -14,7 +16,11 @@ import { DrugsService } from './drugs.service';
 })
 export class DrugsComponent implements OnInit, OnDestroy {
 
-  constructor(private drugService: DrugsService, private appTransactionService: AppTransactionService, private searchService: SearchService, private authService: AuthService) { }
+  constructor(private drugService: DrugsService,
+    private appTransactionService: AppTransactionService,
+    private searchService: SearchService,
+    private authService: AuthService
+    , private _dialog: MatDialog) { }
 
   // @ViewChild('quantity',{static:false}) quantity:Number;
   @ViewChild('drugsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
@@ -113,7 +119,10 @@ export class DrugsComponent implements OnInit, OnDestroy {
 
     this.appTransactionService.createPendingTransaction(transaction)
       .subscribe(res => {
-        alert("Transaction Created")
+
+        this._dialog.open(DialogMessageComponent, {
+          data: { message: "Transaction Created" }
+        })
       })
 
   }

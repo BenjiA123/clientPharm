@@ -1,13 +1,15 @@
-import { HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { throwError } from "rxjs";
 import { catchError, finalize, retry } from "rxjs/operators";
+import { DialogMessageComponent } from "./dialog-message/dialog-message.component";
 
 @Injectable()
 
 export class AppInterceptor implements HttpInterceptor {
-    constructor(private _snackBar: MatSnackBar) { }
+    constructor(private _snackBar: MatSnackBar, private _dialog: MatDialog) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler,) {
 
@@ -16,8 +18,25 @@ export class AppInterceptor implements HttpInterceptor {
         return next.handle(req)
             .pipe(
                 retry(2),
-                finalize(() => { this._snackBar.dismiss(); }),
-                catchError((err) => { this._snackBar.dismiss(); return throwError(err) })
+                finalize(() => {
+
+                    this._snackBar.dismiss();
+
+
+                }),
+                catchError((err: HttpErrorResponse) => {
+                    let defaultErrMessage = "Connection Error!!"
+
+                    this._snackBar.dismiss();
+                    if (err.error.message) defaultErrMessage = err.error.message
+
+
+                    this._dialog.open(DialogMessageComponent, {
+                        data: { message: defaultErrMessage }
+                    })
+
+                    return throwError(err)
+                })
             )
     }
 }

@@ -11,6 +11,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CookieModule } from 'ngx-cookie';
 import { AppInterceptor } from "./app-interceptor";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDialogModule } from "@angular/material/dialog";
+import { DialogMessageComponent } from './dialog-message/dialog-message.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,12 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, MatSnackBarModule,
+    BrowserAnimationsModule, MatSnackBarModule, MatDialogModule,
     HttpClientModule,
     CookieModule.forRoot()
+  ],
+  entryComponents: [
+    DialogMessageComponent
   ],
   providers: [
     {
