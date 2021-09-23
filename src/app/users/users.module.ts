@@ -5,14 +5,15 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { AngularMaterialModule } from '../angular-material.module';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [UsersComponent, UsersDetailComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule, MatTooltipModule, ScrollingModule
   ]
 })
 export class UsersModule { }

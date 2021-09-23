@@ -16,6 +16,8 @@ mat-card-content {
   height: auto;
   top: -70%;
   left: 33%;
+  z-index: 0;
+
   position: relative;
   background-color: rgba(255, 253, 251, 1);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
@@ -24,7 +26,7 @@ mat-card-content {
     position: absolute;
     height: 100%;
     width: 0.3rem;
-    z-index: 3;
+    z-index: 0;
     padding: 0;
     background-color: brown;
     margin: 0;
@@ -70,7 +72,7 @@ mat-card-content {
         background-color: gray;
         color: aliceblue;
         text-align: center;
-        font-size: 0.8rem;
+        font-size: 0.67rem;
         border-radius: 0.3rem;
       }
     }
@@ -98,11 +100,16 @@ mat-card-content {
         background-color: gray;
         color: aliceblue;
         text-align: center;
-        font-size: 0.8rem;
+        font-size: 0.67rem;
         border-radius: 0.3rem;
       }
     }
   }
+}
+
+.scrollbar__view {
+  width: 95%;
+  height: 70%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -127,7 +134,7 @@ mat-card-content {
   .users_datail_card {
     width: 80%;
     height: auto;
-    margin-top: 4rem;
+    margin-top: 6%;
     left: 10%;
     position: relative;
 
@@ -139,7 +146,6 @@ mat-card-content {
       position: absolute;
       height: 100%;
       width: 80%;
-      z-index: 3;
       margin: 10%;
       top: 100%;
     }

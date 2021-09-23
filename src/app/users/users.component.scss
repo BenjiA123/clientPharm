@@ -42,10 +42,10 @@
       font-size: 1rem;
     }
     &__role {
-      color: blue;
+      color: white;
       float: right;
       text-transform: uppercase;
-      font-size: 0.7rem;
+      font-size: 1rem;
 
       // margin: 0.8rem 1rem;
       //   width: 40%;
@@ -65,7 +65,8 @@
 
     &__element__role {
       letter-spacing: 0.06rem;
-      font-size: 0.6rem;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
     }
     // &__element__username {
     //   text-align: left;

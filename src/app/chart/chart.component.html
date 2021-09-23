@@ -20,40 +20,27 @@
 </form>
 
 <!-- COMMING SOON -->
-<form (submit)="addDrugGraph(drugDataForm)" #drugDataForm="ngForm">
-  <mat-form-field>
-    <input
-      placeholder="Add Drug"
-      type="text"
-      matInput
-      required
-      ngModel
-      name="drugId"
-      [matAutocomplete]="auto"
-      (focus)="searchField('')"
-    />
+<mat-form-field>
+  <input
+    placeholder="Add Drug"
+    type="text"
+    matInput
+    name="drugId"
+    [matAutocomplete]="auto"
+    (focus)="searchField('')"
+  />
 
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let option of drugsAutoComplete; let i = index"
-        [value]="option.genericName"
-        (click)="selectedDrugs(option._id, option.genericName)"
-      >
-        <!-- This has to work like this for now until I add the array stuff -->
-        <!-- Can I use a click event to append -->
-        <!-- <input
-          type="hidden"
-          name="drugId"
-          [ngModel]="drugsAutoComplete[i]._id"
-        /> -->
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let option of drugsAutoComplete; let i = index"
+      [value]="option.genericName"
+      (click)="selectDrugs(option._id, option.genericName)"
+    >
+      {{ option.genericName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
 
-        {{ option.genericName }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <button type="submit" class="btn btn--crimson">Add Drugs</button>
-</form>
 <br /><br />
 <div class="selectedDrugs" *ngFor="let drug of selectedDrugsArray">
   {{ drug.genericName | shorten }}

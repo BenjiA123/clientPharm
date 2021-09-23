@@ -21,22 +21,31 @@
     <div class="users_datail_card_log_details_header">LOG HISTORY</div>
     <div class="users_datail_card_log_details_login">
       <div class="users_datail_card_log_details_login_header">LOGIN</div>
-      <div
-        class="users_datail_card_log_details_login_element"
-        *ngFor="let loginDate of loginDates"
-      >
-        {{ loginDate | date: "fullDate" }}
-      </div>
+
+      <cdk-virtual-scroll-viewport itemSize="50" class="scrollbar__view">
+        <div
+          class="users_datail_card_log_details_login_element"
+          *ngFor="let loginDate of loginDates"
+          matTooltip="{{ loginDate | date: 'shortTime' }}"
+        >
+          {{ loginDate | date: "fullDate" }}
+        </div>
+      </cdk-virtual-scroll-viewport>
     </div>
 
     <div class="users_datail_card_log_details_logout">
       <div class="users_datail_card_log_details_logout_header">LOGOUT</div>
-      <div
-        class="users_datail_card_log_details_logout_element"
-        *ngFor="let logoutDate of logoutDates"
-      >
-        {{ logoutDate | date: "fullDate" }}
-      </div>
+      <cdk-virtual-scroll-viewport itemSize="50" class="scrollbar__view">
+        <div
+          class="users_datail_card_log_details_logout_element"
+          *ngFor="let logoutDate of logoutDates"
+          matTooltip="{{ logoutDate | date: 'shortTime' }}"
+        >
+          {{ logoutDate | date: "fullDate" }}
+        </div>
+      </cdk-virtual-scroll-viewport>
     </div>
   </div>
 </mat-card>
+
+<!-- <div *cdkVirtualFor="let item of items" >{{ item }}</div> -->

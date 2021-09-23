@@ -62,37 +62,48 @@ export class ChartComponent implements OnInit, AfterViewInit {
     this.graphData.push(dataValues)
 
   }
-  addDrugGraph(drugDataForm: NgForm) {
-    if (drugDataForm.invalid) return
-    // Mock the api for multiple drygs
 
-    // send an array of IDs
-    // this.chartService.getTransactionsForOne(this.startDate, this.endDate, drugId)
-    // .subscribe(
-    //   (res: any) => {
-    //     let resData = res.transStat.singleDrug
-    //     // This is where the magic should happen
-
-    //   }
-
-    // )
-
-  }
-
-  selectedDrugs(drugId: any, genericName) {
-
-
+  selectDrugs(drugId: any, genericName: string) {
     if (this.selectedDrugsArray.length > 0) {
       this.selectedDrugsArray = this.selectedDrugsArray.filter(selectedDrugs => selectedDrugs.drugId != drugId)
 
     }
+    this.chartService.getTransactionsForOne(this.startDate, this.endDate, drugId)
+      .subscribe(
+        (res: any) => {
 
-    this.selectedDrugsArray.push({ drugId, genericName })
+          if (this.selectedDrugsArray.length > 0) {
+            this.selectedDrugsArray.shift()
+
+          }
+
+          let singleDrugGraphData = res.transStat.singleDrug
+
+          this.numTrans = []
+          this.dateTrans = []
+          singleDrugGraphData.forEach((el: any) => {
+            this.numTrans.push(el.numTran)
+            this.dateTrans.push(el.transactionDate)
+
+          })
+
+
+          this.lineChart.destroy();
+
+          this.lineChartMethod(this.dateTrans, this.numTrans)
+          this.selectedDrugsArray.push({ drugId, genericName })
+
+
+        }
+
+      )
+
 
 
   }
 
   unSelectDrug(unselectId: string) {
+    // perform a http call to remove the graph or delete from UI
     this.selectedDrugsArray = this.selectedDrugsArray.filter(sselectedDrug => sselectedDrug.drugId != unselectId)
 
   }
@@ -177,53 +188,53 @@ export class ChartComponent implements OnInit, AfterViewInit {
             data: values,
             spanGaps: true,
           },
-          {
-            // ? Original color rgba(75,192,192,1)
-            label: 'Paracetamol sold over Duration',
-            fill: true,
-            tension: 0,
-            backgroundColor: 'rgba(0,0,12,.1)',
-            borderColor: 'rgba(119,37,51,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 2,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 5,
-            pointRadius: 3,
-            pointHitRadius: 10,
-            data: ["1", "2", "3", '6', null, "7", "0"],
-            spanGaps: true,
-          },
+          // {
+          //   // ? Original color rgba(75,192,192,1)
+          //   label: 'Paracetamol sold over Duration',
+          //   fill: true,
+          //   tension: 0,
+          //   backgroundColor: 'rgba(0,0,12,.1)',
+          //   borderColor: 'rgba(119,37,51,1)',
+          //   borderCapStyle: 'butt',
+          //   borderDash: [],
+          //   borderDashOffset: 0.0,
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: 'rgba(75,192,192,1)',
+          //   pointBackgroundColor: '#fff',
+          //   pointBorderWidth: 2,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+          //   pointHoverBorderColor: 'rgba(220,220,220,1)',
+          //   pointHoverBorderWidth: 5,
+          //   pointRadius: 3,
+          //   pointHitRadius: 10,
+          //   data: ["1", "2", "3", '6', null, "7", "0"],
+          //   spanGaps: true,
+          // },
 
-          {
-            // ? Original color rgba(75,192,192,1)
-            label: 'Penicilin sold over Duration',
-            fill: true,
-            tension: 0,
-            backgroundColor: 'rgba(233,0,12,.1)',
-            borderColor: 'rgba(219,37,51,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,12,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 2,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,12,192,1)',
-            pointHoverBorderColor: 'rgba(22,220,20,1)',
-            pointHoverBorderWidth: 5,
-            pointRadius: 3,
-            pointHitRadius: 10,
-            data: ["5", "3", "1", '6', null, "1", "0"],
-            spanGaps: true,
-          }
+          // {
+          //   // ? Original color rgba(75,192,192,1)
+          //   label: 'Penicilin sold over Duration',
+          //   fill: true,
+          //   tension: 0,
+          //   backgroundColor: 'rgba(233,0,12,.1)',
+          //   borderColor: 'rgba(219,37,51,1)',
+          //   borderCapStyle: 'butt',
+          //   borderDash: [],
+          //   borderDashOffset: 0.0,
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: 'rgba(75,12,192,1)',
+          //   pointBackgroundColor: '#fff',
+          //   pointBorderWidth: 2,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: 'rgba(75,12,192,1)',
+          //   pointHoverBorderColor: 'rgba(22,220,20,1)',
+          //   pointHoverBorderWidth: 5,
+          //   pointRadius: 3,
+          //   pointHitRadius: 10,
+          //   data: ["5", "3", "1", '6', null, "1", "0"],
+          //   spanGaps: true,
+          // }
         ],
 
       },
