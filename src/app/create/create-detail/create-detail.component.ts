@@ -57,7 +57,7 @@ export class CreateDetailComponent implements OnInit {
       name: "name", placeholder: "Name", type: "string", label: "Name"
     },
     {
-      name: "address", placeholder: "Address", type: "textarea", label: "Brand Name"
+      name: "address", placeholder: "Address", type: "textarea", label: "Address"
     },
     {
       name: "purchaseDate", placeholder: "Purchase Date", type: "date", label: "Purchase Date"

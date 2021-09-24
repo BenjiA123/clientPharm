@@ -47,6 +47,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'message',
+    loadChildren: () =>
+      import('./message/message.module').then((m) => m.MessageModule),
+    canActivate: [AuthGuard]
+  },
+
+  {
     path: '', component: WelcomeComponent
   },
   {
