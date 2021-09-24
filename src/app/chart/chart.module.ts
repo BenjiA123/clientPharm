@@ -4,11 +4,10 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ChartRoutingModule } from './chart-routing.module';
 import { ChartComponent } from './chart.component';
 import { AngularMaterialModule } from '../angular-material.module';
-import { ShortenPipe } from './shorten.pipe';
 
 
 @NgModule({
-  declarations: [ChartComponent, ShortenPipe],
+  declarations: [ChartComponent],
   imports: [
     CommonModule,
     ChartRoutingModule,

@@ -4,6 +4,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Drug } from 'src/app/drugs/drugs.interface';
 import { DrugsService } from 'src/app/drugs/drugs.service';
 import { SourcesService } from 'src/app/sources/sources.service';
+import { environment } from "../../../environments/environment"
+
+
+
+import { io } from "socket.io-client";
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
+import { Source } from 'src/app/sources/sources.interface';
+
+const socket = io(environment.baseUrl);
 
 @Component({
   selector: 'app-create-detail',
@@ -12,8 +22,13 @@ import { SourcesService } from 'src/app/sources/sources.service';
 })
 export class CreateDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private drugsService: DrugsService, private sourceService: SourcesService) { }
+  constructor(private route: ActivatedRoute,
+    private drugsService: DrugsService,
+    private sourceService: SourcesService,
+    private _dialog: MatDialog) { }
 
+  public currentRoute: any
+  public sources: any
   public createDrugFields: any[] = [
     {
       name: "genericName", placeholder: "Generic Name", type: "string", label: "Generic Name"
@@ -33,9 +48,6 @@ export class CreateDetailComponent implements OnInit {
     {
       name: "amount", placeholder: "Amount", type: "number", label: "Amount"
     },
-    {
-      name: "sources", placeholder: "Sources", type: "string", label: "Source"
-    },
 
   ]
 
@@ -50,9 +62,7 @@ export class CreateDetailComponent implements OnInit {
     {
       name: "purchaseDate", placeholder: "Purchase Date", type: "date", label: "Purchase Date"
     },
-    {
-      name: "drug", placeholder: "Drugs", type: "string", label: "Drug"
-    },
+
 
   ]
 
@@ -60,15 +70,65 @@ export class CreateDetailComponent implements OnInit {
 
   ]
 
+  public selectedDrugsQueue: any[] = [
+
+  ]
+
+  addToQueue(form: NgForm) {
+    if (form.invalid) {
+
+      this._dialog.open(DialogMessageComponent, {
+        data: { message: "Invalid Drug" }
+      })
+      return
+    }
+    if (this.selectedDrugsQueue.length > 0) {
+      this.selectedDrugsQueue = this.selectedDrugsQueue.filter(transData => transData.drugId != form.form.value.drug.drugId)
+
+    }
+
+    const drugData = {
+      drugId: form.form.value.drug.drugId,
+      quantity: form.form.value.quantity
+
+    }
+    this.selectedDrugsQueue.push(drugData)
+  }
+
+  public selectedDrugsArray: any[] = []
+  searchField(searchText: string) {
+    socket.emit("searchDrug", searchText);
+
+    socket.on("drugSearchResult", (searchResult: Drug[]) => {
+      this.drugsForSource = searchResult
+    })
+
+  }
+
+  selectDrugs(drugId: string, genericName: string) {
+    if (this.selectedDrugsArray.length > 0) {
+      this.selectedDrugsArray = this.selectedDrugsArray.filter(selectedDrugs => selectedDrugs.drugId != drugId)
+
+    }
+    this.selectedDrugsArray.push({ drugId, genericName })
+  }
+
+  unSelectDrug(unselectId: string) {
+    this.selectedDrugsQueue = this.selectedDrugsQueue.filter(drug => drug.drugId != unselectId)
+    this.selectedDrugsArray = this.selectedDrugsArray.filter(selectedDrug => selectedDrug.drugId != unselectId)
+  }
 
 
+  getAllSources() {
+    socket.emit("getSources");
+
+    socket.on("sourceResult", (sources: Source[]) => {
+      this.sources = sources
+    })
+
+  }
 
 
-
-
-
-
-  currentRoute: any
   ngOnInit(): void {
     this.currentRoute
     this.route.params
@@ -86,7 +146,14 @@ export class CreateDetailComponent implements OnInit {
     if (drugForm.invalid) {
       return
     }
+
     const fVal = drugForm.form.value
+    if (fVal.sellingPrice * 1 < fVal.costPrice * 1) {
+      this._dialog.open(DialogMessageComponent, {
+        data: { message: "Selling Price must be more than cost price" }
+      })
+      return
+    }
     const createDrugData = {
       amount: fVal.amount,
       brandName: fVal.brandName,
@@ -94,13 +161,15 @@ export class CreateDetailComponent implements OnInit {
       expiryDate: fVal.expiryDate,
       genericName: fVal.genericName,
       sellingPrice: fVal.sellingPrice,
-      sources: fVal.sources,
+      sources: fVal.source,
       type: fVal.type
     }
 
     try {
       await this.drugsService.createOneDrug(createDrugData).toPromise()
-      alert("Drug CREATED")
+      this._dialog.open(DialogMessageComponent, {
+        data: { message: "Drug Created" }
+      })
     } catch (error) {
       throw (error)
 
@@ -111,22 +180,23 @@ export class CreateDetailComponent implements OnInit {
 
 
     if (sourceForm.invalid) {
-      return
+      // return
     }
     const fVal = sourceForm.form.value
     const createSourceData = {
       name: fVal.name,
       address: fVal.address,
-      date: fVal.date,
-      drug: fVal.drug,
+      purchaseDate: fVal.purchaseDate,
+      drugs: this.selectedDrugsQueue,
 
     }
 
     try {
       await this.sourceService.createSource(createSourceData).toPromise()
-      alert("Source CREATED")
+      this._dialog.open(DialogMessageComponent, {
+        data: { message: "Source Created" }
+      })
     } catch (error) {
-      throw (error)
     }
   }
 }

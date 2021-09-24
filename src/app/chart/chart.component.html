@@ -43,7 +43,7 @@
 
 <br /><br />
 <div class="selectedDrugs" *ngFor="let drug of selectedDrugsArray">
-  {{ drug.genericName | shorten }}
+  {{ drug.genericName | slice: 0:6 }}
   <button class="unSelect" (click)="unSelectDrug(drug.drugId)">X</button>
 </div>
 

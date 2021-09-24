@@ -9,15 +9,21 @@ const BACKEND_URL = environment.apiUrl + "/user";
 })
 export class UsersService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getAllUsers(limit?:number,sort?:string,page?:number){
+  getAllUsers(limit?: number, sort?: string, page?: number) {
     return this.http.get(`${BACKEND_URL}`)
-    
-    }
 
-    getUserByUsername(username){
-      return this.http.get(`${BACKEND_URL}/${username}`)
-      
-      }
+  }
+
+  getUserByUsername(username) {
+    return this.http.get(`${BACKEND_URL}/${username}`)
+
+  }
+  inactivateUser(userId: string) {
+
+    return this.http.delete(`${BACKEND_URL}/inactivate/${userId}`)
+
+
+  }
 }

@@ -9,6 +9,8 @@
           class="create_detail_card_left_input_field"
           appearance="outline"
         >
+          <mat-label>{{ field.label }}:</mat-label>
+
           <input
             min="1"
             matInput
@@ -31,6 +33,21 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field
+          class="create_detail_card_left_input_field"
+          appearance="fill"
+          (click)="getAllSources()"
+        >
+          <mat-label>Source:</mat-label>
+          <mat-select ngModel name="source" matInput>
+            <mat-option
+              *ngFor="let option of sources; let i = index"
+              [value]="option._id"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
         <button type="submit" class="btn btn--crimson">Drug</button>
       </form>
     </div>
@@ -49,6 +66,7 @@
           class="create_detail_card_left_input_field"
           appearance="outline"
         >
+          <mat-label>{{ field.label }}:</mat-label>
           <input
             matInput
             ngModel
@@ -59,16 +77,68 @@
           />
         </mat-form-field>
 
+        <mat-form-field>
+          <input
+            placeholder="Add Drug"
+            type="text"
+            appearance="outline"
+            matInput
+            name="drugId"
+            [matAutocomplete]="auto"
+            (focus)="searchField('')"
+          />
+
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of drugsForSource; let i = index"
+              [value]="option.genericName"
+              (click)="selectDrugs(option._id, option.genericName)"
+            >
+              {{ option.genericName }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <br /><br />
+
         <button type="submit" class="btn btn--crimson">Source</button>
       </form>
     </div>
     <div class="create_detail_card_verticalline"></div>
 
-    <div class="create_detail_card_right">
-      <!-- <div class="selectedDrugs" *ngFor="let drug of selectedDrugsArray">
-      {{ drug.genericName | shorten }}
-      <button class="unSelect" (click)="unSelectDrug(drug.drugId)">X</button>
-    </div> -->
+    <div *ngIf="selectedDrugsArray.length > 0" class="create_detail_card_right">
+      <h5 class="create_detail_card_right_selectedDrugs_header">Drugs</h5>
+
+      <form class="queue_form" (submit)="addToQueue(form)" #form="ngForm">
+        <div
+          class="create_detail_card_right_selectedDrugs"
+          *ngFor="let drug of selectedDrugsArray"
+        >
+          <input type="hidden" name="drug" [ngModel]="drug" />
+
+          {{ drug.genericName | slice: 0:9 }}...
+
+          <input
+            placeholder="1"
+            min="1"
+            matInput
+            name="quantity"
+            required
+            ngModel
+            class="create_detail_card_right_selectedDrugs_quantity"
+            type="number"
+          />
+
+          <button type="submit" class="btn btn--white addDrug_queue">+</button>
+
+          <button
+            class="create_detail_card_right_selectedDrugs_unSelect"
+            (click)="unSelectDrug(drug.drugId)"
+          >
+            X
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

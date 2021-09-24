@@ -4,6 +4,8 @@
       <h5 class="login_form_head">LOGIN</h5>
       <form class="form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
         <mat-form-field appearance="outline">
+          <mat-label>Username:</mat-label>
+
           <input
             matInput
             required
@@ -17,6 +19,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+          <mat-label>Password:</mat-label>
+
           <input
             matInput
             required

@@ -50,9 +50,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
   searchField(searchText: string) {
-    socket.emit("search", searchText);
+    socket.emit("searchDrug", searchText);
 
-    socket.on("searchResult", (searchResult: Drug[]) => {
+    socket.on("drugSearchResult", (searchResult: Drug[]) => {
       this.drugsAutoComplete = searchResult
     })
 

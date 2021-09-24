@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
+import { MatDialog } from '@angular/material/dialog';
 
 const BACKEND_URL = environment.apiUrl + "/user";
 
@@ -24,7 +26,11 @@ export class AuthService {
 
 
 
-  constructor(private http: HttpClient, private router: Router, private cookies: CookieService) { }
+  constructor(private http: HttpClient,
+    private router: Router,
+    private cookies: CookieService,
+    private _dialog: MatDialog
+  ) { }
 
   login(username: string, password: string) {
 
@@ -63,7 +69,10 @@ export class AuthService {
 
           }
           else {
-            alert("Please Allow Cookies ")
+
+            this._dialog.open(DialogMessageComponent, {
+              data: { message: "Selling Price must be more than cost price" }
+            })
           }
 
 
@@ -73,7 +82,6 @@ export class AuthService {
           this.authStatusListener.next(false)
           this.roleStatusListener.next('')
           this.loadingStatusListener.next(false)
-          alert("Authentication failed")
 
 
         }

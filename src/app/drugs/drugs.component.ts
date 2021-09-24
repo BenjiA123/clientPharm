@@ -35,7 +35,10 @@ export class DrugsComponent implements OnInit, OnDestroy {
 
   addToQueue(form: NgForm) {
     if (form.invalid) {
-      alert("Invalid Transaction")
+
+      this._dialog.open(DialogMessageComponent, {
+        data: { message: "Invalid Transaction" }
+      })
       return
     }
     // alert("Added To Queue")
@@ -123,6 +126,7 @@ export class DrugsComponent implements OnInit, OnDestroy {
         this._dialog.open(DialogMessageComponent, {
           data: { message: "Transaction Created" }
         })
+        this.transactionData = []
       })
 
   }
