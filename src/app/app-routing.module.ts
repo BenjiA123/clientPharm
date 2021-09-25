@@ -52,12 +52,18 @@ const routes: Routes = [
       import('./message/message.module').then((m) => m.MessageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [AuthGuard]
+  },
 
   {
     path: '', component: WelcomeComponent
   },
   {
-    path: '**', redirectTo: ''
+    path: '**', redirectTo: 'dashboard'
   }
 ];
 

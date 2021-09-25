@@ -48,6 +48,11 @@
     <li *ngIf="isAuthenticated && isMD" class="navigation__item">
       <a routerLink="/create" class="navigation__link">Create</a>
     </li>
+    <li *ngIf="isAuthenticated" class="navigation__item">
+      <a mat-button routerLink="/dashboard" class="navigation__link"
+        >DashBoard</a
+      >
+    </li>
   </div>
 </div>
 
@@ -102,6 +107,11 @@
       </li>
       <li *ngIf="isAuthenticated && isMD" class="navigation__item">
         <a routerLink="/create" class="navigation__link">Create</a>
+      </li>
+      <li *ngIf="isAuthenticated" class="navigation__item">
+        <a mat-button routerLink="/dashboard" class="navigation__link"
+          >DashBoard</a
+        >
       </li>
 
       <li *ngIf="isAuthenticated" class="navigation__item">

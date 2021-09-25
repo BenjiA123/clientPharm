@@ -60,6 +60,7 @@ export class AuthGuard implements CanActivate {
 
 
             if (routePath == "message") authorized = true
+            if (routePath == "dashboard") authorized = true
         }
 
         if (authorized == false) this.router.navigate(["/"])
