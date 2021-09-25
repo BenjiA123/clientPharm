@@ -34,10 +34,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
   private dateTrans: any[] = []
   private allTransNumber: any[] = []
   private allTransDate: any[] = []
-  private startDate: Date = new Date('2021-03-01')
-  // private startDate: any = new Date(Date.now() - 259200000000000)
+  private startDate: Date = new Date(Date.now() - 2678500000)
 
-  private endDate: Date = new Date('2021-12-01')
+  private endDate: Date = new Date(Date.now())
   public drugsAutoComplete: Drug[]
   public selectedDrugsArray: any[] = []
 

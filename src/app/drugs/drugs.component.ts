@@ -126,6 +126,7 @@ export class DrugsComponent implements OnInit, OnDestroy {
         this._dialog.open(DialogMessageComponent, {
           data: { message: "Transaction Created" }
         })
+        this.transactionQueue = []
         this.transactionData = []
       })
 
