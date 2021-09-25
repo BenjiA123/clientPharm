@@ -1,0 +1,45 @@
+.message {
+  &_section {
+    width: 60%;
+    height: 80%;
+    color: antiquewhite;
+    right: 5%;
+    border-radius: 2%;
+    top: 15%;
+    background-color: red($color: #000000);
+    position: absolute;
+    box-shadow: 0.05rem 0.1rem 0.3rem black;
+  }
+  &_top {
+    height: 10%;
+    background-color: red;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 2%;
+    color: white;
+
+    &_name {
+      font-size: 2.4rem;
+      margin-left: 2rem;
+      text-transform: uppercase;
+
+      margin-top: 1rem;
+    }
+  }
+  &_form {
+    height: 10%;
+    background-color: red;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 2%;
+  }
+}
+
+.messageArrey {
+  width: 50rem;
+  height: 50rem;
+  background-color: green;
+  color: white;
+}

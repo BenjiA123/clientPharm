@@ -1,1 +1,21 @@
-<p>message-details works!</p>
+<div class="message_section">
+  <div class="message_top"><div class="message_top_name">Benji</div></div>
+
+  <!-- <div class="messageArrey">{{ allMessages }}</div> -->
+  <div class="message_form">
+    <form (submit)="sendMessage(form)" #form="ngForm">
+      <mat-form-field>
+        <input
+          ngModel
+          matInput
+          name="message"
+          appearance="outline"
+          placeholder="Type a message"
+          type="text"
+        />
+      </mat-form-field>
+
+      <button type="submit">Arrow</button>
+    </form>
+  </div>
+</div>
