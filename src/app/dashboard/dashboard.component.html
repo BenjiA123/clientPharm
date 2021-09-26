@@ -4,7 +4,13 @@
     routerLink="/{{ item.link }}"
     *ngFor="let item of dashboardData"
   >
-    <mat-card>
+    <mat-card
+      *ngIf="
+        userRole == 'MD' ||
+        (item.link == 'transactions' && userRole == 'cachier') ||
+        (item.link == 'drugs' && userRole == 'pharmacist')
+      "
+    >
       <mat-card-header>
         <mat-card-title>{{ item.title }}</mat-card-title>
         <mat-card-subtitle>{{ item.subtitle }}</mat-card-subtitle>
