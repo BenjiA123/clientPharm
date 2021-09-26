@@ -5,10 +5,11 @@ import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
 import { IgxGridModule } from 'igniteui-angular';
 import { AngularMaterialModule } from '../angular-material.module';
+import { TransactioDetailComponent } from './transactio-detail/transactio-detail.component';
 
 
 @NgModule({
-  declarations: [TransactionComponent],
+  declarations: [TransactionComponent, TransactioDetailComponent],
   imports: [
     CommonModule,
     IgxGridModule,

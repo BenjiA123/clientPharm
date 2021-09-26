@@ -20,6 +20,13 @@
       >
         LOGIN
       </button>
+      <button
+        *ngIf="!isAuthenticated"
+        routerLink="/auth/customer/create-customer"
+        class="btn btn--white"
+      >
+        Customer Sign Up
+      </button>
     </div>
   </div>
 </div>

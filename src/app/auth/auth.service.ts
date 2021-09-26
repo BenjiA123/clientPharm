@@ -181,6 +181,24 @@ export class AuthService {
       })
   }
 
+
+  createCustomerUser(signUpData: any) {
+    // this.authStatusListener.next(true)
+    this.loadingStatusListener.next(true)
+
+
+    this.http.post(`${BACKEND_URL}/customer`, signUpData)
+
+      .subscribe(res => {
+        this._dialog.open(DialogMessageComponent, {
+          data: { message: "An Email has been sent. " }
+        })
+        this.loadingStatusListener.next(false)
+
+
+      })
+  }
+
   createUserPassword(token: string, password: string, passwordConfirm: string) {
     // i will set the status to true here and change it to false in the component
     return this.http.post(`${BACKEND_URL}/create-password/${token}`, { password, passwordConfirm })

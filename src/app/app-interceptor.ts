@@ -17,7 +17,7 @@ export class AppInterceptor implements HttpInterceptor {
         this._snackBar.open("LoAdinG......")
         return next.handle(req)
             .pipe(
-                retry(2),
+                // retry(2),
                 finalize(() => {
 
                     this._snackBar.dismiss();
