@@ -71,7 +71,7 @@ export class AuthService {
           else {
 
             this._dialog.open(DialogMessageComponent, {
-              data: { message: "Selling Price must be more than cost price" }
+              data: { message: "Please Allow Cookies" }
             })
           }
 
@@ -172,7 +172,9 @@ export class AuthService {
 
       .subscribe(res => {
         // this.authStatusListener.next(false);
-        alert("User Created")
+        this._dialog.open(DialogMessageComponent, {
+          data: { message: "An Email has been sent. " }
+        })
         this.loadingStatusListener.next(false)
 
 

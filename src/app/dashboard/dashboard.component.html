@@ -1,8 +1,18 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>The title</mat-card-title>
-    <mat-card-subtitle>The Subtitle</mat-card-subtitle>
-  </mat-card-header>
-  <!-- Image giving erroe for no reason -->
-  <mat-card-content> </mat-card-content>
-</mat-card>
+<div class="card-container">
+  <div
+    class="card"
+    routerLink="/{{ item.link }}"
+    *ngFor="let item of dashboardData"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+        <mat-card-subtitle>{{ item.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>{{ item.description }} </mat-card-content>
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >home</mat-icon
+      >
+    </mat-card>
+  </div>
+</div>

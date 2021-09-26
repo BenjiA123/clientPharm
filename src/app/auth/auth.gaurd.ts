@@ -8,7 +8,8 @@ export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
     public isAuth: boolean
-    public userRole
+    public userRole: string
+    public allowed: boolean
     canActivate(
         route: import("@angular/router").ActivatedRouteSnapshot,
         state: import("@angular/router").RouterStateSnapshot):
@@ -65,6 +66,8 @@ export class AuthGuard implements CanActivate {
 
         if (authorized == false) this.router.navigate(["/"])
 
+
+        this.allowed = authorized
         return authorized
 
 

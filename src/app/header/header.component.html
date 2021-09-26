@@ -11,15 +11,15 @@
       <a (click)="logout()" class="navigation__link">Logout</a>
     </li>
 
-    <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+    <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
       <a mat-button routerLink="/sources" class="navigation__link">Sources</a>
-    </li>
+    </li> -->
     <li *ngIf="!isAuthenticated" class="navigation__item">
       <a mat-button routerLink="/auth/login" class="navigation__link">Login</a>
     </li>
-    <li *ngIf="isAuthenticated" class="navigation__item">
+    <!-- <li *ngIf="isAuthenticated" class="navigation__item">
       <a mat-button routerLink="/message" class="navigation__link">Message</a>
-    </li>
+    </li> -->
     <li *ngIf="!isAuthenticated" class="navigation__item">
       <a
         mat-button
@@ -29,11 +29,11 @@
       >
     </li>
 
-    <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+    <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
       <a routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
-    </li>
+    </li> -->
 
-    <li *ngIf="isAuthenticated && !isCachier" class="navigation__item">
+    <!-- <li *ngIf="isAuthenticated && !isCachier" class="navigation__item">
       <a routerLink="/drugs" class="navigation__link">Drugs</a>
     </li>
     <li *ngIf="isAuthenticated && (isMD || isCachier)" class="navigation__item">
@@ -47,11 +47,11 @@
     </li>
     <li *ngIf="isAuthenticated && isMD" class="navigation__item">
       <a routerLink="/create" class="navigation__link">Create</a>
-    </li>
+    </li> -->
     <li *ngIf="isAuthenticated" class="navigation__item">
       <a mat-button routerLink="/dashboard" class="navigation__link"
-        >DashBoard</a
-      >
+        ><mat-icon>dashboard</mat-icon> DashBoard
+      </a>
     </li>
   </div>
 </div>
@@ -69,9 +69,9 @@
   <div class="navigation__background">&nbsp;</div>
   <nav (click)="changeCheckedState(checkbox)" class="navigation__nav">
     <ul class="navigation__list">
-      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+      <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
         <a mat-button routerLink="/sources" class="navigation__link">Sources</a>
-      </li>
+      </li> -->
       <li *ngIf="!isAuthenticated" class="navigation__item">
         <a mat-button routerLink="/auth/login" class="navigation__link"
           >Login</a
@@ -83,7 +83,7 @@
         >
       </li>
 
-      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+      <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
         <a routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
       </li>
 
@@ -101,13 +101,13 @@
       </li>
       <li *ngIf="isAuthenticated" class="navigation__item">
         <a mat-button routerLink="/message" class="navigation__link">Message</a>
-      </li>
-      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
+      </li> -->
+      <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
         <a routerLink="/users" class="navigation__link">Users</a>
       </li>
       <li *ngIf="isAuthenticated && isMD" class="navigation__item">
         <a routerLink="/create" class="navigation__link">Create</a>
-      </li>
+      </li> -->
       <li *ngIf="isAuthenticated" class="navigation__item">
         <a mat-button routerLink="/dashboard" class="navigation__link"
           >DashBoard</a

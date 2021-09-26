@@ -13,6 +13,8 @@ import { AppInterceptor } from "./app-interceptor";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { DialogMessageComponent } from './dialog-message/dialog-message.component';
+import { MatIconModule } from '@angular/material/icon'
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { DialogMessageComponent } from './dialog-message/dialog-message.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, MatSnackBarModule, MatDialogModule,
+    MatIconModule,
+
     HttpClientModule,
     CookieModule.forRoot()
   ],

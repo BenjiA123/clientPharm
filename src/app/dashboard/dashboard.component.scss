@@ -1,12 +1,38 @@
-.example-card {
-  position: relative;
-  margin-top: 5%;
-  margin-left: 7%;
-  width: 20%;
-  height: 25%;
-  background-color: rgba(219, 37, 51, 1);
+.card-container {
+  max-width: 80%;
+  margin: 5% 10%;
+  display: grid;
+  height: 15%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12.5%;
+  cursor: pointer;
+}
+
+.card {
   color: white;
 }
-mat-card-subtitle {
+
+mat-card {
+  background-color: rgba(219, 37, 51, 1);
   color: white;
+  transition: all 0.2s;
+}
+mat-card-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+mat-card:hover {
+  background-color: white;
+  color: rgba(219, 37, 51, 1);
+  transform: scale(1.01);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+@media only screen and (max-width: 1000px) {
+  .card-container {
+    margin-top: 15%;
+    width: 50%;
+    margin-right: 30%;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
