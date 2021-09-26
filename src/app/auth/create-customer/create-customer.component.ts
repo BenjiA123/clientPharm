@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-create-customer',
@@ -8,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateCustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   public createCustomerFields: any[] = [
     {
@@ -17,7 +18,6 @@ export class CreateCustomerComponent implements OnInit {
     {
       name: "address", placeholder: "Address", type: "textarea", label: "Address"
     },
-
     {
       name: "username", placeholder: "Username", type: "text", label: "username"
     },
@@ -28,11 +28,9 @@ export class CreateCustomerComponent implements OnInit {
       name: "phoneNumber", placeholder: "Phone Number :", type: "number", label: "phoneNumber"
     },
     {
-      name: "password", placeholder: "Password :", type: "password", label: "password"
+      name: "dateOfBirth", placeholder: "Date Of Birth :", type: "date", label: "dateOfBirth"
     },
-    {
-      name: "passwordConfirm", placeholder: "Confirm Password :", type: "password", label: "passwordConfirm"
-    },
+
     // Role is by default cashier
 
   ]
@@ -42,6 +40,28 @@ export class CreateCustomerComponent implements OnInit {
 
 
   oncreateCustomer(customerForm: NgForm) {
-    console.log(customerForm)
+    if (customerForm.form.status != "VALID") {
+      alert("Invalid Form, Please fill all the fields")
+      return
+    }
+    customerForm.form.value.password = 12345678
+    customerForm.form.value.confirmPassword = 12345678
+
+    const signUpData = {
+      confirmPassword: customerForm.form.value.confirmPassword,
+      dateOfBirth: customerForm.form.value.dateOfBirth,
+      email: customerForm.form.value.email,
+      name: customerForm.form.value.name,
+      gender: customerForm.form.value.gender,
+      password: customerForm.form.value.password,
+      phoneNumber: customerForm.form.value.phoneNumber,
+      role: "customer",
+      username: customerForm.form.value.username,
+
+
+
+    }
+    this.authService.createCustomerUser(signUpData)
   }
+
 }

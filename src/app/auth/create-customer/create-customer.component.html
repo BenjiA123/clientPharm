@@ -17,11 +17,19 @@
         min="1"
         matInput
         ngModel
-        required
+        requiredc
         name="{{ field.name }}"
         placeholder="{{ field.placeholder }}"
         type="{{ field.type }}"
       />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Gender:</mat-label>
+      <mat-select matInput ngModel required name="gender">
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 
