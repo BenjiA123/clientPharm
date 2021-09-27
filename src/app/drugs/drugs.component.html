@@ -80,60 +80,14 @@
   [allowFiltering]="true"
 >
   <igx-column
-    width="25%"
-    field="genericName"
-    [sortable]="true"
-    header="Generic Name "
-  ></igx-column>
-
-  <igx-column
-    width="25%"
-    field="brandName"
-    [sortable]="true"
-    header="Brand Name "
-  ></igx-column>
-
-  <igx-column
-    width="10%"
-    field="amount"
-    [sortable]="false"
-    header="Amount "
-    [filterable]="false"
-  ></igx-column>
-
-  <igx-column
-    width="10%"
-    [hasSummary]="true"
-    field="sellingPrice"
-    [sortable]="true"
-    header="Selling Price "
-    [filterable]="false"
-  ></igx-column>
-
-  <igx-column
-    width="10%"
-    field="type"
-    [sortable]="true"
-    header="Type "
-    [filterable]="false"
-  ></igx-column>
-
-  <igx-column
-    width="10%"
-    dataType="boolean"
-    field="expired"
-    [sortable]="false"
-    header="Expired "
-    [filterable]="false"
-  ></igx-column>
-
-  <igx-column
-    width="10%"
-    dataType="boolean"
-    field="available"
-    [sortable]="false"
-    header="Available "
-    [filterable]="false"
+    *ngFor="let c of idxColumnData"
+    [sortable]="c.sortable"
+    [filterable]="c.filterable"
+    [hasSummary]="c.hasSummary"
+    [field]="c.field"
+    [header]="c.header"
+    [dataType]="c.dataType"
+    [editable]="true"
   ></igx-column>
 
   <igx-column field="_id" header=" " [filterable]="false">
@@ -141,6 +95,15 @@
       <span tabindex="0"
         ><button mat-stroked-button (click)="getDrug(cell.value)">
           ADD
+        </button></span
+      >
+    </ng-template>
+  </igx-column>
+  <igx-column field="_id" header=" " [filterable]="false">
+    <ng-template igxCell let-cell="cell">
+      <span tabindex="0"
+        ><button mat-stroked-button routerLink="detail/{{ cell.value }}">
+          DETAILS
         </button></span
       >
     </ng-template>

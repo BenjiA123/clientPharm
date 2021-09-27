@@ -16,6 +16,35 @@ export class TransactionComponent implements OnInit {
 
   @ViewChild('transactionsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
+  public idxColumnData: any[] = [
+    { dataType: "string", width: '20%', hasSummary: false, field: "customerName", sortable: false, header: "Customer Name ", filterable: false },
+
+
+
+    { dataType: "date", width: '15%', hasSummary: false, field: "transactionDate", sortable: true, header: "Date ", filterable: true },
+
+
+
+    { dataType: "string", width: '15%', hasSummary: false, field: "creator.name", sortable: false, header: "Creator ", filterable: true },
+
+
+
+    { dataType: "string", width: '15%', hasSummary: false, field: "approver.name", sortable: false, header: "Approver ", filterable: true },
+
+
+
+    { dataType: "number", width: '15%', hasSummary: true, field: "totalprice", sortable: false, header: "Total ", filterable: false },
+
+
+
+    { dataType: "boolean", width: '10%', hasSummary: false, field: "approved", sortable: true, header: "Approved ", filterable: false },
+
+
+
+
+  ]
+
+
 
   ngOnInit(): void {
     this.appTransactionService.getAllTransaction()

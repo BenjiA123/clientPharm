@@ -1,1 +1,32 @@
-<p>transactio-detail works!</p>
+<h4 class="header">TRANSACTION DETAIL</h4>
+
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title
+      ><strong>Customer Name:</strong>
+      {{ singleTrans?.customerName }}</mat-card-title
+    >
+
+    <mat-card-subtitle
+      ><h7>Transaction Date:</h7>
+      {{ singleTrans?.transactionDate | date: "fullDate" }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content
+    >Total Price: {{ singleTrans?.totalprice }}</mat-card-content
+  >
+  <mat-card-content
+    >Approver: {{ singleTrans?.approver.name }}</mat-card-content
+  >
+  <mat-card-content>Approved: {{ singleTrans?.approved }}</mat-card-content>
+
+  <mat-card-content
+    >Payment Method: {{ singleTrans?.paymentMethod }}</mat-card-content
+  >
+
+  <mat-card-content>Creator : {{ singleTrans?.creator.name }}</mat-card-content>
+
+  <mat-card-content *ngFor="let item of singleTrans.drugs"
+    >Creator : {{ singleTrans?.item.drug }}</mat-card-content
+  >
+</mat-card>

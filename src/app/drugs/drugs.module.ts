@@ -7,16 +7,17 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { IgxGridModule } from "igniteui-angular";
 import { SearchModule } from '../search/search.module';
 import { DrugDetailComponent } from './drug-detail/drug-detail.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [DrugsComponent, DrugDetailComponent,],
   imports: [CommonModule,
     IgxGridModule,
-     DrugsRoutingModule,
+    DrugsRoutingModule, MatCardModule,
     SearchModule,
 
-     AngularMaterialModule],
-     exports:[DrugsComponent,SearchModule]
+    AngularMaterialModule],
+  exports: [DrugsComponent, SearchModule]
 })
-export class DrugsModule {}
+export class DrugsModule { }

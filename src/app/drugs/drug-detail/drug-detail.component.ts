@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DrugsService } from '../drugs.service';
+
 
 @Component({
   selector: 'app-drug-detail',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrugDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private drugService: DrugsService, private route: ActivatedRoute) { }
+  singleDrug: any
+  ngOnInit() {
+    this.drugService.getOneDrug(this.route.snapshot.params['id']).subscribe(
+      (res: any) => {
+        this.singleDrug = res.data.document
+      }
+    )
 
-  ngOnInit(): void {
+
   }
 
 }

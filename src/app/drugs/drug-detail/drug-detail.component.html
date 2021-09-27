@@ -1,1 +1,33 @@
-<p>drug-detail works!</p>
+<h4 class="header">DRUG DETAIL</h4>
+
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title
+      ><strong>Generic Name:</strong>
+      {{ singleDrug?.genericName }}</mat-card-title
+    >
+    <mat-card-subtitle
+      ><h7>Brand Name:</h7> {{ singleDrug?.brandName }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>Type: {{ singleDrug?.type }}</mat-card-content>
+  <mat-card-content
+    >Selling Price: {{ singleDrug?.sellingPrice }}</mat-card-content
+  >
+  <mat-card-content>Cost Price: {{ singleDrug?.costPrice }}</mat-card-content>
+  <mat-card-content
+    >Purchase Date:
+    {{ singleDrug?.purchaseDate | date: "fullDate" }}</mat-card-content
+  >
+  <mat-card-content
+    >Expiry Date:
+    {{ singleDrug?.expiryDate | date: "fullDate" }}</mat-card-content
+  >
+  <mat-card-content>Amount: {{ singleDrug?.amount }}</mat-card-content>
+  <mat-card-content
+    >Description: {{ singleDrug?.description }}</mat-card-content
+  >
+
+  <!-- Sources link to the Source -->
+  <mat-card-content>Source: {{ singleDrug?.sources.name }}</mat-card-content>
+</mat-card>

@@ -30,6 +30,35 @@ export class DrugsComponent implements OnInit, OnDestroy {
   public transactionQueue: any[] = []
   public transactionData: any[] = []
 
+  public idxColumnData: any[] = [
+    { dataType: "string", width: '25%', hasSummary: false, field: "genericName", sortable: true, header: "Generic Name ", filterable: true },
+
+
+
+    { dataType: "string", width: '25%', hasSummary: false, field: "brandName", sortable: true, header: "Brand Name ", filterable: true },
+
+
+
+    { dataType: "number", width: '10%', hasSummary: false, field: "amount", sortable: false, header: "Amount ", filterable: false },
+
+
+
+    { dataType: "number", width: '10%', hasSummary: true, field: "sellingPrice", sortable: false, header: "Selling Price ", filterable: false },
+
+
+
+    { dataType: "string", width: '10%', hasSummary: false, field: "type", sortable: true, header: "Type ", filterable: false },
+
+
+
+    { dataType: "boolean", width: '25%', hasSummary: false, field: "expired", sortable: true, header: "Expired ", filterable: false },
+
+
+
+    { dataType: "boolean", width: '25%', hasSummary: false, field: "Available", sortable: true, header: "Available ", filterable: false },
+
+  ]
+
 
 
 

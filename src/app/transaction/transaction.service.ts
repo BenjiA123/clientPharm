@@ -23,4 +23,9 @@ export class AppTransactionService {
   approveTrans(transId: String) {
     return this.http.get(`${BACKEND_URL}/approve/${transId}`)
   }
+
+  getOneTransaction(transId: string) {
+    return this.http.get(`${BACKEND_URL}/${transId}`)
+
+  }
 }
