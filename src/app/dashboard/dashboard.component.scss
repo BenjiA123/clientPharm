@@ -2,7 +2,6 @@
   max-width: 80%;
   margin: 5% 10%;
   display: grid;
-  height: 15%;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 12.5%;
   cursor: pointer;
@@ -16,6 +15,7 @@ mat-card {
   background-color: rgba(219, 37, 51, 1);
   color: white;
   transition: all 0.2s;
+  height: 100%;
 }
 mat-card-title {
   text-align: center;
@@ -26,7 +26,6 @@ mat-card:hover {
   color: rgba(219, 37, 51, 1);
   transform: scale(1.01);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  z-index: 2;
 }
 @media only screen and (max-width: 1000px) {
   .card-container {
