@@ -6,7 +6,7 @@ import { MessageComponent } from './message.component';
 const routes: Routes = [
   {
     path: "", component: MessageComponent, children: [
-      { path: ":detail", component: MessageDetailsComponent }
+      { path: ":username", component: MessageDetailsComponent }
     ]
   }
 ];

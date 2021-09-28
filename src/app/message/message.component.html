@@ -1,27 +1,16 @@
 <div class="message__card">
   <div class="message__card__header">Message</div>
 
-  <div routerLink="/message/userId" class="message__card__element">
-    <div class="message__card__element__name">DRUG</div>
-  </div>
-  <div routerLink="/message/sources" class="message__card__element">
-    <div class="message__card__element__name">SOURCES</div>
-  </div>
-
-  <div routerLink="/message/userId" class="message__card__element">
-    <div class="message__card__element__name">DRUG</div>
-  </div>
-  <div routerLink="/message/sources" class="message__card__element">
-    <div class="message__card__element__name">SOURCES</div>
+  <div
+    *ngFor="let user of users"
+    [routerLink]="['/message', user.username]"
+    class="message__card__element"
+  >
+    <div class="message__card__element__name">{{ user.username }}</div>
   </div>
 
-  <div routerLink="/message/userId" class="message__card__element">
-    <div class="message__card__element__name">DRUG</div>
-  </div>
-  <div routerLink="/message/sources" class="message__card__element">
-    <div class="message__card__element__name">SOURCES</div>
-  </div>
   <br />
 </div>
+
 <!-- <mat-icon>send</mat-icon> -->
 <router-outlet></router-outlet>

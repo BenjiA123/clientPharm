@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-message',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  users: any[]
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersService.getAllUsers()
+
+      .subscribe((res: any) => {
+        this.users = res.data.document
+
+      })
   }
 
 }

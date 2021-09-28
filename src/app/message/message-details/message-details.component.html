@@ -1,7 +1,11 @@
 <div class="message_section">
-  <div class="message_top"><div class="message_top_name">Benji</div></div>
+  <div class="message_top">
+    <div class="message_top_name">{{ reciverData?.username }}</div>
+  </div>
 
-  <!-- <div class="messageArrey">{{ allMessages }}</div> -->
+  <div class="messageArray" *ngFor="let message of allMessages">
+    {{ message.message }}
+  </div>
   <div class="message_form">
     <form (submit)="sendMessage(form)" #form="ngForm">
       <mat-form-field>

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from "./../../environments/environment";
+const BACKEND_URL = environment.apiUrl + "/chat";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
 
-  sendMessage(message: { sender: string, reciever: string, message: string, }) {
-    console.log("At service")
-
-
+  getAllMessages(reciever: string, sender: string) {
+    return this.http.post(`${BACKEND_URL}`, { reciever, sender })
   }
 
 

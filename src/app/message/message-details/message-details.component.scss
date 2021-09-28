@@ -37,9 +37,14 @@
   }
 }
 
-.messageArrey {
-  width: 50rem;
-  height: 50rem;
+.messageArray {
+  position: absolute;
+
+  width: 100%;
+  height: 10%;
   background-color: green;
+  right: 0;
   color: white;
+  bottom: 0;
+  font-size: 70%;
 }
