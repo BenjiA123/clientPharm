@@ -58,6 +58,11 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'customer',
+    loadChildren: () =>
+      import('./customer-section/customer-section.module').then((m) => m.CustomerSectionModule),
+  },
 
   {
     path: '', component: WelcomeComponent
