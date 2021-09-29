@@ -1,1 +1,27 @@
-<p>drug-overview works!</p>
+<app-search-comp></app-search-comp>
+
+<div class="card-container">
+  <div class="card" *ngFor="let drug of drugs">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ drug.genericName | slice: 0:20 }}...</mat-card-title>
+        <mat-card-subtitle
+          >{{ drug.brandName | slice: 0:7 }}...</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>Description: {{ drug.description }} </mat-card-content>
+      <mat-card-content>Type: {{ drug.type }} </mat-card-content>
+      <mat-card-content
+        >Selling Price: {{ drug.sellingPrice }}
+      </mat-card-content>
+      <mat-card-content>Amount: {{ drug.amount }} </mat-card-content>
+      <button
+        [routerLink]="['/customer/drugs-detail', drug._id]"
+        class="btn btn--crimson"
+      >
+        DETAILS
+      </button>
+    </mat-card>
+  </div>
+</div>
+<br /><br />
