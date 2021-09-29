@@ -1,9 +1,9 @@
 .card-container {
   max-width: 80%;
-  margin: 5% 10%;
+  margin: 8% 10%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 12.5%;
+  grid-gap: 5%;
   cursor: pointer;
 }
 
@@ -30,7 +30,16 @@ mat-card:hover {
 @media only screen and (max-width: 1000px) {
   .card-container {
     margin-top: 15%;
-    width: 50%;
+    width: 80%;
+    margin-right: 30%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .card-container {
+    margin-top: 15%;
+    width: 80%;
     margin-right: 30%;
     grid-template-columns: repeat(1, 1fr);
   }

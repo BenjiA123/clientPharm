@@ -62,6 +62,7 @@ export class AuthService {
             if (this.role == 'MD') { this.router.navigate(["/charts"]) }
             else if (this.role == 'cachier') { this.router.navigate(["/transactions"]) }
             else if (this.role == 'pharmacist') { this.router.navigate(["/drugs"]) }
+            else if (this.role == 'customer') { this.router.navigate(["/customer/drugs"]) }
 
             else {
               this.router.navigate(["/"])

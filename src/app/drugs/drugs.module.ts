@@ -18,6 +18,5 @@ import { MatCardModule } from '@angular/material/card';
     SearchModule,
 
     AngularMaterialModule],
-  exports: [DrugsComponent, SearchModule]
 })
 export class DrugsModule { }
