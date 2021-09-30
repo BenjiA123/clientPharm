@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMD: boolean = false;
   isCachier: boolean = false;
   isPharmacist: boolean = false;
+  isCustomer: boolean;
 
   constructor(private authService: AuthService) { }
 
@@ -41,6 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (userRole == 'MD') this.isMD = true
         if (userRole == 'cachier') this.isCachier = true
         if (userRole == 'pharmacist') this.isPharmacist = true
+        if (userRole == 'customer') this.isCustomer = true
+        console.log(this.isCustomer, userRole)
       }
     )
 

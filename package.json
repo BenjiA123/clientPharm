@@ -32,6 +32,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.6.0",
     "socket.io-client": "^4.2.0",
+    "stripe-angular": "^1.7.0",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
@@ -45,6 +46,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "@types/stripe-v3": "^3.1.26",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",

@@ -15,6 +15,11 @@ export class CustomerSectionService {
     return this.http.get(`${BACKEND_URL}`)
 
   }
+  createCheckout(drugId: string) {
+    return this.http.get(`${environment.apiUrl}/booking/checkout-session/${drugId}`)
+
+
+  }
 
 
   getOneDrug(drugId: string) {
