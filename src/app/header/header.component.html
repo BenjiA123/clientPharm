@@ -53,7 +53,7 @@
         ><mat-icon>dashboard</mat-icon> DashBoard
       </a>
     </li>
-    <li *ngIf="isCustomer" class="navigation__item">
+    <li *ngIf="isAuthenticated && isCustomer" class="navigation__item">
       <a mat-button routerLink="/customer/drugs" class="navigation__link"
         >DRUGS
       </a>
