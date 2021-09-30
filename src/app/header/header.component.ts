@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (userRole == 'cachier') this.isCachier = true
         if (userRole == 'pharmacist') this.isPharmacist = true
         if (userRole == 'customer') this.isCustomer = true
-        console.log(this.isCustomer, userRole)
       }
     )
 

@@ -42,13 +42,15 @@ export class CreatePasswordComponent implements OnInit {
       return
     }
 
+    console.log(this.route.snapshot.params['token'])
     this.authService
       .createUserPassword(
         this.route.snapshot.params['token'],
         form.form.value.password,
         form.form.value.passwordConfirm).subscribe(
           res => {
-            this.router.navigate['/']
+            this.authService.automaticLogin()
+            this.router.navigate['/customer/drugs']
             this.isLoading = false
           }
 

@@ -200,9 +200,9 @@ export class AuthService {
       })
   }
 
-  createUserPassword(token: string, password: string, passwordConfirm: string) {
+  createUserPassword(token: string, password: string, confirmPassword: string) {
     // i will set the status to true here and change it to false in the component
-    return this.http.post(`${BACKEND_URL}/create-password/${token}`, { password, passwordConfirm })
+    return this.http.post(`${BACKEND_URL}/create-password/${token}`, { password, confirmPassword })
   }
 
 }

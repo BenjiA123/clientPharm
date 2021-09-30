@@ -23,8 +23,6 @@ export class DrugOverviewComponent implements OnInit, OnDestroy {
       .subscribe(
         (response: any) => {
           this.drugs = response.data.document
-          console.log(this.drugs)
-
         }
       )
 
