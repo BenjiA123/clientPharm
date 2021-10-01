@@ -7,9 +7,10 @@ import { UsersDetailComponent } from './users-detail/users-detail.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { UsersEditComponent } from './users-edit/users-edit.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersDetailComponent],
+  declarations: [UsersComponent, UsersDetailComponent, UsersEditComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

@@ -11,6 +11,14 @@
   <mat-card-content>{{ currentUserData?.phoneNumber }}</mat-card-content>
   <mat-card-content>{{ currentUserData?.role }}</mat-card-content>
 
+  <div
+    class="btn btn--crimson"
+    [routerLink]="['/users', currentUserData?.username, 'edit']"
+  >
+    EDIT
+  </div>
+
+  <br /><br />
   <div (click)="deleteUser(currentUserData._id)" class="btn btn--crimson">
     DELETE
   </div>

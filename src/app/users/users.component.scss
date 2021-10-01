@@ -1,6 +1,6 @@
 .users__card {
   position: relative;
-  top: 3rem;
+  top: 5rem;
   height: auto;
   width: 25%;
   left: 2rem;
@@ -52,6 +52,7 @@
     }
   }
 }
+
 @media screen and (max-width: 1000px) {
   .users__card {
     position: absolute;

@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMD: boolean = false;
   isCachier: boolean = false;
   isPharmacist: boolean = false;
-  isCustomer: boolean;
+  isCustomer: boolean = false;
 
   constructor(private authService: AuthService) { }
 
