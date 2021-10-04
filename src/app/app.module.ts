@@ -16,6 +16,13 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { DialogMessageComponent } from './dialog-message/dialog-message.component';
 import { MatIconModule } from '@angular/material/icon'
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { appReducers } from "./store/app.reducer";
+
+import { environment } from "src/environments/environment";
+import { EffectsModule } from "@ngrx/effects";
+import { AuthEffects } from "./auth/store/auth.effects";
 
 
 @NgModule({
@@ -32,7 +39,10 @@ import { MatIconModule } from '@angular/material/icon'
 
     HttpClientModule,
     CookieModule.forRoot(),
-    StripeModule.forRoot("pk_test_51JdfkqIRiTKUTBzlyu2ZokBrkgB2cXadm1a5Fz0uRjU5KjJZpn7hgZEgILHUCDZl5hrX30kfNRwjoYBa3DqAp2j800L4Lvuvku")
+    StripeModule.forRoot("pk_test_51JdfkqIRiTKUTBzlyu2ZokBrkgB2cXadm1a5Fz0uRjU5KjJZpn7hgZEgILHUCDZl5hrX30kfNRwjoYBa3DqAp2j800L4Lvuvku"),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([AuthEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   entryComponents: [
     DialogMessageComponent

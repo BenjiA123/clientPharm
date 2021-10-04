@@ -11,15 +11,9 @@
       <a (click)="logout()" class="navigation__link">Logout</a>
     </li>
 
-    <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-      <a mat-button routerLink="/sources" class="navigation__link">Sources</a>
-    </li> -->
     <li *ngIf="!isAuthenticated" class="navigation__item">
       <a mat-button routerLink="/auth/login" class="navigation__link">Login</a>
     </li>
-    <!-- <li *ngIf="isAuthenticated" class="navigation__item">
-      <a mat-button routerLink="/message" class="navigation__link">Message</a>
-    </li> -->
     <li *ngIf="!isAuthenticated" class="navigation__item">
       <a
         mat-button
@@ -28,26 +22,6 @@
         >Create Customer</a
       >
     </li>
-
-    <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-      <a routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
-    </li> -->
-
-    <!-- <li *ngIf="isAuthenticated && !isCachier" class="navigation__item">
-      <a routerLink="/drugs" class="navigation__link">Drugs</a>
-    </li>
-    <li *ngIf="isAuthenticated && (isMD || isCachier)" class="navigation__item">
-      <a routerLink="/transactions" class="navigation__link">Trans</a>
-    </li>
-    <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-      <a routerLink="/charts" class="navigation__link">Charts</a>
-    </li>
-    <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-      <a routerLink="/users" class="navigation__link">Users</a>
-    </li>
-    <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-      <a routerLink="/create" class="navigation__link">Create</a>
-    </li> -->
     <li *ngIf="isAuthenticated && !isCustomer" class="navigation__item">
       <a mat-button routerLink="/dashboard" class="navigation__link"
         ><mat-icon>dashboard</mat-icon> DashBoard
@@ -60,68 +34,3 @@
     </li>
   </div>
 </div>
-
-<!-- <div class="navigation">
-  <input
-    type="checkbox"
-    #checkbox
-    class="navigation__checkbox"
-    id="navi-toggle"
-  />
-  <label for="navi-toggle" class="navigation__button"
-    ><span class="navigation__icon">&nbsp;</span></label
-  >
-  <div class="navigation__background">&nbsp;</div>
-  <nav (click)="changeCheckedState(checkbox)" class="navigation__nav">
-    <ul class="navigation__list">
-      <!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-        <a mat-button routerLink="/sources" class="navigation__link">Sources</a>
-      </li> -->
-<!-- <li *ngIf="!isAuthenticated" class="navigation__item">
-        <a mat-button routerLink="/auth/login" class="navigation__link"
-          >Login</a
-        >
-      </li>
-      <li *ngIf="!isAuthenticated" class="navigation__item">
-        <a routerLink="/auth/customer/create-customer" class="navigation__link"
-          >Create Customer</a
-        >
-      </li> -->
-
-<!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-        <a routerLink="/auth/create-user" class="navigation__link">Sign Up</a>
-      </li>
-
-      <li *ngIf="isAuthenticated && !isCachier" class="navigation__item">
-        <a routerLink="/drugs" class="navigation__link">Drugs</a>
-      </li>
-      <li
-        *ngIf="isAuthenticated && (isMD || isCachier)"
-        class="navigation__item"
-      >
-        <a routerLink="/transactions" class="navigation__link">Trans</a>
-      </li>
-      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-        <a routerLink="/charts" class="navigation__link">Charts</a>
-      </li>
-      <li *ngIf="isAuthenticated" class="navigation__item">
-        <a mat-button routerLink="/message" class="navigation__link">Message</a>
-      </li> -->
-<!-- <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-        <a routerLink="/users" class="navigation__link">Users</a>
-      </li>
-      <li *ngIf="isAuthenticated && isMD" class="navigation__item">
-        <a routerLink="/create" class="navigation__link">Create</a>
-      </li> -->
-<!-- <li *ngIf="isAuthenticated" class="navigation__item">
-        <a mat-button routerLink="/dashboard" class="navigation__link"
-          >DashBoard</a
-        >
-      </li>
-
-      <li *ngIf="isAuthenticated" class="navigation__item">
-        <a (click)="logout()" class="navigation__link">Logout</a>
-      </li>
-    </ul>
-  </nav>
-</div> -->
