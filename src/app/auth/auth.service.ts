@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+
+import * as authActions from './store/auth.actions'
 
 const BACKEND_URL = environment.apiUrl + "/user";
 
@@ -29,7 +33,8 @@ export class AuthService {
   constructor(private http: HttpClient,
     private router: Router,
     private cookies: CookieService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private store: Store<fromApp.AppState>
   ) { }
 
   login(username: string, password: string) {
@@ -44,6 +49,7 @@ export class AuthService {
 
           this.authStatusListener.next(false)
 
+
           res = res.body
           this.token = this.cookies.get('jwt')
           this.role = res.user.role
@@ -57,6 +63,16 @@ export class AuthService {
             this.roleStatusListener.next(this.role)
 
             this.authStatusListener.next(true)
+
+
+
+            this.store.dispatch(new authActions.Login(
+              {
+                token: this.cookies.get('jwt'),
+                role: res.user.role,
+                currentUser: res.user
+              }))
+
 
 
             if (this.role == 'MD') { this.router.navigate(["/charts"]) }
@@ -130,6 +146,8 @@ export class AuthService {
         this.isAuthenticated = false
         this.userId = null
         this.authStatusListener.next(false)
+        this.store.dispatch(new authActions.Logout())
+
         this.router.navigate(["/"])
 
 
@@ -150,6 +168,14 @@ export class AuthService {
             this.userId = res.user._id
             this.roleStatusListener.next(this.role)
 
+
+            // this.store.dispatch(new authActions.Login())  
+            this.store.dispatch(new authActions.Login(
+              {
+                token: this.cookies.get('jwt'),
+                role: res.user.role,
+                currentUser: res.user
+              }))
 
 
 
@@ -184,15 +210,13 @@ export class AuthService {
 
 
   createCustomerUser(signUpData: any) {
-    // this.authStatusListener.next(true)
     this.loadingStatusListener.next(true)
 
 
     this.http.post(`${BACKEND_URL}/customer`, signUpData)
-
       .subscribe(res => {
         this._dialog.open(DialogMessageComponent, {
-          data: { message: "An Email has been sent. " }
+          data: { message: `An Email has been sent to ${signUpData.email}. ` }
         })
         this.loadingStatusListener.next(false)
 

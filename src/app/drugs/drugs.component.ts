@@ -55,7 +55,7 @@ export class DrugsComponent implements OnInit, OnDestroy {
 
 
 
-    { dataType: "boolean", width: '25%', hasSummary: false, field: "Available", sortable: true, header: "Available ", filterable: false },
+    { dataType: "boolean", width: '25%', hasSummary: false, field: "available", sortable: true, header: "Available ", filterable: false },
 
   ]
 

@@ -26,14 +26,15 @@
 >
   <!-- [hasSummary]="true" -->
 
-  <igx-column field="name" [sortable]="true" header=" Name "></igx-column>
-
   <igx-column
-    field="purchaseDate"
-    [sortable]="true"
-    header="Purchase Date "
+    *ngFor="let c of idxColumnData"
+    [sortable]="c.sortable"
+    [filterable]="c.filterable"
+    [hasSummary]="c.hasSummary"
+    [field]="c.field"
+    [header]="c.header"
+    [dataType]="c.dataType"
+    [editable]="true"
   ></igx-column>
-
-  <igx-column field="address" [sortable]="true" header="Address "></igx-column>
 </igx-grid>
 <br />

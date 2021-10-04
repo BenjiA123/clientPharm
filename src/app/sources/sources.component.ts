@@ -13,6 +13,15 @@ export class SourcesComponent implements OnInit {
   constructor(private sourceService: SourcesService) { }
   @ViewChild('sourcesGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
+  public idxColumnData: any[] = [
+    { dataType: "string", width: '15%', hasSummary: false, field: "name", sortable: false, header: "Vendor Name ", filterable: true },
+
+    { dataType: "string", width: '20%', hasSummary: false, field: "address", sortable: false, header: "Address ", filterable: false },
+
+    { dataType: "date", width: '15%', hasSummary: false, field: "purchaseDate", sortable: true, header: "Date ", filterable: false },
+  ]
+
+
   ngOnInit(): void {
     this.sourceService.getAllSources()
       .subscribe(
