@@ -8,9 +8,10 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsersEditComponent } from './users-edit/users-edit.component';
+import { UserMessageComponent } from './user-message/user-message.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersDetailComponent, UsersEditComponent],
+  declarations: [UsersComponent, UsersDetailComponent, UsersEditComponent, UserMessageComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

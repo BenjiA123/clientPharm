@@ -1,0 +1,18 @@
+.message_user_card {
+  position: absolute;
+  width: 50%;
+  right: 4rem;
+  height: 80%;
+  top: 5rem;
+}
+.input__field {
+  width: 100%;
+  margin: 0;
+  &:not(first-child) {
+    margin-top: -1rem;
+  }
+}
+
+.btn--crimson {
+  margin-top: 0;
+}

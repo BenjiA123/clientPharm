@@ -13,6 +13,14 @@
 
   <div
     class="btn btn--crimson"
+    [routerLink]="['/users', currentUserData?.username, 'message']"
+  >
+    Message
+  </div>
+  <br /><br />
+
+  <div
+    class="btn btn--crimson"
     [routerLink]="['/users', currentUserData?.username, 'edit']"
   >
     EDIT

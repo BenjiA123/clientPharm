@@ -1,0 +1,13 @@
+<mat-card class="message_user_card">
+  <mat-card-header>
+    <mat-card-title>Message {{ currentUserData?.username }}</mat-card-title>
+  </mat-card-header>
+  <br />
+  <form (submit)="onmessageUser(messageUser)" #messageUser="ngForm">
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Type here...... </mat-label>
+      <input matInput required ngModel name="message" type="text" />
+    </mat-form-field>
+    <button type="submit" class="btn btn--crimson">Send Email Message</button>
+  </form>
+</mat-card>
