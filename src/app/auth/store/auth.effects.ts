@@ -27,7 +27,6 @@ export class AuthEffects {
             }),
             mergeMap((responseData: any) => {
 
-                console.log(responseData.body)
                 return [
                     {
                         type: authActions.LOGIN,
