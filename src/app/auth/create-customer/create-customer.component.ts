@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../store/app.reducer'
+import * as AuthActions from '../store/auth.actions'
+import { User } from '../auth.user.interface';
 
 @Component({
   selector: 'app-create-customer',
@@ -9,7 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class CreateCustomerComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   public createCustomerFields: any[] = [
     {
@@ -47,7 +51,7 @@ export class CreateCustomerComponent implements OnInit {
     customerForm.form.value.password = 12345678
     customerForm.form.value.confirmPassword = 12345678
 
-    const signUpData = {
+    const signUpData: User = {
       confirmPassword: customerForm.form.value.confirmPassword,
       dateOfBirth: customerForm.form.value.dateOfBirth,
       email: customerForm.form.value.email,
@@ -61,7 +65,8 @@ export class CreateCustomerComponent implements OnInit {
 
 
     }
-    this.authService.createCustomerUser(signUpData)
+
+    this.store.dispatch(new AuthActions.SendCreateUserEmail(signUpData));
   }
 
 }

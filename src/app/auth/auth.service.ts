@@ -142,11 +142,11 @@ export class AuthService {
     this.http.post(`${BACKEND_URL}/logout`, { user: this.currentUser })
       .subscribe(res => {
 
+        this.store.dispatch(new authActions.Logout())
         this.token = null
         this.isAuthenticated = false
         this.userId = null
         this.authStatusListener.next(false)
-        this.store.dispatch(new authActions.Logout())
 
         this.router.navigate(["/"])
 
@@ -173,7 +173,6 @@ export class AuthService {
             this.store.dispatch(new authActions.Login(
               {
                 token: this.cookies.get('jwt'),
-                role: res.user.role,
                 currentUser: res.user
               }))
 
@@ -188,40 +187,6 @@ export class AuthService {
 
 
     }
-  }
-
-  createUser(signUpData: any) {
-    // this.authStatusListener.next(true)
-    this.loadingStatusListener.next(true)
-
-
-    this.http.post(`${BACKEND_URL}`, signUpData)
-
-      .subscribe(res => {
-        // this.authStatusListener.next(false);
-        this._dialog.open(DialogMessageComponent, {
-          data: { message: "An Email has been sent. " }
-        })
-        this.loadingStatusListener.next(false)
-
-
-      })
-  }
-
-
-  createCustomerUser(signUpData: any) {
-    this.loadingStatusListener.next(true)
-
-
-    this.http.post(`${BACKEND_URL}/customer`, signUpData)
-      .subscribe(res => {
-        this._dialog.open(DialogMessageComponent, {
-          data: { message: `An Email has been sent to ${signUpData.email}. ` }
-        })
-        this.loadingStatusListener.next(false)
-
-
-      })
   }
 
   createUserPassword(token: string, password: string, confirmPassword: string) {

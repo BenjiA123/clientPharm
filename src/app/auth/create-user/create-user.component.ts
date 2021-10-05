@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { User } from '../auth.user.interface';
+
+
+import * as fromApp from '../../store/app.reducer'
+import * as AuthActions from '../store/auth.actions'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-create-user',
@@ -8,7 +13,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<fromApp.AppState>) { }
   signupForm: FormGroup
 
 
@@ -55,7 +60,7 @@ export class CreateUserComponent implements OnInit {
     this.signupForm.value.password = 12345678
     this.signupForm.value.confirmPassword = 12345678
 
-    const signUpData = {
+    const signUpData: User = {
       confirmPassword: this.signupForm.value.confirmPassword,
       dateOfBirth: this.signupForm.value.dateOfBirth,
       email: this.signupForm.value.email,
@@ -69,7 +74,8 @@ export class CreateUserComponent implements OnInit {
 
 
     }
-    this.authService.createUser(signUpData)
+
+    this.store.dispatch(new AuthActions.SendCreateUserEmail(signUpData));
   }
 
 }
