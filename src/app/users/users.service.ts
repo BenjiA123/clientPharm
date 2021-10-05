@@ -16,14 +16,18 @@ export class UsersService {
 
   }
 
-  getUserByUsername(username) {
+  getUserByUsername(username: string) {
     return this.http.get(`${BACKEND_URL}/${username}`)
 
   }
   inactivateUser(userId: string) {
 
     return this.http.delete(`${BACKEND_URL}/inactivate/${userId}`)
+  }
 
+  editUser(newUserData: {}, userId: string) {
+
+    return this.http.patch(`${BACKEND_URL}/${userId}`, newUserData)
 
   }
 }

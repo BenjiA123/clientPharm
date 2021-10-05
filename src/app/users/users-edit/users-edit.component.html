@@ -1,21 +1,58 @@
-<mat-card class="edit_user">
+<mat-card class="edit_user_card">
   <mat-card-header>
-    <mat-card-title>kvikv gjh...</mat-card-title>
-    <mat-card-subtitle>kuv hgb youhgb ...</mat-card-subtitle>
+    <mat-card-title>EDIT USER...</mat-card-title>
   </mat-card-header>
-  <form>
+  <br />
+  <form (submit)="oneditUser(editUser)" #editUser="ngForm">
     <mat-form-field class="input__field" appearance="outline">
       <mat-label>Name:</mat-label>
       <input
         matInput
-        ngModel
-        required
+        [ngModel]="currentUserData?.name"
         name="name"
-        placeholder="name"
         type="text"
       />
     </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Username:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUserData?.username"
+        name="username"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUserData?.email"
+        name="email"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Address:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUserData?.address"
+        name="address"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Phone Number:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUserData?.phoneNumber"
+        name="phoneNumber"
+        type="number"
+      />
+    </mat-form-field>
+    <button type="submit" class="btn btn--crimson">EDIT USER</button>
   </form>
-  <mat-card-content>Amount: </mat-card-content>
-  <button class="btn btn--crimson">EDIT USER</button>
 </mat-card>
