@@ -1,62 +1,34 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../auth/auth.service';
+import * as fromApp from '../store/app.reducer'
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-
-  private authListenerSubs: Subscription
-  private roleListenerSubs: Subscription
+export class HeaderComponent implements OnInit {
   isAuthenticated = false;
-  userRole = '';
-  isMD: boolean = false;
-  isCachier: boolean = false;
-  isPharmacist: boolean = false;
   isCustomer: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private store: Store<fromApp.AppState>) { }
 
   changeCheckedState(checkbox: any) {
     checkbox.checked = !checkbox.checked
   }
-
-
-
   ngOnInit(): void {
-
-    this.isAuthenticated = this.authService.getIsAuth()
-    this.authListenerSubs = this.authService.getauthStatusListener().subscribe(
-      (isAuthenticated) => {
-        this.isAuthenticated = isAuthenticated
-
-      }
-    )
-
-
-    this.roleListenerSubs = this.authService.getRoleStatusListener().subscribe(
-      (userRole) => {
-        if (userRole == 'MD') this.isMD = true
-        if (userRole == 'cachier') this.isCachier = true
-        if (userRole == 'pharmacist') this.isPharmacist = true
+    this.store.select('AuthState').subscribe(
+      (data) => {
+        this.isAuthenticated = data.isAuthenticated
+        let curUser: any = data.currentUser
+        let userRole = curUser?.role;
         if (userRole == 'customer') this.isCustomer = true
+
       }
     )
-
-
   }
   logout() {
     this.authService.logout()
   }
-
-
-  ngOnDestroy(): void {
-    this.authListenerSubs.unsubscribe()
-    this.roleListenerSubs.unsubscribe()
-
-  }
-
 }

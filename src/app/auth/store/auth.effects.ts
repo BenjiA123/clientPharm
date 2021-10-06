@@ -32,6 +32,44 @@ export class AuthEffects {
         })
     }
 
+    automaticLogin$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType(authActions.AUTO_LOGIN),
+            map((action: authActions.AutomaticLogin) => {
+                return action.type
+
+            }),
+            switchMap(() => {
+
+                if (this.cookies.get('jwt')) {
+
+                    return this.http.get(`${BACKEND_URL}/get-logged-in-user`)
+                }
+                else {
+                    return []
+                }
+            }),
+
+            switchMap((userData: any): any => {
+
+
+
+                if (!userData) { return [] }
+                return [
+
+                    {
+                        type: authActions.LOGIN,
+                        payload: {
+                            token: userData.token,
+                            currentUser: userData.user
+                        }
+                    }
+                ]
+            })
+
+        )
+    )
+
     authLogin$ = createEffect(() =>
         this.actions$.pipe(
             ofType(authActions.TRY_LOGIN),
@@ -45,10 +83,10 @@ export class AuthEffects {
             mergeMap((responseData: any) => {
 
 
-                // Verify with only cookie later
+                // Verify with only cookie later Dispatch this action at the begining to authomatically loggin
                 if (responseData.body.token || this.cookies.get('jwt')) {
 
-                    let userRole: string
+                    let userRole: string = responseData?.body.user.role;
 
                     if (userRole == 'MD') { this.router.navigate(["/charts"]) }
                     else if (userRole == 'cachier') { this.router.navigate(["/transactions"]) }
@@ -89,11 +127,53 @@ export class AuthEffects {
 
                 return this.http.post(`${BACKEND_URL}${parameter}`, userData)
             }),
-            mergeMap((): any => {
+            switchMap((): any => {
                 this.dialog("A Token has been sent to Your Email😊.")
+                return []
             }),
         ),
         { dispatch: false }
+
+    )
+
+    createUserPassword$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType(authActions.CREATE_USER_PASSWORD),
+            map((action: authActions.CreateUserPassword): any => {
+
+                return action.payload
+            }),
+            switchMap((passData: any) => {
+
+                return this.http.post(`${BACKEND_URL}/create-password/${passData.token}`,
+                    { password: passData.password, confirmPassword: passData.confirmPassword })
+
+
+            }),
+            mergeMap((responseData: any) => {
+
+                console.log(responseData)
+
+                let userRole: string = responseData.user?.role;
+
+                if (userRole != 'customer') { this.router.navigate(["/dashboard"]) }
+                if (userRole == 'customer') { this.router.navigate(["/customer/drugs"]) }
+
+
+
+                return [
+
+                    {
+                        type: authActions.LOGIN,
+                        payload: {
+                            token: responseData.token,
+                            currentUser: responseData.user
+                        }
+                    }
+                ]
+
+            })
+        )
 
     )
 }

@@ -108,33 +108,17 @@ export class AuthService {
 
   }
 
-  getToken() {
-    return this.token
-  }
 
-  getauthStatusListener() {
-    return this.authStatusListener.asObservable();
-  }
 
   getLoadingStatusListener() {
     return this.loadingStatusListener.asObservable()
   }
 
-  getRoleStatusListener() {
-    return this.roleStatusListener.asObservable();
-  }
-
-  getRole() {
-    return this.role
-  }
 
   getCurrentUser() {
     return this.currentUser
   }
 
-  getIsAuth() {
-    return this.isAuthenticated
-  }
 
 
   logout() {
@@ -152,41 +136,6 @@ export class AuthService {
 
 
       })
-  }
-
-  automaticLogin() {
-    if (this.cookies.get('jwt')) {
-      this.http.get(`${BACKEND_URL}/get-logged-in-user`)
-        .subscribe(
-          (res: any) => {
-
-
-            this.role = res.user.role
-            this.currentUser = res.user
-
-
-            this.userId = res.user._id
-            this.roleStatusListener.next(this.role)
-
-
-            // this.store.dispatch(new authActions.Login())  
-            this.store.dispatch(new authActions.Login(
-              {
-                token: this.cookies.get('jwt'),
-                currentUser: res.user
-              }))
-
-
-
-            this.isAuthenticated = true
-            this.authStatusListener.next(true)
-            this.token = this.cookies.get('jwt')
-
-          }
-        )
-
-
-    }
   }
 
   createUserPassword(token: string, password: string, confirmPassword: string) {

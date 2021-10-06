@@ -7,7 +7,10 @@ export const LOGIN = 'LOGIN'
 
 export const CREATE_USER = 'CREATE_USER'
 
+export const CREATE_USER_PASSWORD = 'CREATE_USER_PASSWORD'
+
 export const SEND_CREATE_USER_EMAIL = 'SEND_CREATE_USER_EMAIL'
+export const AUTO_LOGIN = 'AUTO_LOGIN'
 export const CREATE_CUSTOMER = 'CREATE_CUSTOMER'
 export const LOGOUT = 'LOGOUT'
 
@@ -41,12 +44,18 @@ export class CreateUser implements Action {
     readonly type = CREATE_USER
 }
 
+export class CreateUserPassword implements Action {
+    readonly type = CREATE_USER_PASSWORD
 
+    constructor(public payload: { token: string, password: string, confirmPassword: string }) { }
+}
 
-
+export class AutomaticLogin implements Action {
+    readonly type = AUTO_LOGIN
+}
 
 export class Logout implements Action {
     readonly type = LOGOUT
 }
 
-export type AuthActions = CreateUser | CreateCustomer | Login | Logout | TryLogin | SendCreateUserEmail
+export type AuthActions = CreateUser | CreateCustomer | Login | Logout | TryLogin | SendCreateUserEmail | CreateUserPassword | AutomaticLogin

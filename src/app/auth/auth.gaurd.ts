@@ -1,11 +1,14 @@
 import { AuthService } from './auth.service';
 import { ActivatedRoute, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer'
+
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private authService: AuthService, private router: Router, private store: Store<fromApp.AppState>, private route: ActivatedRoute) { }
 
     public isAuth: boolean
     public userRole: string
@@ -17,21 +20,21 @@ export class AuthGuard implements CanActivate {
         import("rxjs").Observable<boolean |
         import("@angular/router").UrlTree> | Promise<boolean |
             import("@angular/router").UrlTree> {
-        this.authService.getauthStatusListener().subscribe(
-            (authStatus: boolean) => {
-                this.isAuth = authStatus
+        this.store.select('AuthState').subscribe(
+            (data) => {
+                this.isAuth = data.isAuthenticated;
 
             }
         )
 
-        this.authService.getRoleStatusListener().subscribe(
-            (roleStatus: string) => {
-                this.userRole = roleStatus
+
+        this.store.select('AuthState').subscribe(
+            (data) => {
+                let curUser: any = data.currentUser
+                this.userRole = curUser?.role;
 
             }
-
         )
-
         let authorized: boolean = false
         if (!this.isAuth) {
             this.router.navigate(["/"])

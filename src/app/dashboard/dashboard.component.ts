@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer'
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
 
 
 
@@ -16,9 +17,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     {
       title: 'Transactions', subtitle: 'Contact Users', icon: 'MessageIcon', description: 'Monitor the statuses of all your transactions', link: "transactions"
     },
-    {
-      title: 'Message', subtitle: 'Interact directly with users', icon: 'chat', description: 'Send them direct messages with emails', link: "message"
-    },
+    // {
+    //   title: 'Message', subtitle: 'Interact directly with users', icon: 'chat', description: 'Send them direct messages with emails', link: "message"
+    // },
     {
       title: 'Sources', subtitle: 'Get all vendors', icon: 'home', description: 'Get all your sources at a go', link: "sources"
     },
@@ -39,25 +40,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     },
   ]
 
-  private roleListenerSubs: Subscription
   private userRole: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.roleListenerSubs = this.authService.getRoleStatusListener().subscribe(
-      (userRole) => {
-        this.userRole = userRole
+    this.store.select('AuthState').subscribe(
+      (data) => {
+        let curUser: any = data.currentUser
+        this.userRole = curUser?.role;
+
       }
     )
-
   }
-
-
-
-  ngOnDestroy(): void {
-    this.roleListenerSubs.unsubscribe()
-
-  }
-
 }

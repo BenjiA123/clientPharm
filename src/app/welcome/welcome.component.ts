@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer'
+
 
 @Component({
   selector: 'app-welcome',
@@ -10,41 +11,23 @@ import { AuthService } from '../auth/auth.service';
 export class WelcomeComponent implements OnInit {
 
 
-  private authListenerSubs: Subscription
   isAuthenticated = false;
   currentUser: any
   currentUserName: string
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.authListenerSubs = this.authService.getauthStatusListener().subscribe(
-      (isAuthenticated) => {
-        this.isAuthenticated = isAuthenticated
+    this.store.select('AuthState').subscribe(
+      (data) => {
+        this.isAuthenticated = data.isAuthenticated
 
-        this.currentUser = this.authService.getCurrentUser()
-        if (this.currentUser) {
+        this.currentUser = data.currentUser
+        if (data.currentUser) {
           this.currentUserName = this.currentUser.name
         }
-
-
       }
     )
   }
-
-  ngOnDestroy(): void {
-    this.authListenerSubs.unsubscribe()
-
-  }
-
-
-
-
-
-
-
-
-
-
 }
