@@ -35,7 +35,6 @@
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.6.0",
     "socket.io-client": "^4.2.0",
-    "stripe-angular": "^1.7.0",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"

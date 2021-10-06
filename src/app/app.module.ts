@@ -1,7 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { StripeModule } from "stripe-angular"
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +38,6 @@ import { AuthEffects } from "./auth/store/auth.effects";
 
     HttpClientModule,
     CookieModule.forRoot(),
-    StripeModule.forRoot("pk_test_51JdfkqIRiTKUTBzlyu2ZokBrkgB2cXadm1a5Fz0uRjU5KjJZpn7hgZEgILHUCDZl5hrX30kfNRwjoYBa3DqAp2j800L4Lvuvku"),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([AuthEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
