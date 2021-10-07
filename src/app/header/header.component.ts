@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducer'
 
 
 
-import { map, switchMap, mergeMap, take } from "rxjs/operators";
+import { map, take } from "rxjs/operators";
 
 import * as authActions from '../auth/store/auth.actions'
 
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   isCustomer: boolean = false;
 
-  constructor(private authService: AuthService, private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   changeCheckedState(checkbox: any) {
     checkbox.checked = !checkbox.checked

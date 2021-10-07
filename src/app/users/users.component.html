@@ -1,7 +1,7 @@
 <div class="users__card">
   <div class="users__card__header">Users</div>
 
-  <cdk-virtual-scroll-viewport itemSize="150" class="scrollbar__view">
+  <cdk-virtual-scroll-viewport itemSize="100" class="scrollbar__view">
     <div
       *ngFor="let user of users"
       [routerLink]="['/users', user.username]"

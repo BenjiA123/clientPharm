@@ -7,6 +7,10 @@ import { environment } from "../../../environments/environment"
 import { io } from "socket.io-client";
 import { MatDialog } from '@angular/material/dialog';
 import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../store/app.reducer'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const socket = io(environment.baseUrl);
 
@@ -20,11 +24,24 @@ export class UserMessageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private _dialog: MatDialog,
+    private _dialog: MatDialog, private _snackBar: MatSnackBar
+    , private store: Store<fromApp.AppState>,
     private usersService: UsersService) { }
   currentRoute: any
-  currentUserData: any
+  recieverUserData: any
   ngOnInit() {
+
+
+
+    this.store.select('AuthState').subscribe(
+      (data: any) => {
+        this.currentUser = data.currentUser
+      }
+    )
+
+
+
+
 
     this.route.params
       .subscribe(
@@ -34,7 +51,7 @@ export class UserMessageComponent implements OnInit {
           this.usersService.getUserByUsername(this.currentRoute)
             .subscribe(
               (currentUser: any) => {
-                this.currentUserData = currentUser.data.document
+                this.recieverUserData = currentUser.data.document
               }
             )
 
@@ -52,14 +69,16 @@ export class UserMessageComponent implements OnInit {
     if (messageForm.form.value.message == "") return
 
     const message = {
-      sender: this.currentUser._id,
-      reciever: this.currentUserData._id,
+      sender: this.currentUser?._id,
+      reciever: this.recieverUserData._id,
       message: messageForm.form.value.message,
       type: 'emailMessage'
     }
+    this._snackBar.open("LoAdinG......")
 
     socket.emit("sendEmailMessage", message);
     socket.on("emailMessageResult", (messageData: any) => {
+      this._snackBar.dismiss()
 
       this._dialog.open(DialogMessageComponent, {
         data: { message: messageData }

@@ -127,6 +127,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     this.numTrans = []
     this.dateTrans = []
+    this.selectedDrugsArray = []
     this.startDate = dateForm.value.startDate
     this.endDate = dateForm.value.endDate
 
