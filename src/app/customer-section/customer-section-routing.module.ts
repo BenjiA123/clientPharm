@@ -12,7 +12,7 @@ const routes: Routes = [
     ]
   },
   { path: "drugs-detail/:id", component: CustomersDrugDetailComponent },
-  { path: "bookings", component: DrugBookingComponent },
+  { path: ":id/bookings", component: DrugBookingComponent },
   { path: "settings", component: CustomerSettingComponent },
 
 ];
