@@ -17,7 +17,7 @@
   font-family: "Courier New", Courier, monospace;
   margin: 1rem auto;
   left: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   color: white;
   cursor: pointer;
 }
@@ -37,4 +37,17 @@
   margin: 1rem;
   color: white;
   float: right;
+}
+
+@media screen and (max-width: 420px) {
+  .navigation__link {
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+  }
+
+  .nav_title {
+    font-size: 2rem;
+    left: 1rem;
+    font-weight: 500;
+  }
 }
