@@ -30,8 +30,7 @@ export function AuthReducer(state = initialAuthState, action: AuthActions.AuthAc
                 ...initialAuthState,
                 isAuthenticated: false,
                 token: null,
-                role: null
-
+                currentUser: null,
             }
         default:
             return state
