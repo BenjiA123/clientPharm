@@ -3,24 +3,27 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { IgxGridComponent } from 'igniteui-angular';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import { SearchService } from '../search/search.service';
 import { AppTransactionService } from '../transaction/transaction.service';
 import { Drug } from './drugs.interface';
 import { DrugsService } from './drugs.service';
+import * as fromApp from '../store/app.reducer'
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-drugs',
   templateUrl: './drugs.component.html',
   styleUrls: ['./drugs.component.scss'],
 })
 export class DrugsComponent implements OnInit, OnDestroy {
+  currentUser: any
 
-  constructor(private drugService: DrugsService,
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private drugService: DrugsService,
     private appTransactionService: AppTransactionService,
     private searchService: SearchService,
-    private authService: AuthService
-    , private _dialog: MatDialog) { }
+    private _dialog: MatDialog) { }
 
   // @ViewChild('quantity',{static:false}) quantity:Number;
   @ViewChild('drugsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
@@ -89,6 +92,14 @@ export class DrugsComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
 
+
+    this.store.select('AuthState').subscribe(
+      (data) => {
+        this.currentUser = data.currentUser
+
+      }
+    )
+
     this.drugsSub = this.searchService.searchedDrugsListener()
       .subscribe((drugs: any) => {
         // this.grid.isLoading = true
@@ -145,7 +156,7 @@ export class DrugsComponent implements OnInit, OnDestroy {
     const transaction = {
       drugs: drugs,
       customerName: customer,
-      creator: this.authService.getCurrentUser()._id
+      creator: this.currentUser._id
     }
 
 

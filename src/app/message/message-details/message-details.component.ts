@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
 import { MessageService } from '../message.service';
 import { environment } from "../../../environments/environment"
 import { io } from "socket.io-client";
 import { ActivatedRoute, Params } from '@angular/router';
 import { UsersService } from 'src/app/users/users.service';
+import * as fromApp from '../../store/app.reducer'
+import { Store } from '@ngrx/store';
 
 const socket = io(environment.baseUrl);
 @Component({
@@ -17,14 +18,19 @@ export class MessageDetailsComponent implements OnInit {
   message: any;
   reciverUsername: any;
 
-  constructor(private authService: AuthService, private usersService: UsersService, private messageService: MessageService, private route: ActivatedRoute) { }
+  constructor(private store: Store<fromApp.AppState>, private usersService: UsersService, private messageService: MessageService, private route: ActivatedRoute) { }
 
   currentUser: any
   allMessages: any[] = []
   reciverData: any
 
   ngOnInit(): void {
-    this.currentUser = this.authService.getCurrentUser()
+    this.store.select('AuthState').subscribe(
+      (data) => {
+        this.currentUser = data.currentUser
+
+      }
+    )
 
     this.route.params
       .subscribe(

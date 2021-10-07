@@ -53,11 +53,17 @@
   }
 }
 
+.scrollbar__view {
+  position: absolute;
+  width: 95%;
+  height: 90%;
+}
+
 @media screen and (max-width: 1000px) {
   .users__card {
     position: absolute;
     top: 5rem;
-    height: auto;
+    height: 85%;
     width: 80%;
     left: 10%;
     background-color: white;
@@ -69,13 +75,5 @@
       font-size: 0.85rem;
       margin-right: 0.5rem;
     }
-    // &__element__username {
-    //   text-align: left;
-    //   color: white;
-    //   text-transform: uppercase;
-    //   margin: 0.8rem 1rem;
-    //   float: left;
-    //   font-size: 1.6rem;
-    // }
   }
 }

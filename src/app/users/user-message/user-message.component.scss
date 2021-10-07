@@ -16,3 +16,12 @@
 .btn--crimson {
   margin-top: 0;
 }
+@media screen and (max-width: 1000px) {
+  .message_user_card {
+    position: absolute;
+    top: 105%;
+    width: 80%;
+    left: 10%;
+    height: 40%;
+  }
+}

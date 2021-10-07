@@ -1,4 +1,3 @@
-import { AuthService } from './auth.service';
 import { ActivatedRoute, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -8,7 +7,7 @@ import * as fromApp from '../store/app.reducer'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router, private store: Store<fromApp.AppState>, private route: ActivatedRoute) { }
+    constructor(private router: Router, private store: Store<fromApp.AppState>) { }
 
     public isAuth: boolean
     public userRole: string
@@ -21,15 +20,8 @@ export class AuthGuard implements CanActivate {
         import("@angular/router").UrlTree> | Promise<boolean |
             import("@angular/router").UrlTree> {
         this.store.select('AuthState').subscribe(
-            (data) => {
+            (data: any) => {
                 this.isAuth = data.isAuthenticated;
-
-            }
-        )
-
-
-        this.store.select('AuthState').subscribe(
-            (data) => {
                 let curUser: any = data.currentUser
                 this.userRole = curUser?.role;
 

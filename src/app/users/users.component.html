@@ -1,18 +1,21 @@
 <div class="users__card">
   <div class="users__card__header">Users</div>
 
-  <div
-    *ngFor="let user of users"
-    [routerLink]="['/users', user.username]"
-    class="users__card__element"
-  >
-    <div class="users__card__element__username">
-      {{ user.username }}
+  <cdk-virtual-scroll-viewport itemSize="150" class="scrollbar__view">
+    <div
+      *ngFor="let user of users"
+      [routerLink]="['/users', user.username]"
+      class="users__card__element"
+    >
+      <div class="users__card__element__username">
+        {{ user.username }}
+      </div>
+      <div class="users__card__element__role">
+        {{ user.role }}
+      </div>
     </div>
-    <div class="users__card__element__role">
-      {{ user.role }}
-    </div>
-  </div>
+  </cdk-virtual-scroll-viewport>
+
   <br />
 </div>
 <br /><br />

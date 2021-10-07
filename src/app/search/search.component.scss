@@ -16,3 +16,12 @@ form {
   transform: translateY(0);
   box-shadow: 0;
 }
+
+@media screen and (max-width: 680px) {
+  .btn,
+  mat-form-field {
+    width: 70%;
+
+    margin: 5% 15%;
+  }
+}

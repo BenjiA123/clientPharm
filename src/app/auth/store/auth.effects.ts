@@ -176,4 +176,32 @@ export class AuthEffects {
         )
 
     )
+
+    onLogout$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType(authActions.START_LOGOUT),
+            map((action: authActions.StartLogout) => {
+                return action.payload
+            }),
+            switchMap((currentUser: any) => {
+                return this.http.post(`${BACKEND_URL}/logout`, { user: currentUser })
+
+            }),
+            mergeMap((): any => {
+                this.dialog("Logout Successful")
+                this.router.navigate(["/"])
+                return [
+
+                    {
+                        type: authActions.LOGOUT,
+                        payload: {
+                            token: null,
+                            currentUser: null
+                        }
+                    }
+                ]
+            }),
+        )
+
+    )
 }

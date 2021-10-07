@@ -3,6 +3,12 @@ import { Store } from '@ngrx/store';
 import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducer'
 
+
+
+import { map, switchMap, mergeMap, take } from "rxjs/operators";
+
+import * as authActions from '../auth/store/auth.actions'
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -29,6 +35,15 @@ export class HeaderComponent implements OnInit {
     )
   }
   logout() {
-    this.authService.logout()
+    this.store.select('AuthState')
+      .pipe(
+        map((authDetail) => { return authDetail }), take(1)
+      ).subscribe(
+        (data) => {
+          this.store.dispatch(new authActions.StartLogout({ currentUser: data.currentUser }))
+        }
+      )
+
+
   }
 }

@@ -12,6 +12,7 @@ export const CREATE_USER_PASSWORD = 'CREATE_USER_PASSWORD'
 export const SEND_CREATE_USER_EMAIL = 'SEND_CREATE_USER_EMAIL'
 export const AUTO_LOGIN = 'AUTO_LOGIN'
 export const CREATE_CUSTOMER = 'CREATE_CUSTOMER'
+export const START_LOGOUT = 'START_LOGOUT'
 export const LOGOUT = 'LOGOUT'
 
 
@@ -54,6 +55,10 @@ export class AutomaticLogin implements Action {
     readonly type = AUTO_LOGIN
 }
 
+export class StartLogout implements Action {
+    readonly type = START_LOGOUT
+    constructor(public payload: { currentUser: any }) { }
+}
 export class Logout implements Action {
     readonly type = LOGOUT
 }

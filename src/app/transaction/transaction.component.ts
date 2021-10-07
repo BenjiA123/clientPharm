@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IgxGridComponent } from 'igniteui-angular';
+import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import { AppTransaction } from './transaction.interface';
 import { AppTransactionService } from './transaction.service';
 
@@ -12,7 +14,7 @@ export class TransactionComponent implements OnInit {
 
   transactions: AppTransaction[] = []
 
-  constructor(private appTransactionService: AppTransactionService) { }
+  constructor(private appTransactionService: AppTransactionService, private _dialog: MatDialog) { }
 
   @ViewChild('transactionsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
@@ -58,7 +60,11 @@ export class TransactionComponent implements OnInit {
   approveTrans(transId: String) {
 
     this.appTransactionService.approveTrans(transId)
-      .subscribe()
+      .subscribe(() => {
+        this._dialog.open(DialogMessageComponent, {
+          data: { message: "Transaction Approved " }
+        })
+      })
   }
 
 }

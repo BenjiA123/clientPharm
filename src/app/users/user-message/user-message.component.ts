@@ -3,10 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UsersService } from '../users.service';
 
-
 import { environment } from "../../../environments/environment"
 import { io } from "socket.io-client";
-import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
 
@@ -20,12 +18,13 @@ const socket = io(environment.baseUrl);
 export class UserMessageComponent implements OnInit {
   currentUser: any;
 
-  constructor(private route: ActivatedRoute, private _dialog: MatDialog, private authService: AuthService, private usersService: UsersService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private _dialog: MatDialog,
+    private usersService: UsersService) { }
   currentRoute: any
   currentUserData: any
   ngOnInit() {
-
-    this.currentUser = this.authService.getCurrentUser()
 
     this.route.params
       .subscribe(
