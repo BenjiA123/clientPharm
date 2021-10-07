@@ -5,16 +5,6 @@ import { DatePipe } from '@angular/common'
 import { ChartService } from './chart.service';
 import { environment } from "../../environments/environment"
 import { NgForm } from '@angular/forms';
-
-
-
-import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
-
-
-
-const BACKEND_URL = environment.apiUrl + "/socket"
-
-
 import { io } from "socket.io-client";
 import { Drug } from '../drugs/drugs.interface';
 
@@ -47,7 +37,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     this.selectedDrugsArray = []
 
+
+
+    socket.on("updateTransGraph", (data: any) => {
+      console.log("At client", data)
+    })
+
+
   }
+
 
 
   searchField(searchText: string) {

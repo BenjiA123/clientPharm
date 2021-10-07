@@ -10,6 +10,13 @@ import { Drug } from './drugs.interface';
 import { DrugsService } from './drugs.service';
 import * as fromApp from '../store/app.reducer'
 import { Store } from '@ngrx/store';
+import { environment } from "../../environments/environment"
+
+
+
+import { io } from "socket.io-client";
+
+const socket = io(environment.baseUrl);
 @Component({
   selector: 'app-drugs',
   templateUrl: './drugs.component.html',
@@ -162,6 +169,14 @@ export class DrugsComponent implements OnInit, OnDestroy {
 
     this.appTransactionService.createPendingTransaction(transaction)
       .subscribe(res => {
+
+        socket.emit("startChartUpdate");
+
+
+        socket.on("updateTransGraph", (data: any) => {
+          console.log("At client", data)
+        })
+
 
         this._dialog.open(DialogMessageComponent, {
           data: { message: "Transaction Created" }
