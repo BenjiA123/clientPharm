@@ -7,12 +7,13 @@ import { CustomersDrugDetailComponent } from './customers-drug-detail/customers-
 import { SearchModule } from '../search/search.module';
 import { AngularMaterialModule } from '../angular-material.module';
 import { CustomerSettingComponent } from './customer-setting/customer-setting.component';
-import { DrugOrderComponent } from './drug-order/drug-order.component';
-import { OrdersComponent } from './orders/orders.component';
+import { DrugOrderComponent } from './customer-setting/drug-order/drug-order.component';
+import { OrdersComponent } from './customer-setting/orders/orders.component';
+import { EditUserComponent } from './customer-setting/edit-user/edit-user.component';
 
 
 @NgModule({
-  declarations: [DrugOverviewComponent, CustomersDrugDetailComponent, CustomerSettingComponent, DrugOrderComponent, OrdersComponent],
+  declarations: [DrugOverviewComponent, CustomersDrugDetailComponent, CustomerSettingComponent, DrugOrderComponent, OrdersComponent, EditUserComponent],
   imports: [
     CommonModule,
     CustomerSectionRoutingModule, SearchModule, AngularMaterialModule

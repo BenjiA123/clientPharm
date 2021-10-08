@@ -74,7 +74,7 @@ const routes: Routes = [
     path: '', component: WelcomeComponent
   },
   {
-    path: '**', redirectTo: 'dashboard'
+    path: '**', redirectTo: ''
   }
 ];
 
