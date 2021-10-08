@@ -29,5 +29,10 @@
         >DRUGS
       </a>
     </li>
+    <li *ngIf="isAuthenticated && isCustomer" class="navigation__item">
+      <a mat-button routerLink="/customer/settings" class="navigation__link"
+        >Settings
+      </a>
+    </li>
   </div>
 </div>

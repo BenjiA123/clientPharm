@@ -1,0 +1,19 @@
+.card-container {
+  width: 80%;
+  margin: 8% 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5%;
+}
+
+.card {
+  color: white;
+  height: 15rem;
+  color: black;
+  padding-bottom: 0%;
+  margin: 10%;
+}
+mat-card {
+  height: 125%;
+  position: relative;
+}

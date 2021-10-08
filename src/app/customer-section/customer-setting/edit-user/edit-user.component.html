@@ -1,1 +1,48 @@
-<p>edit-user works!</p>
+<mat-card class="edit_customer_card">
+  <mat-card-header>
+    <mat-card-title>EDIT ME...</mat-card-title>
+  </mat-card-header>
+  <br />
+  <form (submit)="oneditCustomer(editCustomer)" #editCustomer="ngForm">
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Name:</mat-label>
+      <input matInput [ngModel]="currentUser?.name" name="name" type="text" />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Username:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUser?.username"
+        name="username"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input matInput [ngModel]="currentUser?.email" name="email" type="text" />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Address:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUser?.address"
+        name="address"
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="input__field" appearance="outline">
+      <mat-label>Phone Number:</mat-label>
+      <input
+        matInput
+        [ngModel]="currentUser?.phoneNumber"
+        name="phoneNumber"
+        type="number"
+      />
+    </mat-form-field>
+    <button type="submit" class="btn btn--crimson">EDIT USER</button>
+  </form>
+</mat-card>

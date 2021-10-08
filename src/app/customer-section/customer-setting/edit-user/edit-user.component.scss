@@ -1,0 +1,19 @@
+.edit_customer_card {
+  //   position: absolute;
+  width: 80%;
+  margin: 0 10%;
+  //   right: 4rem;
+  //   height: 80%;
+  //   top: 5rem;
+}
+.input__field {
+  width: 100%;
+  margin: 0;
+  &:not(first-child) {
+    margin-top: -1rem;
+  }
+}
+
+.btn--crimson {
+  margin-top: 0;
+}

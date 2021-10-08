@@ -1,3 +1,14 @@
-<br /><br /><br /><br />
-
-<p *ngFor="let item of myDrugs">drug-order works!</p>
+<div class="card-container">
+  <div *ngFor="let drug of myDrugs" class="card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title
+          ><strong>Drug Name: {{ drug.genericName }}</strong>
+        </mat-card-title>
+        <mat-card-subtitle>Brand Name: {{ drug.brandName }} </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Description: {{ drug.description }} </mat-card-content>
+      <mat-card-content>Type: {{ drug.type }} </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -10,13 +10,13 @@ import { CustomerSettingComponent } from './customer-setting/customer-setting.co
 import { DrugOrderComponent } from './customer-setting/drug-order/drug-order.component';
 import { OrdersComponent } from './customer-setting/orders/orders.component';
 import { EditUserComponent } from './customer-setting/edit-user/edit-user.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [DrugOverviewComponent, CustomersDrugDetailComponent, CustomerSettingComponent, DrugOrderComponent, OrdersComponent, EditUserComponent],
   imports: [
     CommonModule,
-    CustomerSectionRoutingModule, SearchModule, AngularMaterialModule
+    CustomerSectionRoutingModule, SearchModule, AngularMaterialModule, MatTabsModule
   ]
 })
 export class CustomerSectionModule { }

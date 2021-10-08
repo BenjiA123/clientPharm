@@ -13,10 +13,10 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.customerSectionService.getUsersOrderedDrugs()
+    this.customerSectionService.getUsersOrders()
       .subscribe(
-        (drugs: any) => {
-          this.myOrders = drugs.drugs
+        (orders: any) => {
+          this.myOrders = orders.orders
         }
       )
 
