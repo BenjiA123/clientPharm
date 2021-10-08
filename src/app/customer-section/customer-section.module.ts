@@ -11,9 +11,10 @@ import { DrugOrderComponent } from './customer-setting/drug-order/drug-order.com
 import { OrdersComponent } from './customer-setting/orders/orders.component';
 import { EditUserComponent } from './customer-setting/edit-user/edit-user.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ChangePasswordComponent } from './customer-setting/change-password/change-password.component';
 
 @NgModule({
-  declarations: [DrugOverviewComponent, CustomersDrugDetailComponent, CustomerSettingComponent, DrugOrderComponent, OrdersComponent, EditUserComponent],
+  declarations: [DrugOverviewComponent, CustomersDrugDetailComponent, CustomerSettingComponent, DrugOrderComponent, OrdersComponent, EditUserComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     CustomerSectionRoutingModule, SearchModule, AngularMaterialModule, MatTabsModule

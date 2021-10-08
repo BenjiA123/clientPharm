@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
+import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
 import * as fromApp from '../../../store/app.reducer'
+import { CustomerSectionService } from '../../customer-section.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,7 +15,8 @@ import * as fromApp from '../../../store/app.reducer'
 export class EditUserComponent implements OnInit {
   currentUser: any;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private csSection: CustomerSectionService, private _dialog: MatDialog,
+    private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
 
@@ -30,10 +35,14 @@ export class EditUserComponent implements OnInit {
       return
     }
 
-    // this.usersService.editCustomer(editForm.form.value, this.currentUserData._id)
-    //   .subscribe((data: any) => {
-    //     this.currentUserData = data.data.document
-    //   })
+    this.csSection.editCustomer(editForm.form.value, this.currentUser._id)
+      .subscribe((data: any) => {
+        delete data.data.document.confirmPassword
+        this.currentUser = data.data.document
+        this._dialog.open(DialogMessageComponent, {
+          data: { message: "You have been updated" }
+        })
+      })
 
 
   }

@@ -34,4 +34,8 @@ export class CustomerSectionService {
   getUsersOrders() {
     return this.http.get(`${environment.apiUrl}/order/my-orders`)
   }
+
+  editCustomer(updatedUser: any, customerId: string) {
+    return this.http.patch(`${environment.apiUrl}/user/${customerId}`, updatedUser)
+  }
 }
