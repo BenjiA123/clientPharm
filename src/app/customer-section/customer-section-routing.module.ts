@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomerSettingComponent } from './customer-setting/customer-setting.component';
 import { CustomersDrugDetailComponent } from './customers-drug-detail/customers-drug-detail.component';
-import { DrugBookingComponent } from './drug-booking/drug-booking.component';
+import { DrugOrderComponent } from './drug-order/drug-order.component';
 import { DrugOverviewComponent } from './drug-overview/drug-overview.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     ]
   },
   { path: "drugs-detail/:id", component: CustomersDrugDetailComponent },
-  { path: ":id/bookings", component: DrugBookingComponent },
+  { path: "my-drugs", component: DrugOrderComponent },
+  { path: "my-orders", component: OrdersComponent },
   { path: "settings", component: CustomerSettingComponent },
 
 ];

@@ -16,7 +16,7 @@ export class CustomerSectionService {
 
   }
   createCheckout(drugId: string) {
-    return this.http.get(`${environment.apiUrl}/booking/checkout-session/${drugId}`)
+    return this.http.get(`${environment.apiUrl}/order/checkout-session/${drugId}`)
 
 
   }
@@ -27,4 +27,11 @@ export class CustomerSectionService {
 
   }
 
+  getUsersOrderedDrugs() {
+    return this.http.get(`${environment.apiUrl}/order/my-ordered-drugs`)
+  }
+
+  getUsersOrders() {
+    return this.http.get(`${environment.apiUrl}/order/my-orders`)
+  }
 }
