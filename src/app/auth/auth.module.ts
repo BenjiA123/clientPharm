@@ -8,13 +8,14 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { CreatePasswordComponent } from './create-password/create-password.component';
 import { CookieService } from 'ngx-cookie';
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     CreateUserComponent,
-    CreatePasswordComponent, CreateCustomerComponent
+    CreatePasswordComponent, CreateCustomerComponent, ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +25,7 @@ import { CreateCustomerComponent } from './create-customer/create-customer.compo
   ],
   providers: [
     CookieService
-  ]
+  ], exports: [ChangePasswordComponent]
+
 })
 export class AuthModule { }
