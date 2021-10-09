@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   public dashboardData: any[] = [
 
     {
-      title: 'Transactions', subtitle: 'Contact Users', icon: 'MessageIcon', description: 'Monitor the statuses of all your transactions', link: "transactions"
+      title: 'Transactions', subtitle: 'Contact Users', icon: 'MessageIcon', description: 'Monitor your transaction statuses within your pharmacy', link: "transactions"
     },
     // {
     //   title: 'Message', subtitle: 'Interact directly with users', icon: 'chat', description: 'Send them direct messages with emails', link: "message"
@@ -24,10 +24,10 @@ export class DashboardComponent implements OnInit {
       title: 'Sources', subtitle: 'Get all vendors', icon: 'home', description: 'Get all your sources at a go', link: "sources"
     },
     {
-      title: 'Charts', subtitle: 'View your graphs', icon: 'chart', description: 'View how transactions change with the grephs', link: "charts"
+      title: 'Charts', subtitle: 'View your graphs', icon: 'chart', description: 'View how transactions change over a duration with graphs', link: "charts"
     },
     {
-      title: 'Users', subtitle: 'Get all Users', icon: 'user', description: 'Gets everyone using your application', link: "users"
+      title: 'Users', subtitle: 'Get all Users', icon: 'user', description: 'Get all your Employees and customers', link: "users"
     },
     {
       title: 'Create', subtitle: 'Create Sources and drugs', icon: 'add', description: 'Create drugs and sources with ease', link: "create"
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     },
   ]
 
-  private userRole: string;
+  public userRole: string;
 
   constructor(private store: Store<fromApp.AppState>) { }
 

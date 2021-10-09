@@ -46,12 +46,14 @@ const routes: Routes = [
       import('./create/create.module').then((m) => m.CreateModule),
     canActivate: [AuthGuard]
   },
-  {
-    path: 'message',
-    loadChildren: () =>
-      import('./message/message.module').then((m) => m.MessageModule),
-    canActivate: [AuthGuard]
-  },
+
+  // Later feature
+  // {
+  //   path: 'message',
+  //   loadChildren: () =>
+  //     import('./message/message.module').then((m) => m.MessageModule),
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -68,6 +70,7 @@ const routes: Routes = [
     path: 'customer',
     loadChildren: () =>
       import('./customer-section/customer-section.module').then((m) => m.CustomerSectionModule),
+    canActivate: [AuthGuard]
   },
 
   {

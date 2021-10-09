@@ -17,6 +17,7 @@ export class CustomersDrugDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private customerService: CustomerSectionService) { }
 
   drugId: string
+  drug: string
   ngOnInit(): void {
 
 
@@ -25,6 +26,10 @@ export class CustomersDrugDetailComponent implements OnInit {
         (params: Params) => {
           this.drugId = params['id']
           this.customerService.getOneDrug(this.drugId)
+            .subscribe((res: any) => {
+              this.drug = res.data.document
+              console.log(this.drug)
+            })
 
         }
       )

@@ -50,11 +50,18 @@ export class AuthGuard implements CanActivate {
                 authorized = true
 
             }
+
+            else if (this.userRole == 'customer' && routePath.startsWith('customer')) {
+
+                authorized = true
+
+            }
             else {
                 authorized = false
             }
 
 
+            if ((this.userRole == "MD" || this.userRole == "administrator") && routePath.startsWith('customer')) authorized = false
             if (routePath == "message") authorized = true
             if (routePath == "dashboard") authorized = true
         }
