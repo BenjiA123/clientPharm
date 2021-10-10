@@ -22,6 +22,7 @@ import { appReducers } from "./store/app.reducer";
 import { environment } from "src/environments/environment";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./auth/store/auth.effects";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AuthEffects } from "./auth/store/auth.effects";
     CookieModule.forRoot(),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([AuthEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     DialogMessageComponent
