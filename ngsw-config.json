@@ -12,6 +12,12 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://js.stripe.com/v3/",
+          "https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap",
+          "https://fonts.googleapis.com/icon?family=Material+Icons",
+          "https://fonts.googleapis.com/css?family=Titillium+Web"
         ]
       }
     },
@@ -24,6 +30,21 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "backend",
+      "urls": [
+        "https://gileadpharmacy.herokuapp.com/api/v1/**"
+      ],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "12h",
+        "timeout": "30s",
+        "strategy": "freshness"
       }
     }
   ]
