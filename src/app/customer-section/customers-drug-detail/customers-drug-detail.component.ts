@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { CustomerSectionService } from '../customer-section.service';
+
 
 
 declare var Stripe: any;
@@ -12,7 +14,7 @@ declare var Stripe: any;
   styleUrls: ['./customers-drug-detail.component.scss']
 })
 export class CustomersDrugDetailComponent implements OnInit {
-  stripe = Stripe('pk_test_51JdfkqIRiTKUTBzlyu2ZokBrkgB2cXadm1a5Fz0uRjU5KjJZpn7hgZEgILHUCDZl5hrX30kfNRwjoYBa3DqAp2j800L4Lvuvku');
+  stripe = Stripe(environment.stripe_publish_key);
 
   constructor(private route: ActivatedRoute, private customerService: CustomerSectionService) { }
 

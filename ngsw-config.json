@@ -37,7 +37,8 @@
     {
       "name": "backend",
       "urls": [
-        "https://gileadpharmacy.herokuapp.com/api/v1/**"
+        "https://gileadpharmacy.herokuapp.com/api/v1/**",
+        "http://localhost:5000/api/v1/**"
       ],
       "version": 1,
       "cacheConfig": {
