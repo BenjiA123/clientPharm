@@ -56,6 +56,13 @@ export class AuthGuard implements CanActivate {
                 authorized = true
 
             }
+
+            else if (this.userRole == 'dispatch-rider' && routePath.startsWith('dispatch-rider')) {
+
+                authorized = true
+
+            }
+
             else {
                 authorized = false
             }

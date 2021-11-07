@@ -92,6 +92,7 @@ export class AuthEffects {
                     else if (userRole == 'cachier') { this.router.navigate(["/transactions"]) }
                     else if (userRole == 'pharmacist') { this.router.navigate(["/drugs"]) }
                     else if (userRole == 'customer') { this.router.navigate(["/customer/drugs"]) }
+                    else if (userRole == 'dispatch-rider') { this.router.navigate(["/dispatch-rider"]) }
 
                     else {
                         this.router.navigate(["/"])

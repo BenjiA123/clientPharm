@@ -72,6 +72,12 @@ const routes: Routes = [
       import('./customer-section/customer-section.module').then((m) => m.CustomerSectionModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'dispatch-rider',
+    loadChildren: () =>
+      import('./dispatch-rider-section/dispatch-rider-section-routing.module').then((m) => m.DispatchRiderSectionRoutingModule),
+    // canActivate: [AuthGuard]
+  },
 
   {
     path: '', component: WelcomeComponent

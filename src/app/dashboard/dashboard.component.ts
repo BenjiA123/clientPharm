@@ -38,6 +38,9 @@ export class DashboardComponent implements OnInit {
     {
       title: 'Drugs', subtitle: 'Create Transactions', icon: 'MessageIcon', description: 'Creates Users Transactions from Drugs', link: "drugs"
     },
+    {
+      title: 'Dispatch', subtitle: 'Dispatch Page', icon: 'MessageIcon', description: 'A dispatch rider component', link: "dispatch-rider"
+    },
   ]
 
   public userRole: string;

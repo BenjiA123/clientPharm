@@ -24,12 +24,12 @@
         ><mat-icon>dashboard</mat-icon>
       </a>
     </li>
-    <li *ngIf="isAuthenticated && isCustomer" class="navigation__item">
+    <li *ngIf="isCustomer" class="navigation__item">
       <a mat-button routerLink="/customer/drugs" class="navigation__link"
         >DRUGS
       </a>
     </li>
-    <li *ngIf="isAuthenticated && isCustomer" class="navigation__item">
+    <li *ngIf="isCustomer" class="navigation__item">
       <a mat-button routerLink="/customer/settings" class="navigation__link"
         >Settings
       </a>
