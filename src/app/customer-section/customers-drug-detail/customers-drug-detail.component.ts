@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { CustomerSectionService } from '../customer-section.service';
 
 
-
 declare var Stripe: any;
 
 
@@ -14,14 +13,17 @@ declare var Stripe: any;
   styleUrls: ['./customers-drug-detail.component.scss']
 })
 export class CustomersDrugDetailComponent implements OnInit {
-  stripe = Stripe(environment.stripe_publish_key);
 
-  constructor(private route: ActivatedRoute, private customerService: CustomerSectionService) { }
+  constructor(private route: ActivatedRoute, private customerService: CustomerSectionService) {
+    Stripe = window.Stripe;
+
+  }
+
+  stripe = Stripe(environment.stripe_publish_key);
 
   drugId: string
   drug: string
-  ngOnInit(): void {
-
+  ngOnInit() {
 
     this.route.params
       .subscribe(
@@ -30,7 +32,6 @@ export class CustomersDrugDetailComponent implements OnInit {
           this.customerService.getOneDrug(this.drugId)
             .subscribe((res: any) => {
               this.drug = res.data.document
-              console.log(this.drug)
             })
 
         }
