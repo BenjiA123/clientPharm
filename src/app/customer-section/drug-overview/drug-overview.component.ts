@@ -15,16 +15,25 @@ export class DrugOverviewComponent implements OnInit, OnDestroy {
   private drugsSub: Subscription;
   public drugs: Drug[];
 
+  private savedDrugsSubscription: Subscription
 
-  ngOnInit(): void {
+
+  async ngOnInit() {
 
 
-    this.customerSectionService.getAllDrugs()
-      .subscribe(
-        (response: any) => {
-          this.drugs = response.data.document
-        }
-      )
+    this.savedDrugsSubscription = this.customerSectionService.getSavedDrugs().subscribe(
+      (savedDrugs: any) => {
+        this.drugs = savedDrugs
+        console.log(savedDrugs)
+      }
+    )
+
+
+
+    const x: any = await this.customerSectionService.getAllDrugs().toPromise()
+    this.drugs = x.data.document
+    localStorage.setItem('drugs', JSON.stringify(this.drugs))
+
 
     this.drugsSub = this.searchService.searchedDrugsListener()
       .subscribe((drugs: any) => {
@@ -35,6 +44,7 @@ export class DrugOverviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.drugsSub.unsubscribe();
+    this.savedDrugsSubscription.unsubscribe()
 
   }
 

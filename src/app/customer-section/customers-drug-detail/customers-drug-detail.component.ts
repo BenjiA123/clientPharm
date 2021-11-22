@@ -15,7 +15,9 @@ declare var Stripe: any;
 export class CustomersDrugDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private customerService: CustomerSectionService) {
-    Stripe = window.Stripe;
+
+    // Add later
+    // Stripe = window.Stripe;
 
   }
 

@@ -6,7 +6,7 @@
   height: 65%;
   background-color: white;
   border-radius: 1rem;
-  box-shadow: 0.1rem 0.5rem 0.7rem 0.1rem blue;
+  box-shadow: -2px 4px 13px 3px rgba(0, 0, 0, 0.19);
 
   &__header {
     font-family: "Courier New", Courier, monospace;
@@ -69,7 +69,6 @@
     left: 10%;
     background-color: white;
     border-radius: 1rem;
-    box-shadow: 0.1rem 0.5rem 0.7rem 0.1rem blue;
 
     &__element__role {
       letter-spacing: 0.06rem;

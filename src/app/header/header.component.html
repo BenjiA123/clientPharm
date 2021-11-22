@@ -8,7 +8,9 @@
   </div>
   <div class="nav_items">
     <li *ngIf="isAuthenticated" class="navigation__item">
-      <a (click)="logout()" class="navigation__link">Logout</a>
+      <a (click)="logout()" class="navigation__link"
+        ><mat-icon>logout</mat-icon></a
+      >
     </li>
 
     <li *ngIf="!isAuthenticated" class="navigation__item">
