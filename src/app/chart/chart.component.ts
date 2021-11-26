@@ -49,6 +49,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
 
   searchField(searchText: string) {
+    console.log(searchText)
     socket.emit("searchDrug", searchText);
 
     socket.on("drugSearchResult", (searchResult: Drug[]) => {

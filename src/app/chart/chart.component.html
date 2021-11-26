@@ -24,10 +24,12 @@
   <input
     placeholder="Add Drug"
     type="text"
+    #searchText
     matInput
     name="drugId"
     [matAutocomplete]="auto"
-    (focus)="searchField('')"
+    (focus)="searchField(searchText.value)"
+    (onkeydown)="searchField(searchText.value)"
   />
 
   <mat-autocomplete #auto="matAutocomplete">

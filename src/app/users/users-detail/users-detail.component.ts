@@ -39,6 +39,7 @@ export class UsersDetailComponent implements OnInit {
 
   deleteUser(userId: string) {
     // ?Sets user to inActive
+    if (!confirm("Are you sure about this")) return
     this.usersService.inactivateUser(userId)
       .subscribe(
         res => {

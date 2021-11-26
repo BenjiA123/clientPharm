@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { throwError } from "rxjs";
-import { catchError, finalize, retry } from "rxjs/operators";
+import { catchError, finalize, retry, timeout } from "rxjs/operators";
 import { DialogMessageComponent } from "./dialog-message/dialog-message.component";
 
 @Injectable()
@@ -13,11 +13,11 @@ export class AppInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler,) {
 
-
         this._snackBar.open("LoAdinG......")
         return next.handle(req)
             .pipe(
                 // retry(2),
+                // timeout(30000),
                 finalize(() => {
 
                     this._snackBar.dismiss();
@@ -36,7 +36,9 @@ export class AppInterceptor implements HttpInterceptor {
                     })
 
                     return throwError(err)
-                })
+                }),
+                // retry(2)
+
             )
     }
 }

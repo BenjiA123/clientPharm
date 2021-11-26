@@ -17,9 +17,9 @@ export class DashboardComponent implements OnInit {
     {
       title: 'Transactions', subtitle: 'Contact Users', icon: 'shopping_cart', description: 'Monitor your transaction statuses within your pharmacy', link: "transactions"
     },
-    // {
-    //   title: 'Message', subtitle: 'Interact directly with users', icon: 'chat', description: 'Send them direct messages with emails', link: "message"
-    // },
+    {
+      title: 'Message', subtitle: 'Interact directly with users', icon: 'chat', description: 'Chat In realtime with everyone', link: "message"
+    },
     {
       title: 'Sources', subtitle: 'Get all vendors', icon: 'play_for_work', description: 'Get all your sources at a go', link: "sources"
     },

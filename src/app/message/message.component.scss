@@ -1,14 +1,14 @@
 .message__card {
-  left: 4rem;
+  left: 3rem;
   top: 7rem;
   height: auto;
-  width: 22.5%;
+  width: 30.5%;
   background-color: white;
   position: absolute;
   color: brown;
   text-align: center;
   border-radius: 0.3rem;
-  box-shadow: 0.1rem 0.2rem 0.6rem lime;
+  box-shadow: -2px 4px 13px 3px rgba(0, 0, 0, 0.19);
 
   &__header {
     font-family: "Courier New", Courier, monospace;
