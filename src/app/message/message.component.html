@@ -1,6 +1,11 @@
 <div class="message__card">
   <div class="message__card__header">Message</div>
 
+  <!-- <cdk-virtual-scroll-viewport
+    position="fixed"
+    itemSize="50"
+    class="scrollbar__view"
+  > -->
   <div
     *ngFor="let user of users"
     [routerLink]="['/message', user.username]"
@@ -8,9 +13,9 @@
   >
     <div class="message__card__element__name">{{ user.username }}</div>
   </div>
+  <!-- </cdk-virtual-scroll-viewport> -->
 
   <br />
 </div>
 
-<!-- <mat-icon>send</mat-icon> -->
 <router-outlet></router-outlet>

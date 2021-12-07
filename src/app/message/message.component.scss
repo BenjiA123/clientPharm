@@ -2,7 +2,7 @@
   left: 3rem;
   top: 7rem;
   height: auto;
-  width: 30.5%;
+  width: 27%;
   background-color: white;
   position: absolute;
   color: brown;
@@ -42,5 +42,21 @@
       float: left;
       //   left: 10rem;
     }
+  }
+}
+
+.scrollbar__view {
+  width: 90%;
+  height: 100%;
+  // display: none;
+}
+
+@media only screen and (max-width: 650px) {
+  .message__card {
+    width: 90%;
+    left: 5%;
+    height: auto;
+    top: 12%;
+    position: relative;
   }
 }

@@ -1,25 +1,53 @@
 <div class="message_section">
   <div class="message_top">
-    <div class="message_top_name">{{ reciverData?.username }}</div>
+    <div class="message_top_name">{{ reciverData?.name }}</div>
   </div>
 
-  <div class="messageArray" *ngFor="let message of allMessages">
-    {{ message.message }}
-  </div>
+  <cdk-virtual-scroll-viewport
+    position="fixed"
+    itemSize="50"
+    class="scrollbar__view"
+  >
+    <div class="genMessage" *ngFor="let message of allMessages">
+      <div
+        *ngIf="message?.sender === this.currentUser?._id"
+        class="senderMessage"
+      >
+        {{ message?.message }}
+        <div class="message_date">
+          {{ message?.created_at | date: "short" }}
+          <!-- {{ message?.created_at | date: "fullDate" }} -->
+        </div>
+      </div>
+      <div
+        *ngIf="message?.reciever === this.currentUser?._id"
+        class="recieverMessage"
+      >
+        {{ message?.message }}
+        <div class="message_date">
+          {{ message?.created_at | date: "short" }}
+        </div>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+
   <div class="message_form">
     <form (submit)="sendMessage(form)" #form="ngForm">
-      <mat-form-field>
-        <input
-          ngModel
-          matInput
-          name="message"
-          appearance="outline"
-          placeholder="Type a message"
-          type="text"
-        />
+      <mat-form-field class="message_input">
+        <input ngModel matInput name="message" appearance="fill" type="text" />
       </mat-form-field>
 
-      <button type="submit">Arrow</button>
+      <button
+        class="message_btn"
+        type="submit"
+        mat-fab
+        placeholder="Type"
+        color="white"
+        aria-label="Example icon button with a delete icon"
+      >
+        Send
+      </button>
     </form>
   </div>
 </div>
+<br /><br /><br /><br /><br /><br />

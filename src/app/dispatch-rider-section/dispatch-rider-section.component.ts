@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DispatchRiderSectionService } from './dispatch-rider-section.service';
 
 @Component({
   selector: 'app-dispatch-rider-section',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DispatchRiderSectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private drService: DispatchRiderSectionService) { }
 
   ngOnInit(): void {
+    this.drService.getAllOrders().subscribe(res => console.log(res))
   }
-  showFiller = false;
 }

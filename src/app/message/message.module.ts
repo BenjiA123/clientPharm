@@ -5,6 +5,7 @@ import { MessageRoutingModule } from './message-routing.module';
 import { MessageDetailsComponent } from './message-details/message-details.component';
 import { MessageComponent } from './message.component';
 import { AngularMaterialModule } from '../angular-material.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { AngularMaterialModule } from '../angular-material.module';
   imports: [
     CommonModule,
     MessageRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule, ScrollingModule
   ]
 })
 export class MessageModule { }

@@ -22,7 +22,8 @@ import { QueriedOrdersComponent } from './queried-orders/queried-orders.componen
     //  MatSidenavModule,
     // MatSidenavContent,
     // MatSidenav,
-    SearchModule, AngularMaterialModule, MatTabsModule, AuthModule
+    SearchModule,
+    AngularMaterialModule, MatTabsModule, AuthModule
   ]
 })
 export class DispatchRiderSectionModule { }

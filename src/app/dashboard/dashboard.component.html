@@ -7,6 +7,7 @@
     <mat-card
       *ngIf="
         userRole == 'MD' ||
+        item.link == 'message' ||
         (item.link == 'transactions' && userRole == 'cachier') ||
         (item.link == 'drugs' && userRole == 'pharmacist') ||
         (item.link == 'dispatch-rider' && userRole == 'dispatch-rider')
