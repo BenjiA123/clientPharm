@@ -153,8 +153,6 @@ export class AuthEffects {
             }),
             mergeMap((responseData: any) => {
 
-                console.log(responseData)
-
                 let userRole: string = responseData.user?.role;
 
                 if (userRole != 'customer') { this.router.navigate(["/dashboard"]) }

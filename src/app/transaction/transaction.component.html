@@ -4,7 +4,7 @@
 <h4 class="screen_size_error">PLEASE USE A LAPTOP TO VIEW THIS PAGE✔✔😁</h4>
 
 <igx-grid
-  *ngIf="transactions.length > 0"
+  *ngIf="transactions?.length > 0"
   [primaryKey]="'_id'"
   [paging]="true"
   [perPage]="10"

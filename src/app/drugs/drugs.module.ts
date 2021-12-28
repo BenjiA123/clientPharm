@@ -8,6 +8,10 @@ import { IgxGridModule } from "igniteui-angular";
 import { SearchModule } from '../search/search.module';
 import { DrugDetailComponent } from './drug-detail/drug-detail.component';
 import { MatCardModule } from '@angular/material/card';
+import { StoreModule } from '@ngrx/store';
+import { DrugReducer } from './store/drug.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { DrugEffects } from './store/drug.effects';
 
 
 @NgModule({
@@ -16,7 +20,8 @@ import { MatCardModule } from '@angular/material/card';
     IgxGridModule,
     DrugsRoutingModule, MatCardModule,
     SearchModule,
-
+    EffectsModule.forFeature([DrugEffects]),
+    StoreModule.forFeature('DrugState', DrugReducer),
     AngularMaterialModule],
 })
 export class DrugsModule { }

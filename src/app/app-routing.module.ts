@@ -75,7 +75,7 @@ const routes: Routes = [
   {
     path: 'dispatch-rider',
     loadChildren: () =>
-      import('./dispatch-rider-section/dispatch-rider-section-routing.module').then((m) => m.DispatchRiderSectionRoutingModule),
+      import('./dispatch-rider-section/dispatch-rider-section.module').then((m) => m.DispatchRiderSectionModule),
     // canActivate: [AuthGuard]
   },
 

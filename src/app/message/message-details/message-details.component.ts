@@ -87,8 +87,8 @@ export class MessageDetailsComponent implements OnInit {
   }
   sendSocketMessage(message: { sender: string, reciever: string, message: string }) {
     socket.emit("sendDirectMessage", message);
+
     socket.on("messageResult", (messageData: any) => {
-      console.log("This is being emitted form the other side")
       console.log(messageData)
       this.allMessages.push(messageData)
     })

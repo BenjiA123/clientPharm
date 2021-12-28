@@ -13,6 +13,10 @@ import { DeliveredOrdersComponent } from './delivered-orders/delivered-orders.co
 import { AcceptedOrdersComponent } from './accepted-orders/accepted-orders.component';
 import { AccidentOrdersComponent } from './accident-orders/accident-orders.component';
 import { QueriedOrdersComponent } from './queried-orders/queried-orders.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { DiapatchRiderEffects } from './store/dispatch-rider.effects';
+import { DispatchRiderReducer } from './store/dispatch-rider.reducers';
 
 @NgModule({
   declarations: [DispatchRiderSectionComponent, AllOrdersComponent, DeliveredOrdersComponent, AcceptedOrdersComponent, AccidentOrdersComponent, QueriedOrdersComponent],
@@ -23,7 +27,11 @@ import { QueriedOrdersComponent } from './queried-orders/queried-orders.componen
     // MatSidenavContent,
     // MatSidenav,
     SearchModule,
-    AngularMaterialModule, MatTabsModule, AuthModule
-  ]
+    AngularMaterialModule,
+    // MatTabsModule,
+    AuthModule,
+    EffectsModule.forFeature([DiapatchRiderEffects]),
+    StoreModule.forFeature('DispatchRiderState', DispatchRiderReducer),
+  ],
 })
 export class DispatchRiderSectionModule { }

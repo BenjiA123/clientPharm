@@ -11,6 +11,7 @@ import { DrugsService } from './drugs.service';
 import * as fromApp from '../store/app.reducer'
 import { Store } from '@ngrx/store';
 import { environment } from "../../environments/environment"
+import * as DrugActions from './store/drug.actions'
 
 
 
@@ -30,13 +31,14 @@ export class DrugsComponent implements OnInit, OnDestroy {
     private drugService: DrugsService,
     private appTransactionService: AppTransactionService,
     private searchService: SearchService,
-    private _dialog: MatDialog) { }
+    private _dialog: MatDialog,
+  ) { }
 
   // @ViewChild('quantity',{static:false}) quantity:Number;
   @ViewChild('drugsGrid', { read: IgxGridComponent }) public grid: IgxGridComponent;
 
   private drugsSub: Subscription;
-  public drugs: Drug[];
+  public drugs: Drug[] = [];
   public transactionQueue: any[] = []
   public transactionData: any[] = []
 
@@ -100,6 +102,19 @@ export class DrugsComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
 
+    this.store.select('DrugState').subscribe(
+      (response: any) => {
+        this.drugs = response.drugs?.data.document
+
+
+      }
+    )
+
+    if (!this.drugs) {
+      this.store.dispatch(new DrugActions.TryGetDrugs())
+
+    }
+
     this.store.select('AuthState').subscribe(
       (data) => {
         this.currentUser = data.currentUser
@@ -107,22 +122,13 @@ export class DrugsComponent implements OnInit, OnDestroy {
       }
     )
 
+
+
+
     this.drugsSub = this.searchService.searchedDrugsListener()
       .subscribe((drugs: any) => {
-        // this.grid.isLoading = true
         this.drugs = drugs.drugs
-        // this.grid.isLoading = false
       })
-
-
-    this.drugService.getAllDrugs()
-      .subscribe(
-        (response: any) => {
-          // this.grid.isLoading = true
-          this.drugs = response.data.document
-          // this.grid.isLoading = false
-        }
-      )
   }
 
   getDrug(cellValue: string) {
